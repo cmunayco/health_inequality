@@ -201,13 +201,23 @@ r<-cbind(Q1,Q2,Q3,Q4)
 row.names(r)<-c('2000','2005','2009','2013') 
 
 quartz(width=10, height=6, pointsize=10)
-b<-barplot(r,col=c("red","blue","green","purple"),beside=T,ylim=c(0,200),
+b<-barplot(r,col=c("deepskyblue4","dodgerblue3","dodgerblue","deepskyblue"),beside=T,ylim=c(0,200),
            xlab="Cuartíles del Indice de Desarrollo Humano (IDH)", ylab="Promedio de la tasa de incidencia de tuberculosis")
 legend("topright",c("2000","2005","2009","2013"),
-       col= c("red","blue","green","purple"),pch=15,bty="n") 
+       col= c("deepskyblue4","dodgerblue3","dodgerblue","deepskyblue"),pch=15,bty="n") 
 text(x=b,y=c(r[1:16]),labels=c(r[1:16]),cex=1.25,pos=3)
 text(2.8,3,"Más bajo",cex=1.25,font=1)
 text(18.5,3,"Más alto",cex=1.25,font=1)
+text(10,180, "Índice de Kuznets absoluto", col="red")
+text(10,170, "2000=-82.8", col="red")
+text(10,160, "2005=-100.98", col="red")
+text(10,150, "2009=-69.37", col="red")
+text(10,140, "2013=-66.81", col="red")
+text(10,130, "Índice de Kuznets relativo", col="red")
+text(10,120, "2000=3.64", col="red")
+text(10,110, "2005=4.84", col="red")
+text(10,100, "2009=3.75", col="red")
+text(10,90, "2013=4.11", col="red")
 
 ##Table 4A. Metrics of country-level inequalities in TB incidence according to social stratifiers and year assessed
 regional_mean_rate_hdi2000<-sum(wpopg2000*meang2000)
@@ -359,31 +369,36 @@ summary(fit2000)
 hdi2000sort$predict2000<-coef(summary(fit2000))[1,1] + coef(summary(fit2000))[2,1]*hdi2000sort$logridit
 
 quartz(width=10, height=6, pointsize=10)
-plot(hdi2013sort$ridit,hdi2013sort$ir_tb, col="purple",pch=0,
+plot(hdi2013sort$ridit,hdi2013sort$ir_tb, col="deepskyblue",pch=0,
      ylab="Tasa de incidencia de tuberculosis (por 100,000 hab)", 
      xlab="Gradiente de población según Indice de Desarrollo Humano (IDH)")
-points(hdi2009sort$ridit,hdi2009sort$ir_tb, col="red",pch=1,
+points(hdi2009sort$ridit,hdi2009sort$ir_tb, col="dodgerblue",pch=1,
        ylab="", 
        xlab="")
-points(hdi2005sort$ridit,hdi2005sort$ir_tb, col="blue",pch=2,
+points(hdi2005sort$ridit,hdi2005sort$ir_tb, col="dodgerblue3",pch=2,
        ylab="", 
        xlab="")
-points(hdi2000sort$ridit,hdi2000sort$ir_tb, col="green",pch=3,
+points(hdi2000sort$ridit,hdi2000sort$ir_tb, col="deepskyblue4",pch=3,
        ylab="", 
        xlab="")
-lines(hdi2013sort$ridit,hdi2013sort$predict2013, col="purple", lty=1,
+lines(hdi2013sort$ridit,hdi2013sort$predict2013, col="deepskyblue", lty=1,
       ylab="", 
       xlab="")
-lines(hdi2009sort$ridit,hdi2009sort$predict2009, col="red", lty=2,
+lines(hdi2009sort$ridit,hdi2009sort$predict2009, col="dodgerblue", lty=2,
       ylab="", 
       xlab="")
-lines(hdi2005sort$ridit,hdi2005sort$predict2005, col="blue", lty=3,
+lines(hdi2005sort$ridit,hdi2005sort$predict2005, col="dodgerblue3", lty=3,
       ylab="", 
       xlab="")
-lines(hdi2000sort$ridit,hdi2000sort$predict2000, col="green", lty=4,
+lines(hdi2000sort$ridit,hdi2000sort$predict2000, col="deepskyblue4", lty=4,
       ylab="", 
       xlab="")
-legend(locator(1),c("2013","2009","2005","2000"),col=c("purple","red","blue","green"),pch=c(0,1,2,3),lty=c(1,2,3,4),cex = .8)
+legend(locator(1),c("2013","2009","2005","2000"),col=c("deepskyblue","dodgerblue","dodgerblue3","deepskyblue4"),pch=c(0,1,2,3),lty=c(1,2,3,4),cex = .8)
+text(0.8,150, "Índice de desigualdad de la pendiente (IDP)", col="red")
+text(0.8,140, "2000=-23.95", col="red")
+text(0.8,130, "2005=-30.92", col="red")
+text(0.8,120, "2009=-26.71", col="red")
+text(0.8,110, "2013=-23.23", col="red")
 
 # Social gradient
 slope_index_of_inequality_hdi2000<-fit2000$coefficients[2]
@@ -496,15 +511,18 @@ health_concentration_index_hdi2000<-2*sum(delta_x_y)*0.01
 round(health_concentration_index_hdi2000,2)
 
 quartz(width=10, height=6, pointsize=10)
-plot(CWpopf2013,CWhealthf2013, col="purple",pch=0, xlab="Gradiente de población según Indice de Desarrollo Humano (IDH)", ylab="Tasa de incidencia de tuberculosis (por 100,000 hab)")
-points(CWpopf2009,CWhealthf2009, col="red",pch=1)
-points(CWpopf2005,CWhealthf2005, col="blue",pch=2)
-points(CWpopf2000,CWhealthf2000, col="green",pch=3)
-lines(x,lf02013,col="purple", lty=1)
-lines(x,lf02009,col="red", lty=2)
-lines(x,lf02005,col="blue", lty=3)
-lines(x,lf02000,col="green", lty=4)
+plot(CWpopf2013,CWhealthf2013, col="deepskyblue",pch=0, xlab="Gradiente de población según Indice de Desarrollo Humano (IDH)", ylab="Tasa de incidencia de tuberculosis (por 100,000 hab)")
+points(CWpopf2009,CWhealthf2009, col="dodgerblue",pch=1)
+points(CWpopf2005,CWhealthf2005, col="dodgerblue3",pch=2)
+points(CWpopf2000,CWhealthf2000, col="deepskyblue4",pch=3)
+lines(x,lf02013,col="deepskyblue", lty=1)
+lines(x,lf02009,col="dodgerblue", lty=2)
+lines(x,lf02005,col="dodgerblue3", lty=3)
+lines(x,lf02000,col="deepskyblue4", lty=4)
 lines(x,x)
-legend(locator(1),c("2013","2009","2005","2000"),col=c("purple","red","blue","green"),pch=c(0,1,2,3), lty=c(1,2,3,4),cex = .8)
-
-
+legend(locator(1),c("2013","2009","2005","2000"),col=c("deepskyblue","dodgerblue","dodgerblue3","deepskyblue4"),pch=c(0,1,2,3), lty=c(1,2,3,4),cex = .8)
+text(0.8,0.25, "Índices de concentración de salud (IC)", col="red")
+text(0.8,0.22, "2000=-0.22", col="red")
+text(0.8,0.18, "2005=-0.30", col="red")
+text(0.8,0.15, "2009=-0.28", col="red")
+text(0.8,0.12, "2013=-0.26", col="red")
