@@ -16,8 +16,10 @@ library(VIM)
 library(reshape)
 library(psych)
 library(optimx)
+library(reshape2)
+library(plyr)
 
-#### Shaping the population dataset ############################
+#### reshaping the population dataset ############################
 population<-read.csv("population.csv")
 population_data<-subset(population,select=-c(country_code))
 population_f<-melt(population_data, Country=c("country"))
@@ -40,7 +42,7 @@ population_f<-subset(population_f,country %in% c("Argentina", "Bolivia", "Brazil
 
 population_f <- population_f[order(population_f$country,population_f$year),] 
 
-#### Shaping the HDI dataset ############################
+#### reshaping the HDI dataset ############################
 
 hdi<-read.csv("HDI1980_2013.csv")
 hdi_data<-subset(hdi,select=-c(HDI.Rank))
@@ -60,7 +62,7 @@ hdi_lac_f <- rename(hdi_lac_f, c(Country="country"))
 
 hdi_lac_f <- hdi_lac_f[order(hdi_lac_f$country,hdi_lac_f$year),] 
 
-################# Shaping TB data ######################################
+################# reshaping TB data ######################################
 
 tb_world<-read.csv("world_tb_dataset.csv")
 tb_americas<-subset(tb_world,tb_world$WHO.region=="Americas")
@@ -97,8 +99,8 @@ merge3 <- merge(merge2,data4,by=c("country","year"),all=TRUE)
 
 tb_lac<-merge3[,c(1,2,3,9)]
 
-tb_lac$country<-factor(tb_lac$country, label = c("Antigua and Barbuda","Argentina", "Bahamas", "Barbados","Belize", "Bolivia", "Brazil","Canada","Chile",
-                                                   "Colombia","Costa Rica","Cuba","Dominica","Dominican Republic","Ecuador","El Salvador","Grenada",
+tb_lac$country<-factor(tb_lac$country, label = c("Antigua and Barbuda","Argentina", "Bahamas", "Barbados","Belize", "Bolivia", "Brazil","Canada",
+                                                 "Chile","Colombia","Costa Rica","Cuba","Dominica","Dominican Republic","Ecuador","El Salvador","Grenada",
                                                    "Guatemala","Guyana","Haiti","Honduras","Jamaica","Mexico","Nicaragua","Panama","Paraguay",
                                                    "Peru","Saint Kitts and Nevis","Saint Lucia","Saint Vincent and the Grenadines","Suriname","Trinidad and Tobago",
                                                    "United States of America","Uruguay","Venezuela"))
@@ -108,6 +110,40 @@ tb_lac_f<-subset(tb_lac,country %in% c("Argentina", "Bolivia", "Brazil","Chile",
                                          "Mexico","Nicaragua","Panama","Paraguay","Peru","Suriname","Trinidad and Tobago",
                                          "Uruguay","Venezuela"))
 tb_lac_f<-subset(tb_lac_f, tb_lac_f$year>=1995)
+
+##### reshaping TB data for male and female
+
+tb_world_gender<-read.csv("TB_notifications_2015-02-03.csv")
+tb_americas_gender<-subset(tb_world_gender,tb_world_gender$g_whoregion=="AMR")
+
+tb_americas_gender$country<-factor(tb_americas_gender$country, label = c("Anguilla","Antigua and Barbuda","Argentina", "Aruba","Bahamas", "Barbados","Belize", "Bermuda","Bolivia (Plurinational State of)", 
+                                                 "Bonaire, Saint Eustatius and Saba","Brazil","British Virgin Islands","Canada","Cayman Islands","Chile","Colombia","Costa Rica","Cuba","Curaçao","Dominica",
+                                                 "Dominican Republic","Ecuador","El Salvador","Grenada","Guatemala","Guyana","Haiti","Honduras","Jamaica","Mexico","Monserrat","Netherlands Antilles","Nicaragua",
+                                                 "Panama","Paraguay","Peru","Puerto Rico","Saint Kitts and Nevis","Saint Lucia","Saint Vincent and the Grenadines","Sint Maarten (Dutch part)","Suriname","Trinidad and Tobago",
+                                                 "Turks and Caicos Islands","United States of America","Uruguay","US Virgin Islands","Venezuela (Bolivarian Republic of)"))
+
+tb_lac_gender<-subset(tb_americas_gender,country %in% c("Argentina", "Bolivia (Plurinational State of)", "Brazil","Chile","Colombia","Costa Rica","Cuba",
+                                       "Dominican Republic","Ecuador","El Salvador","Guatemala","Guyana","Haiti","Honduras",
+                                       "Mexico","Nicaragua","Panama","Paraguay","Peru","Suriname","Trinidad and Tobago",
+                                       "Uruguay","Venezuela (Bolivarian Republic of)"))
+
+tb_lac_gender$country <- revalue(tb_lac_gender$country, c("Bolivia (Plurinational State of)"="Bolivia", "Venezuela (Bolivarian Republic of)"="Venezuela"))
+
+
+tb_lac_gender_f<-subset(tb_lac_gender, tb_lac_gender$year==2012)
+
+
+tb_lac_gender_f$female_tb<-tb_lac_gender_f$new_sp_f014 + tb_lac_gender_f$new_sp_f1524 + tb_lac_gender_f$new_sp_f2534 +
+  tb_lac_gender_f$new_sp_f3544 + tb_lac_gender_f$new_sp_f4554 + tb_lac_gender_f$new_sp_f514 + tb_lac_gender_f$new_sp_f5564 +
+  tb_lac_gender_f$new_sp_f65
+
+tb_lac_gender_f$male_tb<-tb_lac_gender_f$new_sp_m014 + tb_lac_gender_f$new_sp_m1524 + tb_lac_gender_f$new_sp_m2534 +
+  tb_lac_gender_f$new_sp_m3544 + tb_lac_gender_f$new_sp_m4554 + tb_lac_gender_f$new_sp_m514 + tb_lac_gender_f$new_sp_m5564 +
+  tb_lac_gender_f$new_sp_m65
+
+tb_lac_gender_ff<-tb_lac_gender_f[, c("country","year","female_tb","male_tb")]
+
+#View(tb_lac_gender_f[,c(1,6,160)])
 
 #########################################################################
 ################# Building the final dataset ############################  
