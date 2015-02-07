@@ -162,127 +162,6 @@ lengend = c("Argentina", "Bolivia", "Brazil","Chile","Colombia","Costa Rica","Cu
 ##### Health inequality for Human Development Index #####
 #########################################################
 
-######################################################################################
-######################  Quantiles of Human Development Index  ########################
-
-
-hdi2013sort$qhdi<-cut(hdi2013sort$hdi,quantile(hdi2013sort$hdi),include.lowest = TRUE,labels=c("Q1","Q2","Q3","Q4"))
-hdi2009sort$qhdi<-cut(hdi2009sort$hdi,quantile(hdi2009sort$hdi),include.lowest = TRUE,labels=c("Q1","Q2","Q3","Q4"))
-hdi2005sort$qhdi<-cut(hdi2005sort$hdi,quantile(hdi2005sort$hdi),include.lowest = TRUE,labels=c("Q1","Q2","Q3","Q4"))
-hdi2000sort$qhdi<-cut(hdi2000sort$hdi,quantile(hdi2000sort$hdi),include.lowest = TRUE,labels=c("Q1","Q2","Q3","Q4"))
-
-list(hdi2013sort$country,hdi2013sort$qhdi)
-list(hdi2009sort$country,hdi2009sort$qhdi)
-list(hdi2005sort$country,hdi2005sort$qhdi)
-list(hdi2000sort$country,hdi2000sort$qhdi)
-
-qpg2013<-sapply(split(hdi2013sort$population,hdi2013sort$qhdi),sum)
-qpg2009<-sapply(split(hdi2009sort$population,hdi2009sort$qhdi),sum)
-qpg2005<-sapply(split(hdi2005sort$population,hdi2005sort$qhdi),sum)
-qpg2000<-sapply(split(hdi2000sort$population,hdi2000sort$qhdi),sum)
-
-wpopg2013<-c(qpg2013[1]/sum(qpg2013),qpg2013[2]/sum(qpg2013),qpg2013[3]/sum(qpg2013),qpg2013[4]/sum(qpg2013))
-wpopg2009<-c(qpg2009[1]/sum(qpg2009),qpg2009[2]/sum(qpg2009),qpg2009[3]/sum(qpg2009),qpg2009[4]/sum(qpg2009))
-wpopg2005<-c(qpg2005[1]/sum(qpg2005),qpg2005[2]/sum(qpg2005),qpg2005[3]/sum(qpg2005),qpg2005[4]/sum(qpg2005))
-wpopg2000<-c(qpg2000[1]/sum(qpg2000),qpg2000[2]/sum(qpg2000),qpg2000[3]/sum(qpg2000),qpg2000[4]/sum(qpg2000))
-
-hdi2013sort$wpop2013<-ifelse(hdi2013sort$qhdi=="Q1", hdi2013sort$population/qpg2013[1],0)
-hdi2013sort$wpop2013<-ifelse(hdi2013sort$qhdi=="Q2", hdi2013sort$population/qpg2013[2],hdi2013sort$wpop2013)
-hdi2013sort$wpop2013<-ifelse(hdi2013sort$qhdi=="Q3", hdi2013sort$population/qpg2013[3],hdi2013sort$wpop2013)
-hdi2013sort$wpop2013<-ifelse(hdi2013sort$qhdi=="Q4", hdi2013sort$population/qpg2013[4],hdi2013sort$wpop2013)
-
-hdi2009sort$wpop2009<-ifelse(hdi2009sort$qhdi=="Q1", hdi2009sort$population/qpg2009[1],0)
-hdi2009sort$wpop2009<-ifelse(hdi2009sort$qhdi=="Q2", hdi2009sort$population/qpg2009[2],hdi2009sort$wpop2009)
-hdi2009sort$wpop2009<-ifelse(hdi2009sort$qhdi=="Q3", hdi2009sort$population/qpg2009[3],hdi2009sort$wpop2009)
-hdi2009sort$wpop2009<-ifelse(hdi2009sort$qhdi=="Q4", hdi2009sort$population/qpg2009[4],hdi2009sort$wpop2009)
-
-hdi2005sort$wpop2005<-ifelse(hdi2005sort$qhdi=="Q1", hdi2005sort$population/qpg2005[1],0)
-hdi2005sort$wpop2005<-ifelse(hdi2005sort$qhdi=="Q2", hdi2005sort$population/qpg2005[2],hdi2005sort$wpop2005)
-hdi2005sort$wpop2005<-ifelse(hdi2005sort$qhdi=="Q3", hdi2005sort$population/qpg2005[3],hdi2005sort$wpop2005)
-hdi2005sort$wpop2005<-ifelse(hdi2005sort$qhdi=="Q4", hdi2005sort$population/qpg2005[4],hdi2005sort$wpop2005)
-
-hdi2000sort$wpop2000<-ifelse(hdi2000sort$qhdi=="Q1", hdi2000sort$population/qpg2000[1],0)
-hdi2000sort$wpop2000<-ifelse(hdi2000sort$qhdi=="Q2", hdi2000sort$population/qpg2000[2],hdi2000sort$wpop2000)
-hdi2000sort$wpop2000<-ifelse(hdi2000sort$qhdi=="Q3", hdi2000sort$population/qpg2000[3],hdi2000sort$wpop2000)
-hdi2000sort$wpop2000<-ifelse(hdi2000sort$qhdi=="Q4", hdi2000sort$population/qpg2000[4],hdi2000sort$wpop2000)
-
-hdi2013sort$wrate<-hdi2013sort$wpop2013*hdi2013sort$ir_tb
-hdi2009sort$wrate<-hdi2009sort$wpop2009*hdi2009sort$ir_tb
-hdi2005sort$wrate<-hdi2005sort$wpop2005*hdi2005sort$ir_tb
-hdi2000sort$wrate<-hdi2000sort$wpop2000*hdi2000sort$ir_tb
-
-meang2013<-sapply(split(hdi2013sort$wrate,hdi2013sort$qhdi),sum)
-meang2013
-
-meang2009<-sapply(split(hdi2009sort$wrate,hdi2009sort$qhdi),sum)
-meang2009
-
-meang2005<-sapply(split(hdi2005sort$wrate,hdi2005sort$qhdi),sum)
-meang2005
-
-meang2000<-sapply(split(hdi2000sort$wrate,hdi2000sort$qhdi),sum)
-meang2000
-
-
-
-Q1<-c(meang2000[1],meang2005[1],meang2009[1],meang2013[1]) 
-Q1<-round(Q1,2)
-Q2<-c(meang2000[2],meang2005[2],meang2009[2],meang2013[2]) 
-Q2<-round(Q2,2)
-Q3<-c(meang2000[3],meang2005[3],meang2009[3],meang2013[3]) 
-Q3<-round(Q3,2)
-Q4<-c(meang2000[4],meang2005[4],meang2009[4],meang2013[4]) 
-Q4<-round(Q4,2)
-r<-cbind(Q1,Q2,Q3,Q4) 
-row.names(r)<-c('2000','2005','2009','2013') 
-
-quartz(width=10, height=6, pointsize=10)
-b<-barplot(r,col=c("deepskyblue4","dodgerblue3","dodgerblue","deepskyblue"),beside=T,ylim=c(0,200),
-           xlab="Cuartíles del Indice de Desarrollo Humano (IDH)", ylab="Promedio de la tasa de incidencia de tuberculosis")
-legend("topright",c("2000","2005","2009","2013"),
-       col= c("deepskyblue4","dodgerblue3","dodgerblue","deepskyblue"),pch=15,bty="n") 
-text(x=b,y=c(r[1:16]),labels=c(r[1:16]),cex=1.25,pos=3)
-text(2.8,3,"Más bajo",cex=1.25,font=1)
-text(18.5,3,"Más alto",cex=1.25,font=1)
-text(10,180, "Índice de Kuznets absoluto", col="red")
-text(10,170, "2000=-82.8", col="red")
-text(10,160, "2005=-100.98", col="red")
-text(10,150, "2009=-69.37", col="red")
-text(10,140, "2013=-66.81", col="red")
-text(10,130, "Índice de Kuznets relativo", col="red")
-text(10,120, "2000=3.64", col="red")
-text(10,110, "2005=4.84", col="red")
-text(10,100, "2009=3.75", col="red")
-text(10,90, "2013=4.11", col="red")
-
-##Table 4A. Metrics of country-level inequalities in TB incidence according to social stratifiers and year assessed
-regional_mean_rate_hdi2000<-sum(wpopg2000*meang2000)
-regional_mean_rate_hdi2005<-sum(wpopg2005*meang2005)
-regional_mean_rate_hdi2009<-sum(wpopg2009*meang2009)
-regional_mean_rate_hdi2013<-sum(wpopg2013*meang2013)
-round(regional_mean_rate_hdi2000,2)
-round(regional_mean_rate_hdi2005,2)
-round(regional_mean_rate_hdi2009,2)
-round(regional_mean_rate_hdi2013,2)
-
-# Bottom-top quartile gap 
-absolute_Kuznets_index_hdi2000<-meang2000[4]-meang2000[1]
-absolute_Kuznets_index_hdi2005<-meang2005[4]-meang2005[1]
-absolute_Kuznets_index_hdi2009<-meang2009[4]-meang2009[1]
-absolute_Kuznets_index_hdi2013<-meang2013[4]-meang2013[1]
-round(absolute_Kuznets_index_hdi2000,2)
-round(absolute_Kuznets_index_hdi2005,2)
-round(absolute_Kuznets_index_hdi2009,2)
-round(absolute_Kuznets_index_hdi2013,2)
-
-relative_Kuznets_index_hdi2000<-meang2000[1]/meang2000[4]
-relative_Kuznets_index_hdi2005<-meang2005[1]/meang2005[4]
-relative_Kuznets_index_hdi2009<-meang2009[1]/meang2009[4]
-relative_Kuznets_index_hdi2013<-meang2013[1]/meang2013[4]
-round(relative_Kuznets_index_hdi2000,2)
-round(relative_Kuznets_index_hdi2005,2)
-round(relative_Kuznets_index_hdi2009,2)
-round(relative_Kuznets_index_hdi2013,2)
 
 ############################################################################
 ############################ regression weight analysis ####################
@@ -306,7 +185,7 @@ hdi2013sort$ridit<-c((0+hdi2013sort$CWpop[1])/2,(hdi2013sort$CWpop[1]+hdi2013sor
                      (hdi2013sort$CWpop[18]+hdi2013sort$CWpop[19])/2,(hdi2013sort$CWpop[19]+hdi2013sort$CWpop[20])/2,
                      (hdi2013sort$CWpop[20]+hdi2013sort$CWpop[21])/2,(hdi2013sort$CWpop[21]+hdi2013sort$CWpop[22])/2,
                      (hdi2013sort$CWpop[22]+hdi2013sort$CWpop[23])/2)
-                  
+
 hdi2013sort$Whealth<-hdi2013sort$num_tb_cases/totaltb
 hdi2013sort$CWhealth<-cumsum(hdi2013sort$Whealth)
 hdi2013sort$logridit<-log(hdi2013sort$ridit)
@@ -445,6 +324,131 @@ round(slope_index_of_inequality_hdi2000,2)
 round(slope_index_of_inequality_hdi2005,2)
 round(slope_index_of_inequality_hdi2009,2)
 round(slope_index_of_inequality_hdi2013,2)
+
+
+
+######################################################################################
+######################  Quantiles of Human Development Index  ########################
+
+
+hdi2013sort$qhdi<-cut(hdi2013sort$hdi,quantile(hdi2013sort$hdi),include.lowest = TRUE,labels=c("Q1","Q2","Q3","Q4"))
+hdi2009sort$qhdi<-cut(hdi2009sort$hdi,quantile(hdi2009sort$hdi),include.lowest = TRUE,labels=c("Q1","Q2","Q3","Q4"))
+hdi2005sort$qhdi<-cut(hdi2005sort$hdi,quantile(hdi2005sort$hdi),include.lowest = TRUE,labels=c("Q1","Q2","Q3","Q4"))
+hdi2000sort$qhdi<-cut(hdi2000sort$hdi,quantile(hdi2000sort$hdi),include.lowest = TRUE,labels=c("Q1","Q2","Q3","Q4"))
+
+list(hdi2013sort$country,hdi2013sort$qhdi)
+list(hdi2009sort$country,hdi2009sort$qhdi)
+list(hdi2005sort$country,hdi2005sort$qhdi)
+list(hdi2000sort$country,hdi2000sort$qhdi)
+
+qpg2013<-sapply(split(hdi2013sort$population,hdi2013sort$qhdi),sum)
+qpg2009<-sapply(split(hdi2009sort$population,hdi2009sort$qhdi),sum)
+qpg2005<-sapply(split(hdi2005sort$population,hdi2005sort$qhdi),sum)
+qpg2000<-sapply(split(hdi2000sort$population,hdi2000sort$qhdi),sum)
+
+wpopg2013<-c(qpg2013[1]/sum(qpg2013),qpg2013[2]/sum(qpg2013),qpg2013[3]/sum(qpg2013),qpg2013[4]/sum(qpg2013))
+wpopg2009<-c(qpg2009[1]/sum(qpg2009),qpg2009[2]/sum(qpg2009),qpg2009[3]/sum(qpg2009),qpg2009[4]/sum(qpg2009))
+wpopg2005<-c(qpg2005[1]/sum(qpg2005),qpg2005[2]/sum(qpg2005),qpg2005[3]/sum(qpg2005),qpg2005[4]/sum(qpg2005))
+wpopg2000<-c(qpg2000[1]/sum(qpg2000),qpg2000[2]/sum(qpg2000),qpg2000[3]/sum(qpg2000),qpg2000[4]/sum(qpg2000))
+
+hdi2013sort$wpop2013<-ifelse(hdi2013sort$qhdi=="Q1", hdi2013sort$population/qpg2013[1],0)
+hdi2013sort$wpop2013<-ifelse(hdi2013sort$qhdi=="Q2", hdi2013sort$population/qpg2013[2],hdi2013sort$wpop2013)
+hdi2013sort$wpop2013<-ifelse(hdi2013sort$qhdi=="Q3", hdi2013sort$population/qpg2013[3],hdi2013sort$wpop2013)
+hdi2013sort$wpop2013<-ifelse(hdi2013sort$qhdi=="Q4", hdi2013sort$population/qpg2013[4],hdi2013sort$wpop2013)
+
+hdi2009sort$wpop2009<-ifelse(hdi2009sort$qhdi=="Q1", hdi2009sort$population/qpg2009[1],0)
+hdi2009sort$wpop2009<-ifelse(hdi2009sort$qhdi=="Q2", hdi2009sort$population/qpg2009[2],hdi2009sort$wpop2009)
+hdi2009sort$wpop2009<-ifelse(hdi2009sort$qhdi=="Q3", hdi2009sort$population/qpg2009[3],hdi2009sort$wpop2009)
+hdi2009sort$wpop2009<-ifelse(hdi2009sort$qhdi=="Q4", hdi2009sort$population/qpg2009[4],hdi2009sort$wpop2009)
+
+hdi2005sort$wpop2005<-ifelse(hdi2005sort$qhdi=="Q1", hdi2005sort$population/qpg2005[1],0)
+hdi2005sort$wpop2005<-ifelse(hdi2005sort$qhdi=="Q2", hdi2005sort$population/qpg2005[2],hdi2005sort$wpop2005)
+hdi2005sort$wpop2005<-ifelse(hdi2005sort$qhdi=="Q3", hdi2005sort$population/qpg2005[3],hdi2005sort$wpop2005)
+hdi2005sort$wpop2005<-ifelse(hdi2005sort$qhdi=="Q4", hdi2005sort$population/qpg2005[4],hdi2005sort$wpop2005)
+
+hdi2000sort$wpop2000<-ifelse(hdi2000sort$qhdi=="Q1", hdi2000sort$population/qpg2000[1],0)
+hdi2000sort$wpop2000<-ifelse(hdi2000sort$qhdi=="Q2", hdi2000sort$population/qpg2000[2],hdi2000sort$wpop2000)
+hdi2000sort$wpop2000<-ifelse(hdi2000sort$qhdi=="Q3", hdi2000sort$population/qpg2000[3],hdi2000sort$wpop2000)
+hdi2000sort$wpop2000<-ifelse(hdi2000sort$qhdi=="Q4", hdi2000sort$population/qpg2000[4],hdi2000sort$wpop2000)
+
+hdi2013sort$wrate<-hdi2013sort$wpop2013*hdi2013sort$ir_tb
+hdi2009sort$wrate<-hdi2009sort$wpop2009*hdi2009sort$ir_tb
+hdi2005sort$wrate<-hdi2005sort$wpop2005*hdi2005sort$ir_tb
+hdi2000sort$wrate<-hdi2000sort$wpop2000*hdi2000sort$ir_tb
+
+meang2013<-sapply(split(hdi2013sort$wrate,hdi2013sort$qhdi),sum)
+meang2013
+
+meang2009<-sapply(split(hdi2009sort$wrate,hdi2009sort$qhdi),sum)
+meang2009
+
+meang2005<-sapply(split(hdi2005sort$wrate,hdi2005sort$qhdi),sum)
+meang2005
+
+meang2000<-sapply(split(hdi2000sort$wrate,hdi2000sort$qhdi),sum)
+meang2000
+
+
+
+Q1<-c(meang2000[1],meang2005[1],meang2009[1],meang2013[1]) 
+Q1<-round(Q1,2)
+Q2<-c(meang2000[2],meang2005[2],meang2009[2],meang2013[2]) 
+Q2<-round(Q2,2)
+Q3<-c(meang2000[3],meang2005[3],meang2009[3],meang2013[3]) 
+Q3<-round(Q3,2)
+Q4<-c(meang2000[4],meang2005[4],meang2009[4],meang2013[4]) 
+Q4<-round(Q4,2)
+r<-cbind(Q1,Q2,Q3,Q4) 
+row.names(r)<-c('2000','2005','2009','2013') 
+
+quartz(width=10, height=6, pointsize=10)
+b<-barplot(r,col=c("deepskyblue4","dodgerblue3","dodgerblue","deepskyblue"),beside=T,ylim=c(0,200),
+           xlab="Cuartíles del Indice de Desarrollo Humano (IDH)", ylab="Promedio de la tasa de incidencia de tuberculosis")
+legend("topright",c("2000","2005","2009","2013"),
+       col= c("deepskyblue4","dodgerblue3","dodgerblue","deepskyblue"),pch=15,bty="n") 
+text(x=b,y=c(r[1:16]),labels=c(r[1:16]),cex=1.25,pos=3)
+text(2.8,3,"Más bajo",cex=1.25,font=1)
+text(18.5,3,"Más alto",cex=1.25,font=1)
+text(10,180, "Índice de Kuznets absoluto", col="red")
+text(10,170, "2000=-82.8", col="red")
+text(10,160, "2005=-100.98", col="red")
+text(10,150, "2009=-69.37", col="red")
+text(10,140, "2013=-66.81", col="red")
+text(10,130, "Índice de Kuznets relativo", col="red")
+text(10,120, "2000=3.64", col="red")
+text(10,110, "2005=4.84", col="red")
+text(10,100, "2009=3.75", col="red")
+text(10,90, "2013=4.11", col="red")
+
+##Table 4A. Metrics of country-level inequalities in TB incidence according to social stratifiers and year assessed
+regional_mean_rate_hdi2000<-sum(wpopg2000*meang2000)
+regional_mean_rate_hdi2005<-sum(wpopg2005*meang2005)
+regional_mean_rate_hdi2009<-sum(wpopg2009*meang2009)
+regional_mean_rate_hdi2013<-sum(wpopg2013*meang2013)
+round(regional_mean_rate_hdi2000,2)
+round(regional_mean_rate_hdi2005,2)
+round(regional_mean_rate_hdi2009,2)
+round(regional_mean_rate_hdi2013,2)
+
+# Bottom-top quartile gap 
+absolute_Kuznets_index_hdi2000<-meang2000[4]-meang2000[1]
+absolute_Kuznets_index_hdi2005<-meang2005[4]-meang2005[1]
+absolute_Kuznets_index_hdi2009<-meang2009[4]-meang2009[1]
+absolute_Kuznets_index_hdi2013<-meang2013[4]-meang2013[1]
+round(absolute_Kuznets_index_hdi2000,2)
+round(absolute_Kuznets_index_hdi2005,2)
+round(absolute_Kuznets_index_hdi2009,2)
+round(absolute_Kuznets_index_hdi2013,2)
+
+relative_Kuznets_index_hdi2000<-meang2000[1]/meang2000[4]
+relative_Kuznets_index_hdi2005<-meang2005[1]/meang2005[4]
+relative_Kuznets_index_hdi2009<-meang2009[1]/meang2009[4]
+relative_Kuznets_index_hdi2013<-meang2013[1]/meang2013[4]
+round(relative_Kuznets_index_hdi2000,2)
+round(relative_Kuznets_index_hdi2005,2)
+round(relative_Kuznets_index_hdi2009,2)
+round(relative_Kuznets_index_hdi2013,2)
+
 
 
 ##########################################################################
