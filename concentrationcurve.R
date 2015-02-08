@@ -69,7 +69,7 @@ gdp2010sort$ridit<-c((0+gdp2010sort$CWpop[1])/2,(gdp2010sort$CWpop[1]+gdp2010sor
                       (gdp2010sort$CWpop[18]+gdp2010sort$CWpop[19])/2,(gdp2010sort$CWpop[19]+gdp2010sort$CWpop[20])/2)
 gdp2010sort$Whealth<-gdp2010sort$num_tb_cases/totaltb
 gdp2010sort$CWhealth<-cumsum(gdp2010sort$Whealth)
-gdp2010sort$logridit<-log(gdp2010sort$ridit)
+gdp2010sort$logridit<-log10(gdp2010sort$ridit)
 gdp2010sort$Wi<-sqrt(gdp2010sort$population)
 gdp2010sort$XiWi<-gdp2010sort$Wi*gdp2010sort$logridit
 gdp2010sort$YiWi<-gdp2010sort$Wi*gdp2010sort$ir_tb
@@ -95,7 +95,7 @@ gdp2005sort$ridit<-c((0+gdp2005sort$CWpop[1])/2,(gdp2005sort$CWpop[1]+gdp2005sor
                       (gdp2005sort$CWpop[18]+gdp2005sort$CWpop[19])/2,(gdp2005sort$CWpop[19]+gdp2005sort$CWpop[20])/2)
 gdp2005sort$Whealth<-gdp2005sort$num_tb_cases/totaltb
 gdp2005sort$CWhealth<-cumsum(gdp2005sort$Whealth)
-gdp2005sort$logridit<-log(gdp2005sort$ridit)
+gdp2005sort$logridit<-log10(gdp2005sort$ridit)
 gdp2005sort$Wi<-sqrt(gdp2005sort$population)
 gdp2005sort$XiWi<-gdp2005sort$Wi*gdp2005sort$logridit
 gdp2005sort$YiWi<-gdp2005sort$Wi*gdp2005sort$ir_tb
@@ -122,7 +122,7 @@ gdp2000sort$ridit<-c((0+gdp2000sort$CWpop[1])/2,(gdp2000sort$CWpop[1]+gdp2000sor
 
 gdp2000sort$Whealth<-gdp2000sort$num_tb_cases/totaltb
 gdp2000sort$CWhealth<-cumsum(gdp2000sort$Whealth)
-gdp2000sort$logridit<-log(gdp2000sort$ridit)
+gdp2000sort$logridit<-log10(gdp2000sort$ridit)
 gdp2000sort$Wi<-sqrt(gdp2000sort$population)
 gdp2000sort$XiWi<-gdp2000sort$Wi*gdp2000sort$logridit
 gdp2000sort$YiWi<-gdp2000sort$Wi*gdp2000sort$ir_tb
@@ -182,7 +182,7 @@ hexp2010sort$ridit<-c((0+hexp2010sort$CWpop[1])/2,(hexp2010sort$CWpop[1]+hexp201
 											(hexp2010sort$CWpop[18]+hexp2010sort$CWpop[19])/2,(hexp2010sort$CWpop[19]+hexp2010sort$CWpop[20])/2)
 hexp2010sort$Whealth<-hexp2010sort$num_tb_cases/totaltb
 hexp2010sort$CWhealth<-cumsum(hexp2010sort$Whealth)
-hexp2010sort$logridit<-log(hexp2010sort$ridit)
+hexp2010sort$logridit<-log10(hexp2010sort$ridit)
 hexp2010sort$Wi<-sqrt(hexp2010sort$population)
 hexp2010sort$XiWi<-hexp2010sort$Wi*hexp2010sort$logridit
 hexp2010sort$YiWi<-hexp2010sort$Wi*hexp2010sort$ir_tb
@@ -208,7 +208,7 @@ hexp2005sort$ridit<-c((0+hexp2005sort$CWpop[1])/2,(hexp2005sort$CWpop[1]+hexp200
 											(hexp2005sort$CWpop[18]+hexp2005sort$CWpop[19])/2,(hexp2005sort$CWpop[19]+hexp2005sort$CWpop[20])/2)
 hexp2005sort$Whealth<-hexp2005sort$num_tb_cases/totaltb
 hexp2005sort$CWhealth<-cumsum(hexp2005sort$Whealth)
-hexp2005sort$logridit<-log(hexp2005sort$ridit)
+hexp2005sort$logridit<-log10(hexp2005sort$ridit)
 hexp2005sort$Wi<-sqrt(hexp2005sort$population)
 hexp2005sort$XiWi<-hexp2005sort$Wi*hexp2005sort$logridit
 hexp2005sort$YiWi<-hexp2005sort$Wi*hexp2005sort$ir_tb
@@ -235,7 +235,7 @@ hexp2000sort$ridit<-c((0+hexp2000sort$CWpop[1])/2,(hexp2000sort$CWpop[1]+hexp200
 
 hexp2000sort$Whealth<-hexp2000sort$num_tb_cases/totaltb
 hexp2000sort$CWhealth<-cumsum(hexp2000sort$Whealth)
-hexp2000sort$logridit<-log(hexp2000sort$ridit)
+hexp2000sort$logridit<-log10(hexp2000sort$ridit)
 hexp2000sort$Wi<-sqrt(hexp2000sort$population)
 hexp2000sort$XiWi<-hexp2000sort$Wi*hexp2000sort$logridit
 hexp2000sort$YiWi<-hexp2000sort$Wi*hexp2000sort$ir_tb
@@ -293,7 +293,7 @@ impsfac2010sort$ridit<-c((0+impsfac2010sort$CWpop[1])/2,(impsfac2010sort$CWpop[1
 											(impsfac2010sort$CWpop[18]+impsfac2010sort$CWpop[19])/2,(impsfac2010sort$CWpop[19]+impsfac2010sort$CWpop[20])/2)
 impsfac2010sort$Whealth<-impsfac2010sort$num_tb_cases/totaltb
 impsfac2010sort$CWhealth<-cumsum(impsfac2010sort$Whealth)
-impsfac2010sort$logridit<-log(impsfac2010sort$ridit)
+impsfac2010sort$logridit<-log10(impsfac2010sort$ridit)
 impsfac2010sort$Wi<-sqrt(impsfac2010sort$population)
 impsfac2010sort$XiWi<-impsfac2010sort$Wi*impsfac2010sort$logridit
 impsfac2010sort$YiWi<-impsfac2010sort$Wi*impsfac2010sort$ir_tb
@@ -319,7 +319,7 @@ impsfac2005sort$ridit<-c((0+impsfac2005sort$CWpop[1])/2,(impsfac2005sort$CWpop[1
 											(impsfac2005sort$CWpop[18]+impsfac2005sort$CWpop[19])/2,(impsfac2005sort$CWpop[19]+impsfac2005sort$CWpop[20])/2)
 impsfac2005sort$Whealth<-impsfac2005sort$num_tb_cases/totaltb
 impsfac2005sort$CWhealth<-cumsum(impsfac2005sort$Whealth)
-impsfac2005sort$logridit<-log(impsfac2005sort$ridit)
+impsfac2005sort$logridit<-log10(impsfac2005sort$ridit)
 impsfac2005sort$Wi<-sqrt(impsfac2005sort$population)
 impsfac2005sort$XiWi<-impsfac2005sort$Wi*impsfac2005sort$logridit
 impsfac2005sort$YiWi<-impsfac2005sort$Wi*impsfac2005sort$ir_tb
@@ -346,7 +346,7 @@ impsfac2000sort$ridit<-c((0+impsfac2000sort$CWpop[1])/2,(impsfac2000sort$CWpop[1
 											
 impsfac2000sort$Whealth<-impsfac2000sort$num_tb_cases/totaltb
 impsfac2000sort$CWhealth<-cumsum(impsfac2000sort$Whealth)
-impsfac2000sort$logridit<-log(impsfac2000sort$ridit)
+impsfac2000sort$logridit<-log10(impsfac2000sort$ridit)
 impsfac2000sort$Wi<-sqrt(impsfac2000sort$population)
 impsfac2000sort$XiWi<-impsfac2000sort$Wi*impsfac2000sort$logridit
 impsfac2000sort$YiWi<-impsfac2000sort$Wi*impsfac2000sort$ir_tb
@@ -405,7 +405,7 @@ pnotified2010sort$ridit<-c((0+pnotified2010sort$CWpop[1])/2,(pnotified2010sort$C
                       (pnotified2010sort$CWpop[18]+pnotified2010sort$CWpop[19])/2,(pnotified2010sort$CWpop[19]+pnotified2010sort$CWpop[20])/2)
 pnotified2010sort$Whealth<-pnotified2010sort$num_tb_cases/totaltb
 pnotified2010sort$CWhealth<-cumsum(pnotified2010sort$Whealth)
-pnotified2010sort$logridit<-log(pnotified2010sort$ridit)
+pnotified2010sort$logridit<-log10(pnotified2010sort$ridit)
 pnotified2010sort$Wi<-sqrt(pnotified2010sort$population)
 pnotified2010sort$XiWi<-pnotified2010sort$Wi*pnotified2010sort$logridit
 pnotified2010sort$YiWi<-pnotified2010sort$Wi*pnotified2010sort$ir_tb
@@ -431,7 +431,7 @@ pnotified2005sort$ridit<-c((0+pnotified2005sort$CWpop[1])/2,(pnotified2005sort$C
                       (pnotified2005sort$CWpop[18]+pnotified2005sort$CWpop[19])/2,(pnotified2005sort$CWpop[19]+pnotified2005sort$CWpop[20])/2)
 pnotified2005sort$Whealth<-pnotified2005sort$num_tb_cases/totaltb
 pnotified2005sort$CWhealth<-cumsum(pnotified2005sort$Whealth)
-pnotified2005sort$logridit<-log(pnotified2005sort$ridit)
+pnotified2005sort$logridit<-log10(pnotified2005sort$ridit)
 pnotified2005sort$Wi<-sqrt(pnotified2005sort$population)
 pnotified2005sort$XiWi<-pnotified2005sort$Wi*pnotified2005sort$logridit
 pnotified2005sort$YiWi<-pnotified2005sort$Wi*pnotified2005sort$ir_tb
@@ -458,7 +458,7 @@ pnotified2000sort$ridit<-c((0+pnotified2000sort$CWpop[1])/2,(pnotified2000sort$C
 
 pnotified2000sort$Whealth<-pnotified2000sort$num_tb_cases/totaltb
 pnotified2000sort$CWhealth<-cumsum(pnotified2000sort$Whealth)
-pnotified2000sort$logridit<-log(pnotified2000sort$ridit)
+pnotified2000sort$logridit<-log10(pnotified2000sort$ridit)
 pnotified2000sort$Wi<-sqrt(pnotified2000sort$population)
 pnotified2000sort$XiWi<-pnotified2000sort$Wi*pnotified2000sort$logridit
 pnotified2000sort$YiWi<-pnotified2000sort$Wi*pnotified2000sort$ir_tb
