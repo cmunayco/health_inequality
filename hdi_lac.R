@@ -188,7 +188,7 @@ hdi2013sort$ridit<-c((0+hdi2013sort$CWpop[1])/2,(hdi2013sort$CWpop[1]+hdi2013sor
 
 hdi2013sort$Whealth<-hdi2013sort$num_tb_cases/totaltb
 hdi2013sort$CWhealth<-cumsum(hdi2013sort$Whealth)
-hdi2013sort$logridit<-log(hdi2013sort$ridit)
+hdi2013sort$logridit<-log10(hdi2013sort$ridit)
 hdi2013sort$Wi<-sqrt(hdi2013sort$population)
 hdi2013sort$XiWi<-hdi2013sort$Wi*hdi2013sort$logridit
 hdi2013sort$YiWi<-hdi2013sort$Wi*hdi2013sort$ir_tb
@@ -218,7 +218,7 @@ hdi2009sort$ridit<-c((0+hdi2009sort$CWpop[1])/2,(hdi2009sort$CWpop[1]+hdi2009sor
                      (hdi2009sort$CWpop[22]+hdi2009sort$CWpop[23])/2)
 hdi2009sort$Whealth<-hdi2009sort$num_tb_cases/totaltb
 hdi2009sort$CWhealth<-cumsum(hdi2009sort$Whealth)
-hdi2009sort$logridit<-log(hdi2009sort$ridit)
+hdi2009sort$logridit<-log10(hdi2009sort$ridit)
 hdi2009sort$Wi<-sqrt(hdi2009sort$population)
 hdi2009sort$XiWi<-hdi2009sort$Wi*hdi2009sort$logridit
 hdi2009sort$YiWi<-hdi2009sort$Wi*hdi2009sort$ir_tb
@@ -247,7 +247,7 @@ hdi2005sort$ridit<-c((0+hdi2005sort$CWpop[1])/2,(hdi2005sort$CWpop[1]+hdi2005sor
 
 hdi2005sort$Whealth<-hdi2005sort$num_tb_cases/totaltb
 hdi2005sort$CWhealth<-cumsum(hdi2005sort$Whealth)
-hdi2005sort$logridit<-log(hdi2005sort$ridit)
+hdi2005sort$logridit<-log10(hdi2005sort$ridit)
 hdi2005sort$Wi<-sqrt(hdi2005sort$population)
 hdi2005sort$XiWi<-hdi2005sort$Wi*hdi2005sort$logridit
 hdi2005sort$YiWi<-hdi2005sort$Wi*hdi2005sort$ir_tb
@@ -277,7 +277,7 @@ hdi2000sort$ridit<-c((0+hdi2000sort$CWpop[1])/2,(hdi2000sort$CWpop[1]+hdi2000sor
 
 hdi2000sort$Whealth<-hdi2000sort$num_tb_cases/totaltb
 hdi2000sort$CWhealth<-cumsum(hdi2000sort$Whealth)
-hdi2000sort$logridit<-log(hdi2000sort$ridit)
+hdi2000sort$logridit<-log10(hdi2000sort$ridit)
 hdi2000sort$Wi<-sqrt(hdi2000sort$population)
 hdi2000sort$XiWi<-hdi2000sort$Wi*hdi2000sort$logridit
 hdi2000sort$YiWi<-hdi2000sort$Wi*hdi2000sort$ir_tb
@@ -312,10 +312,10 @@ lines(hdi2000sort$ridit,hdi2000sort$predict2000, col="deepskyblue4", lty=4,
       xlab="")
 legend(locator(1),c("2013","2009","2005","2000"),col=c("deepskyblue","dodgerblue","dodgerblue3","deepskyblue4"),lty=c(1,2,3,4),pch=c(0,1,2,3),cex = .8)
 text(0.8,150, "Índice de desigualdad de la pendiente (IDP)", col="red")
-text(0.8,140, "2000=-23.95", col="red")
-text(0.8,130, "2005=-30.92", col="red")
-text(0.8,120, "2009=-26.71", col="red")
-text(0.8,110, "2013=-23.23", col="red")
+text(0.8,140, "2000=-55.1", col="red")
+text(0.8,130, "2005=-71.2", col="red")
+text(0.8,120, "2009=-61.5", col="red")
+text(0.8,110, "2013=-53.5", col="red")
 
 # Social gradient
 slope_index_of_inequality_hdi2000<-fit2000$coefficients[2]
@@ -573,8 +573,8 @@ text(0.8,0.15, "2009=-0.28", col="red")
 text(0.8,0.12, "2013=-0.26", col="red")
 
 
-write(hdi2000,"hdi2000.csv")
-write(hdi2005,"hdi2005.csv")
-write(hdi2009,"hdi2009.csv")
-write(hdi2013,"hdi2013.csv")
+write.csv(hdi2000,"hdi2000.csv")
+write.csv(hdi2005,"hdi2005.csv")
+write.csv(hdi2009,"hdi2009.csv")
+write.csv(hdi2013,"hdi2013.csv")
 
