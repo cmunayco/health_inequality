@@ -1,5 +1,6 @@
 library(gdata)
 library(epicalc)
+library(rgl)
 library(grDevices)
 library(lattice)
 library(grid)
@@ -401,7 +402,7 @@ Q3<-round(Q3,2)
 Q4<-c(meang2000[4],meang2005[4],meang2009[4],meang2013[4]) 
 Q4<-round(Q4,2)
 r<-cbind(Q1,Q2,Q3,Q4)
-r<-t(r)
+#r<-t(r)
 rownames(r)<-c('2000','2005','2009','2013')
 colnames(r)<-c('Q1','Q2','Q3','Q4')
 r
@@ -412,18 +413,52 @@ b<-barplot(t(r),col=c("deepskyblue4","dodgerblue3","dodgerblue","deepskyblue"),b
 legend("topright",c("Q1","Q2","Q3","Q4"),
        col= c("deepskyblue4","dodgerblue3","dodgerblue","deepskyblue"),pch=15,bty="n") 
 text(x=c(1.5,2.5,3.5,4.5,6.5,7.5,8.5,9.5,11.5,12.5,13.5,14.5,16.5,17.5,18.5,19.5),
-     y=c(114.17, 127.28, 94.64, 88.31,76.76,51.52,57.40,50.66,58.53,47.67,45.47,42.77,31.36,26.30,25.27,21.50),
-     labels=c(114.17, 127.28, 94.64, 88.31,76.76,51.52,57.40,50.66,58.53,47.67,45.47,42.77,31.36,26.30,25.27,21.50),cex=1.25,pos=3)
+     y=c(114.17,76.76,58.53,31.36,127.28,51.52,47.67,26.30,94.64,57.40,45.47,25.27,88.31,50.66,42.77,21.50),
+     labels=c(114.17,76.76,58.53,31.36,127.28,51.52,47.67,26.30,94.64,57.40,45.47,25.27,88.31,50.66,42.77,21.50),cex=1.25,pos=3)
 text(10,200, "Índice de Kuznets absoluto", col="red")
-text(10,190, "2000=-82.8", col="red")
-text(10,180, "2005=-100.98", col="red")
-text(10,170, "2009=-69.37", col="red")
-text(10,160, "2013=-66.81", col="red")
+text(10,190, "2000=82.8", col="red")
+text(10,180, "2005=100.98", col="red")
+text(10,170, "2009=69.37", col="red")
+text(10,160, "2013=66.81", col="red")
 text(10,150, "Índice de Kuznets relativo", col="red")
 text(10,140, "2000=3.64", col="red")
 text(10,130, "2005=4.84", col="red")
 text(10,120, "2009=3.75", col="red")
 text(10,110, "2013=4.11", col="red")
+
+
+## lines and dots graphics
+quartz(width=10, height=6, pointsize=10)
+plot(r[1,],c(2000,2000,2000,2000),bg=rainbow(4), pch=21, cex=2, lwd=3, lty=1,xlim=c(10,130), ylim=c(1999,2015), yaxt='n', xlab="Tasa promedio de incidencia de TB (por 100,000 hb)", ylab="Años")
+ticks = c(2000, 2005, 2009, 2013)
+axis(side = 2, at = ticks)
+from.x <- c(114.17, 76.76, 58.53)
+to.x   <- c(76.76, 58.53-1, 31.36)
+to.y   <- from.y <- c(2000, 2000, 2000,2000)
+segments(x0 = from.x, y0 = from.y, x1 = to.x, y1 = to.y,lwd=2)
+par(new=TRUE)
+plot(r[2,],c(2005,2005,2005,2005), bg=rainbow(4), pch=21, cex=2, lwd=3, xlim=c(10,130), ylim=c(1999,2015), axes=FALSE, xlab="", ylab="")
+from.x <- c(127.28, 51.52, 47.67, 26.30)
+to.x   <- c(51.52, 47.67, 26.30)
+to.y   <- from.y <- c(2005, 2005, 2005,2005) 
+segments(x0 = from.x, y0 = from.y, x1 = to.x, y1 = to.y,lwd=2)
+par(new=TRUE)
+plot(r[3,],c(2009,2009,2009,2009), bg=rainbow(4), pch=21, cex=2, lwd=3, xlim=c(10,130), ylim=c(1999,2015), axes=FALSE, xlab="", ylab="")
+from.x <- c(94.64, 57.40, 45.47)
+to.x   <- c(57.40, 45.47, 25.27)
+to.y   <- from.y <- c(2009, 2009, 2009,2009) 
+segments(x0 = from.x, y0 = from.y, x1 = to.x, y1 = to.y,lwd=2)
+par(new=TRUE)
+plot(r[4,],c(2013,2013,2013,2013), bg=rainbow(4), pch=21, cex=2, lwd=3, xlim=c(10,130), ylim=c(1999,2015), axes=FALSE, xlab="", ylab="") 
+from.x <- c(88.31, 50.66, 42.77)
+to.x   <- c(50.66, 42.77, 21.50)
+to.y   <- from.y <- c(2013, 2013, 2013,2013) 
+segments(x0 = from.x, y0 = from.y, x1 = to.x, y1 = to.y,lwd=2)
+legend("topright",c("Q1","Q2","Q3","Q4"),
+       col= rainbow(4),
+       bg=rainbow(4), pch=19,bty="n", cex=1.5) 
+
+
 
 ##Table 4A. Metrics of country-level inequalities in TB incidence according to social stratifiers and year assessed
 regional_mean_rate_hdi2000<-sum(wpopg2000*meang2000)
@@ -436,10 +471,10 @@ round(regional_mean_rate_hdi2009,2)
 round(regional_mean_rate_hdi2013,2)
 
 # Bottom-top quartile gap 
-absolute_Kuznets_index_hdi2000<-meang2000[4]-meang2000[1]
-absolute_Kuznets_index_hdi2005<-meang2005[4]-meang2005[1]
-absolute_Kuznets_index_hdi2009<-meang2009[4]-meang2009[1]
-absolute_Kuznets_index_hdi2013<-meang2013[4]-meang2013[1]
+absolute_Kuznets_index_hdi2000<-meang2000[1]-meang2000[4]
+absolute_Kuznets_index_hdi2005<-meang2005[1]-meang2005[4]
+absolute_Kuznets_index_hdi2009<-meang2009[1]-meang2009[4]
+absolute_Kuznets_index_hdi2013<-meang2013[1]-meang2013[4]
 round(absolute_Kuznets_index_hdi2000,2)
 round(absolute_Kuznets_index_hdi2005,2)
 round(absolute_Kuznets_index_hdi2009,2)
