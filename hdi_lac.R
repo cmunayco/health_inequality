@@ -187,6 +187,10 @@ hdi2013sort$ridit<-c((0+hdi2013sort$CWpop[1])/2,(hdi2013sort$CWpop[1]+hdi2013sor
                      (hdi2013sort$CWpop[20]+hdi2013sort$CWpop[21])/2,(hdi2013sort$CWpop[21]+hdi2013sort$CWpop[22])/2,
                      (hdi2013sort$CWpop[22]+hdi2013sort$CWpop[23])/2)
 
+
+hdi2013sort$ridit <- rep(NA, nrow(hdi2013sort))
+z<-0
+
 hdi2013sort$Whealth<-hdi2013sort$num_tb_cases/totaltb
 hdi2013sort$CWhealth<-cumsum(hdi2013sort$Whealth)
 hdi2013sort$logridit<-log10(hdi2013sort$ridit)
