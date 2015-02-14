@@ -581,9 +581,9 @@ round(regional_mean_rate_gdp2005,2)
 round(regional_mean_rate_gdp2010,2)
 
 # Bottom-top quartile gap 
-absolute_Kuznets_index_gdp2000<-meang2000[4]-meang2000[1]
-absolute_Kuznets_index_gdp2005<-meang2005[4]-meang2005[1]
-absolute_Kuznets_index_gdp2010<-meang2010[4]-meang2010[1]
+absolute_Kuznets_index_gdp2000<-meang2000[1] - meang2000[4]
+absolute_Kuznets_index_gdp2005<-meang2005[1] - meang2005[4]
+absolute_Kuznets_index_gdp2010<-meang2010[1] - meang2010[4]
 round(absolute_Kuznets_index_gdp2000,2)
 round(absolute_Kuznets_index_gdp2005,2)
 round(absolute_Kuznets_index_gdp2010,2)
@@ -674,9 +674,9 @@ round(regional_mean_rate_hexp2005,2)
 round(regional_mean_rate_hexp2010,2)
 
 # Bottom-top quartile gap 
-absolute_Kuznets_index_hexp2000<-meanh2000[4]-meanh2000[1]
-absolute_Kuznets_index_hexp2005<-meanh2005[4]-meanh2005[1]
-absolute_Kuznets_index_hexp2010<-meanh2010[4]-meanh2010[1]
+absolute_Kuznets_index_hexp2000<-meanh2000[1] - meanh2000[4]
+absolute_Kuznets_index_hexp2005<-meanh2005[1] - meanh2005[4]
+absolute_Kuznets_index_hexp2010<- meanh2010[1] - meanh2010[4]
 round(absolute_Kuznets_index_hexp2000,2)
 round(absolute_Kuznets_index_hexp2005,2)
 round(absolute_Kuznets_index_hexp2010,2)
@@ -765,9 +765,10 @@ round(regional_mean_rate_impsfac2005,2)
 round(regional_mean_rate_impsfac2010,2)
 
 # Bottom-top quartile gap 
-absolute_Kuznets_index_impsfac2000<-meanf2000[4]-meanf2000[1]
-absolute_Kuznets_index_impsfac2005<-meanf2005[4]-meanf2005[1]
-absolute_Kuznets_index_impsfac2010<-meanf2010[4]-meanf2010[1]
+absolute_Kuznets_index_impsfac2000<-meanf2000[1] - meanf2000[4]
+absolute_Kuznets_index_impsfac2005<-meanf2005[1] - meanf2005[4]
+absolute_Kuznets_index_impsfac2010<-meanf2010[1] - meanf2010[4]
+  
 round(absolute_Kuznets_index_impsfac2000,2)
 round(absolute_Kuznets_index_impsfac2005,2)
 round(absolute_Kuznets_index_impsfac2010,2)
@@ -856,9 +857,9 @@ round(regional_mean_rate_pnotified2005,2)
 round(regional_mean_rate_pnotified2010,2)
 
 # Bottom-top quartile gap 
-absolute_Kuznets_index_pnotified2000<-meant2000[4]-meant2000[1]
-absolute_Kuznets_index_pnotified2005<-meant2005[4]-meant2005[1]
-absolute_Kuznets_index_pnotified2010<-meant2010[4]-meant2010[1]
+absolute_Kuznets_index_pnotified2000<-meant2000[1] - meant2000[4]
+absolute_Kuznets_index_pnotified2005<-meant2005[1] - meant2005[4]
+absolute_Kuznets_index_pnotified2010<-meant2010[1] - meant2010[4]
 round(absolute_Kuznets_index_pnotified2000,2)
 round(absolute_Kuznets_index_pnotified2005,2)
 round(absolute_Kuznets_index_pnotified2010,2)
