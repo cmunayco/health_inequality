@@ -161,11 +161,11 @@ round(slope_index_of_inequality_gdp2010,2)
 
 
 
-##### Health inequality for Health expenditure % GDP#####
+##### Health inequality for Health expenditure per capita#####
 
-hexp<-df[, c("country","year","population","p.hex.gdp","num_tb_cases","ir_tb")]
+hexp<-df[, c("country","year","population","hexp","num_tb_cases","ir_tb")]
 hexp2010<-as.data.frame(hexp[hexp$year=="2010",])
-hexp2010sort<-hexp2010[order(hexp2010$p.hex.gdp),]
+hexp2010sort<-hexp2010[order(hexp2010$hexp),]
 totalp=sum(hexp2010sort$population)
 totaltb=sum(hexp2010sort$num_tb_cases)
 hexp2010sort$Wpop<-hexp2010sort$population/totalp
@@ -191,7 +191,7 @@ summary(fit2010)
 hexp2010sort$predict2010<-coef(summary(fit2010))[1,1] + coef(summary(fit2010))[2,1]*hexp2010sort$logridit
 
 hexp2005<-as.data.frame(hexp[hexp$year=="2005",])
-hexp2005sort<-hexp2005[order(hexp2005$p.hex.gdp),]
+hexp2005sort<-hexp2005[order(hexp2005$hexp),]
 totalp=sum(hexp2005sort$population)
 totaltb=sum(hexp2005sort$num_tb_cases)
 hexp2005sort$Wpop<-hexp2005sort$population/totalp
@@ -217,7 +217,7 @@ summary(fit2005)
 hexp2005sort$predict2005<-coef(summary(fit2005))[1,1] + coef(summary(fit2005))[2,1]*hexp2005sort$logridit
 
 hexp2000<-as.data.frame(hexp[hexp$year=="2000",])
-hexp2000sort<-hexp2000[order(hexp2000$p.hex.gdp),]
+hexp2000sort<-hexp2000[order(hexp2000$hexp),]
 totalp=sum(hexp2000sort$population)
 totaltb=sum(hexp2000sort$num_tb_cases)
 hexp2000sort$Wpop<-hexp2000sort$population/totalp
@@ -246,7 +246,7 @@ hexp2000sort$predict2000<-coef(summary(fit2000))[1,1] + coef(summary(fit2000))[2
 quartz(width=10, height=6, pointsize=10)
 plot(hexp2010sort$ridit,hexp2010sort$ir_tb, col="black",pch=0,
 		 ylab="Tuberculosis incidence rates per 100,000 population", 
-		 xlab="Country-level population gradient defined by total health expenditure as % GDP")
+		 xlab="Country-level population gradient defined by total health expenditure per capita")
 points(hexp2005sort$ridit,hexp2005sort$ir_tb, col="black",pch=1,
 		 ylab="", 
 		 xlab="")
@@ -597,12 +597,12 @@ round(relative_Kuznets_index_gdp2010,2)
 
 
 #########################################################################
-###################   Health expenditure as % GDP #######################
+###################   Health expenditure #######################
 #########################################################################
 
-hexp2010sort$qhexp<-cut(hexp2010sort$p.hex.gdp,quantile(hexp2010sort$p.hex.gdp),include.lowest = TRUE,labels=c("Q1","Q2","Q3","Q4"))
-hexp2005sort$qhexp<-cut(hexp2005sort$p.hex.gdp,quantile(hexp2005sort$p.hex.gdp),include.lowest = TRUE,labels=c("Q1","Q2","Q3","Q4"))
-hexp2000sort$qhexp<-cut(hexp2000sort$p.hex.gdp,quantile(hexp2000sort$p.hex.gdp),include.lowest = TRUE,labels=c("Q1","Q2","Q3","Q4"))
+hexp2010sort$qhexp<-cut(hexp2010sort$hexp,quantile(hexp2010sort$hexp),include.lowest = TRUE,labels=c("Q1","Q2","Q3","Q4"))
+hexp2005sort$qhexp<-cut(hexp2005sort$hexp,quantile(hexp2005sort$hexp),include.lowest = TRUE,labels=c("Q1","Q2","Q3","Q4"))
+hexp2000sort$qhexp<-cut(hexp2000sort$hexp,quantile(hexp2000sort$hexp),include.lowest = TRUE,labels=c("Q1","Q2","Q3","Q4"))
 list(hexp2010sort$country,hexp2010sort$qhexp)
 list(hexp2005sort$country,hexp2005sort$qhexp)
 list(hexp2000sort$country,hexp2000sort$qhexp)
@@ -658,7 +658,7 @@ row.names(r)<-c('2000','2005','2010')
 
 quartz(width=10, height=6, pointsize=10)
 b<-barplot(r,col=c("darkgray","gray","lightgray"),beside=T,ylim=c(0,200),
-					 xlab="Quantiles of total health expenditure as % GDP", ylab="Average estimated incidence rate of tuberculosis")
+					 xlab="Quantiles of total health expenditure per capita", ylab="Average estimated incidence rate of tuberculosis")
 legend("topright",c("2000","2005","2010"),
 col= c("darkgray","gray","lightgray"),pch=15,bty="n") 
 text(x=b,y=c(r[1:12]),labels=c(r[1:12]),cex=1.25,pos=3)
@@ -966,7 +966,7 @@ legend(locator(1),c("2010","2005","2000"),col=c("black","black","black"),pch=c(0
 
 
 ###############################################################
-############# health expenditure as % GDP  ####################
+############# health expenditure per capita  ####################
 
 CWpopf2010<-c(0,hexp2010sort$CWpop)
 CWhealthf2010<-c(0,hexp2010sort$CWhealth)
@@ -1043,7 +1043,7 @@ health_concentration_index_hexp2000<-2*sum(delta_x_y)*0.01
 round(health_concentration_index_hexp2000,2)
 
 quartz(width=10, height=6, pointsize=10)
-plot(CWpopf2010,CWhealthf2010, col="black",pch=0, xlab="Country-level population gradient defined by health expenditure as % GDP", ylab="Tuberculosis incidence rates per 100,000 population")
+plot(CWpopf2010,CWhealthf2010, col="black",pch=0, xlab="Country-level population gradient defined by health expenditure per capita", ylab="Tuberculosis incidence rates per 100,000 population")
 points(CWpopf2005,CWhealthf2005, col="black",pch=1)
 points(CWpopf2000,CWhealthf2000, col="black",pch=2)
 lines(x,lf02010,col="black", lty=1)
