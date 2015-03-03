@@ -458,8 +458,8 @@ b<-barplot(t(r),col=c("deepskyblue4","dodgerblue3","dodgerblue","deepskyblue"),b
 legend("topright",c("Q1","Q2","Q3","Q4"),
        col= c("deepskyblue4","dodgerblue3","dodgerblue","deepskyblue"),pch=15,bty="n") 
 text(x=c(1.5,2.5,3.5,4.5,6.5,7.5,8.5,9.5,11.5,12.5,13.5,14.5,16.5,17.5,18.5,19.5),
-     y=c(114.17,76.76,58.53,31.36,127.28,51.52,47.67,26.30,94.64,57.40,45.47,25.27,88.31,50.66,42.77,21.50),
-     labels=c(114.17,76.76,58.53,31.36,127.28,51.52,47.67,26.30,94.64,57.40,45.47,25.27,88.31,50.66,42.77,21.50),cex=1.25,pos=3)
+     y=c(t(r[1,1]),t(r[1,2]),t(r[1,3]),t(r[1,4]),t(r[2,1]),t(r[2,2]),t(r[2,3]),t(r[2,4]),t(r[3,1]),t(r[3,2]),t(r[3,3]),t(r[3,4]),t(r[4,1]),t(r[4,2]),t(r[4,3]),t(r[4,4])),
+     labels=c(t(r[1,1]),t(r[1,2]),t(r[1,3]),t(r[1,4]),t(r[2,1]),t(r[2,2]),t(r[2,3]),t(r[2,4]),t(r[3,1]),t(r[3,2]),t(r[3,3]),t(r[3,4]),t(r[4,1]),t(r[4,2]),t(r[4,3]),t(r[4,4])),cex=1.25,pos=3)
 text(10,200, "Índice de Kuznets absoluto", col="red")
 text(10,190, labels=mylabel1a, col="red")
 text(10,180, labels=mylabel2a, col="red")
@@ -479,26 +479,26 @@ quartz(width=10, height=6, pointsize=10)
 plot(r[1,],c(2000,2000,2000,2000),bg=rainbow(4), pch=21, cex=2, lwd=3, lty=1,xlim=c(10,130), ylim=c(1999,2015), yaxt='n', xlab="Tasa promedio de incidencia de TB (por 100,000 hb)", ylab="Años")
 ticks = c(2000, 2005, 2009, 2013)
 axis(side = 2, at = ticks)
-from.x <- c(114.17, 76.76, 58.53)
-to.x   <- c(76.76, 58.53-1, 31.36)
+from.x <- c(r[1,1], r[1,2], r[1,3],r[1,4])
+to.x   <- c(r[1,1], r[1,3], r[1,4])
 to.y   <- from.y <- c(2000, 2000, 2000,2000)
 segments(x0 = from.x, y0 = from.y, x1 = to.x, y1 = to.y,lwd=2)
 par(new=TRUE)
 plot(r[2,],c(2005,2005,2005,2005), bg=rainbow(4), pch=21, cex=2, lwd=3, xlim=c(10,130), ylim=c(1999,2015), axes=FALSE, xlab="", ylab="")
-from.x <- c(127.28, 51.52, 47.67, 26.30)
-to.x   <- c(51.52, 47.67, 26.30)
+from.x <- c(r[2,1], r[2,2], r[2,3],r[2,4])
+to.x   <- c(r[2,1], r[2,3], r[2,4])
 to.y   <- from.y <- c(2005, 2005, 2005,2005) 
 segments(x0 = from.x, y0 = from.y, x1 = to.x, y1 = to.y,lwd=2)
 par(new=TRUE)
 plot(r[3,],c(2009,2009,2009,2009), bg=rainbow(4), pch=21, cex=2, lwd=3, xlim=c(10,130), ylim=c(1999,2015), axes=FALSE, xlab="", ylab="")
-from.x <- c(94.64, 57.40, 45.47)
-to.x   <- c(57.40, 45.47, 25.27)
+from.x <- c(r[3,1], r[3,2], r[3,3],r[3,4])
+to.x   <- c(r[3,1], r[3,3], r[3,4])
 to.y   <- from.y <- c(2009, 2009, 2009,2009) 
 segments(x0 = from.x, y0 = from.y, x1 = to.x, y1 = to.y,lwd=2)
 par(new=TRUE)
 plot(r[4,],c(2013,2013,2013,2013), bg=rainbow(4), pch=21, cex=2, lwd=3, xlim=c(10,130), ylim=c(1999,2015), axes=FALSE, xlab="", ylab="") 
-from.x <- c(88.31, 50.66, 42.77)
-to.x   <- c(50.66, 42.77, 21.50)
+from.x <- c(r[4,1], r[4,2], r[4,3],r[4,4])
+to.x   <- c(r[4,1], r[4,3], r[4,4])
 to.y   <- from.y <- c(2013, 2013, 2013,2013) 
 segments(x0 = from.x, y0 = from.y, x1 = to.x, y1 = to.y,lwd=2)
 legend("topright",c("Q1","Q2","Q3","Q4"),
@@ -514,32 +514,32 @@ par(new=TRUE)
 plot(r[1,],c(2000,2000,2000,2000),bg="black", pch=21, cex=0.5, lwd=3, lty=1,xlim=c(10,130), ylim=c(1999,2015), yaxt='n', xlab="Tasa promedio de incidencia de TB (por 100,000 hb)", ylab="Años")
 ticks = c(2000, 2005, 2009, 2013)
 axis(side = 2, at = ticks)
-from.x <- c(114.17, 76.76, 58.53)
-to.x   <- c(76.76, 58.53-1, 31.36)
+from.x <- c(r[1,1], r[1,2], r[1,3],r[1,4])
+to.x   <- c(r[1,1], r[1,3], r[1,4])
 to.y   <- from.y <- c(2000, 2000, 2000,2000)
 segments(x0 = from.x, y0 = from.y, x1 = to.x, y1 = to.y,lwd=2)
 par(new=TRUE)
 symbols(r[2,],c(2005,2005,2005,2005),circles=sqrt(qpg2005/pi),inches=1/4, bg=rainbow(4), pch=21, cex=2, lwd=3, lty=1,xlim=c(10,130), ylim=c(1999,2015), yaxt='n', xlab="Tasa promedio de incidencia de TB (por 100,000 hb)", ylab="Años")
 par(new=TRUE)
 plot(r[2,],c(2005,2005,2005,2005), bg="black", pch=21, cex=0.5, lwd=3, xlim=c(10,130), ylim=c(1999,2015), axes=FALSE, xlab="", ylab="")
-from.x <- c(127.28, 51.52, 47.67, 26.30)
-to.x   <- c(51.52, 47.67, 26.30)
+from.x <- c(r[2,1], r[2,2], r[2,3],r[2,4])
+to.x   <- c(r[2,1], r[2,3], r[2,4])
 to.y   <- from.y <- c(2005, 2005, 2005,2005) 
 segments(x0 = from.x, y0 = from.y, x1 = to.x, y1 = to.y,lwd=2)
 par(new=TRUE)
 symbols(r[3,],c(2009,2009,2009,2009),circles=sqrt(qpg2009/pi),inches=1/4, bg=rainbow(4), pch=21, cex=2, lwd=3, lty=1,xlim=c(10,130), ylim=c(1999,2015), yaxt='n', xlab="Tasa promedio de incidencia de TB (por 100,000 hb)", ylab="Años")
 par(new=TRUE)
 plot(r[3,],c(2009,2009,2009,2009), bg="black", pch=21, cex=0.5, lwd=3, xlim=c(10,130), ylim=c(1999,2015), axes=FALSE, xlab="", ylab="")
-from.x <- c(94.64, 57.40, 45.47)
-to.x   <- c(57.40, 45.47, 25.27)
+from.x <- c(r[3,1], r[3,2], r[3,3],r[3,4])
+to.x   <- c(r[3,1], r[3,3], r[3,4])
 to.y   <- from.y <- c(2009, 2009, 2009,2009) 
 segments(x0 = from.x, y0 = from.y, x1 = to.x, y1 = to.y,lwd=2)
 par(new=TRUE)
 symbols(r[4,],c(2013,2013,2013,2013),circles=sqrt(qpg2013/pi),inches=1/4, bg=rainbow(4), pch=21, cex=2, lwd=3, lty=1,xlim=c(10,130), ylim=c(1999,2015), yaxt='n', xlab="Tasa promedio de incidencia de TB (por 100,000 hb)", ylab="Años")
 par(new=TRUE)
 plot(r[4,],c(2013,2013,2013,2013), bg="black", pch=21, cex=0.5, lwd=3, xlim=c(10,130), ylim=c(1999,2015), axes=FALSE, xlab="", ylab="") 
-from.x <- c(88.31, 50.66, 42.77)
-to.x   <- c(50.66, 42.77, 21.50)
+from.x <- c(r[4,1], r[4,2], r[4,3],r[4,4])
+to.x   <- c(r[4,1], r[4,3], r[4,4])
 to.y   <- from.y <- c(2013, 2013, 2013,2013) 
 segments(x0 = from.x, y0 = from.y, x1 = to.x, y1 = to.y,lwd=2)
 legend("topright",title="Population size",c("Q1","Q2","Q3","Q4"),
@@ -547,11 +547,8 @@ legend("topright",title="Population size",c("Q1","Q2","Q3","Q4"),
        bg=rainbow(4), pch=19,bty="n", cex=1.5,
        pt.cex=c(1,1.4,3,1.4)) 
 
-
-
 ##########################################################################
 ############################# Concentration curve  #######################
-
 
 CWpopf2013<-c(0,hdi2013sort$CWpop)
 CWhealthf2013<-c(0,hdi2013sort$CWhealth)
@@ -743,6 +740,13 @@ impwater_lac_f <- impwater_lac_f[order(impwater_lac_f$country,impwater_lac_f$yea
 
 ################# Building the final dataset ############################  
 impwater_lac_fff<-subset(impwater_lac_f,year %in% c(2000,2005,2009,2012)) ## we used the same value of 2005 impwater for 2000 
+
+#### completing missing values
+
+impwater_lac_fff$impwater[impwater_lac_fff$country=="Trinidad and Tobago" & impwater_lac_fff$year==2012]<-93.6
+impwater_lac_fff$impwater[impwater_lac_fff$country=="Venezuela" & impwater_lac_fff$year==2009]<-92.8
+impwater_lac_fff$impwater[impwater_lac_fff$country=="Venezuela" & impwater_lac_fff$year==2012]<-92.8
+
 tb_lac_fff<-subset(tb_lac_ff,year %in% c(2000,2005,2009,2012))
 
 df2<-merge(tb_lac_fff,impwater_lac_fff,by=c("country","year"),all=TRUE)
@@ -788,7 +792,7 @@ impwater2012sort$predict2012<-coef(summary(fit2012))[1,1] + coef(summary(fit2012
 
 
 
-impwater2009<-as.data.frame(df[df$year=="2009",])
+impwater2009<-as.data.frame(df2[df2$year=="2009",])
 impwater2009sort<-impwater2009[order(impwater2009$impwater),]
 totalp=sum(impwater2009sort$population)
 totaltb=sum(impwater2009sort$num_tb_cases)
@@ -816,7 +820,7 @@ fit2009<-lm(impwater2009sort$YiWi~impwater2009sort$Wi + impwater2009sort$XiWi + 
 summary(fit2009)
 impwater2009sort$predict2009<-coef(summary(fit2009))[1,1] + coef(summary(fit2009))[2,1]*impwater2009sort$logridit
 
-impwater2005<-as.data.frame(df[df$year=="2005",])
+impwater2005<-as.data.frame(df2[df2$year=="2005",])
 impwater2005sort<-impwater2005[order(impwater2005$impwater),]
 totalp=sum(impwater2005sort$population)
 totaltb=sum(impwater2005sort$num_tb_cases)
@@ -846,7 +850,7 @@ summary(fit2005)
 impwater2005sort$predict2005<-coef(summary(fit2005))[1,1] + coef(summary(fit2005))[2,1]*impwater2005sort$logridit
 
 
-impwater2000<-as.data.frame(df[df$year=="2000",])
+impwater2000<-as.data.frame(df2[df2$year=="2000",])
 impwater2000sort<-impwater2000[order(impwater2000$impwater),]
 totalp=sum(impwater2000sort$population)
 totaltb=sum(impwater2000sort$num_tb_cases)
@@ -895,7 +899,7 @@ mylabel4e= bquote(2012==.(format(slope_index_of_inequality_impwater2012,digits=4
 quartz(width=10, height=6, pointsize=10)
 plot(impwater2012sort$ridit,impwater2012sort$ir_tb, col="red",pch=0,
      ylab="Tasa de incidencia de tuberculosis (por 100,000 hab)", 
-     xlab="Gradiente de población entre países según índice de desarrollo humano (IDH)")
+     xlab="Gradiente de población entre países según % de la población con acceso a mejores fuentes de agua")
 points(impwater2009sort$ridit,impwater2009sort$ir_tb, col="blue",pch=1,
        ylab="", 
        xlab="")
@@ -1043,51 +1047,51 @@ mylabel8e= bquote(2012==.(format(relative_Kuznets_index_impwater2012,digits=3)))
 
 quartz(width=10, height=6, pointsize=10)
 b<-barplot(t(r),col=c("deepskyblue4","dodgerblue3","dodgerblue","deepskyblue"),beside=T,ylim=c(0,220),
-           xlab="Cuartíles del Indice de Desarrollo Humano (IDH)", ylab="Tasa promedio de incidencia de TB (por 100,000 hb)")
+           xlab="% de la población con acceso a mejores fuentes de agua", ylab="Tasa promedio de incidencia de TB (por 100,000 hb)")
 legend("topright",c("Q1","Q2","Q3","Q4"),
        col= c("deepskyblue4","dodgerblue3","dodgerblue","deepskyblue"),pch=15,bty="n") 
 text(x=c(1.5,2.5,3.5,4.5,6.5,7.5,8.5,9.5,11.5,12.5,13.5,14.5,16.5,17.5,18.5,19.5),
-     y=c(114.17,76.76,58.53,31.36,127.28,51.52,47.67,26.30,94.64,57.40,45.47,25.27,88.31,50.66,42.77,21.50),
-     labels=c(114.17,76.76,58.53,31.36,127.28,51.52,47.67,26.30,94.64,57.40,45.47,25.27,88.31,50.66,42.77,21.50),cex=1.25,pos=3)
-text(10,200, "Índice de Kuznets absoluto", col="red")
-text(10,190, labels=mylabel1e, col="red")
-text(10,180, labels=mylabel2e, col="red")
-text(10,170, labels=mylabel3e, col="red")
-text(10,160, labels=mylabel4e, col="red")
-text(10,150, "Índice de Kuznets relativo", col="red")
-text(10,140, labels=mylabel5e, col="red")
-text(10,130, labels=mylabel6e, col="red")
-text(10,120, labels=mylabel7e, col="red")
-text(10,110, labels=mylabel8e, col="red")
+     y=c(t(r[1,1]),t(r[1,2]),t(r[1,3]),t(r[1,4]),t(r[2,1]),t(r[2,2]),t(r[2,3]),t(r[2,4]),t(r[3,1]),t(r[3,2]),t(r[3,3]),t(r[3,4]),t(r[4,1]),t(r[4,2]),t(r[4,3]),t(r[4,4])),
+     labels=c(t(r[1,1]),t(r[1,2]),t(r[1,3]),t(r[1,4]),t(r[2,1]),t(r[2,2]),t(r[2,3]),t(r[2,4]),t(r[3,1]),t(r[3,2]),t(r[3,3]),t(r[3,4]),t(r[4,1]),t(r[4,2]),t(r[4,3]),t(r[4,4])),cex=1.25,pos=3)
+text(9,200, "Índice de Kuznets absoluto", col="red")
+text(9,190, labels=mylabel1e, col="red")
+text(9,180, labels=mylabel2e, col="red")
+text(9,170, labels=mylabel3e, col="red")
+text(9,160, labels=mylabel4e, col="red")
+text(9,150, "Índice de Kuznets relativo", col="red")
+text(9,140, labels=mylabel5e, col="red")
+text(9,130, labels=mylabel6e, col="red")
+text(9,120, labels=mylabel7e, col="red")
+text(9,110, labels=mylabel8e, col="red")
 
 
 
 
 ## lines and dots graphics
 quartz(width=10, height=6, pointsize=10)
-plot(r[1,],c(2000,2000,2000,2000),bg=rainbow(4), pch=21, cex=2, lwd=3, lty=1,xlim=c(10,130), ylim=c(1999,2015), yaxt='n', xlab="Tasa promedio de incidencia de TB (por 100,000 hb)", ylab="Años")
+plot(r[1,],c(2000,2000,2000,2000),bg=rainbow(4), pch=21, cex=2, lwd=3, lty=1,xlim=c(10,170), ylim=c(1999,2015), yaxt='n', xlab="Tasa promedio de incidencia de TB (por 100,000 hb)", ylab="Años")
 ticks = c(2000, 2005, 2009, 2012)
 axis(side = 2, at = ticks)
-from.x <- c(114.17, 76.76, 58.53)
-to.x   <- c(76.76, 58.53-1, 31.36)
+from.x <- c(r[1,1], r[1,2], r[1,3],r[1,4])
+to.x   <- c(r[1,1], r[1,3], r[1,4])
 to.y   <- from.y <- c(2000, 2000, 2000,2000)
 segments(x0 = from.x, y0 = from.y, x1 = to.x, y1 = to.y,lwd=2)
 par(new=TRUE)
-plot(r[2,],c(2005,2005,2005,2005), bg=rainbow(4), pch=21, cex=2, lwd=3, xlim=c(10,130), ylim=c(1999,2015), axes=FALSE, xlab="", ylab="")
-from.x <- c(127.28, 51.52, 47.67, 26.30)
-to.x   <- c(51.52, 47.67, 26.30)
+plot(r[2,],c(2005,2005,2005,2005), bg=rainbow(4), pch=21, cex=2, lwd=3, xlim=c(10,170), ylim=c(1999,2015), axes=FALSE, xlab="", ylab="")
+from.x <- c(r[2,1], r[2,2], r[2,3],r[2,4])
+to.x   <- c(r[2,1], r[2,3], r[2,4])
 to.y   <- from.y <- c(2005, 2005, 2005,2005) 
 segments(x0 = from.x, y0 = from.y, x1 = to.x, y1 = to.y,lwd=2)
 par(new=TRUE)
-plot(r[3,],c(2009,2009,2009,2009), bg=rainbow(4), pch=21, cex=2, lwd=3, xlim=c(10,130), ylim=c(1999,2015), axes=FALSE, xlab="", ylab="")
-from.x <- c(94.64, 57.40, 45.47)
-to.x   <- c(57.40, 45.47, 25.27)
+plot(r[3,],c(2009,2009,2009,2009), bg=rainbow(4), pch=21, cex=2, lwd=3, xlim=c(10,170), ylim=c(1999,2015), axes=FALSE, xlab="", ylab="")
+from.x <- c(r[3,1], r[3,2], r[3,3],r[3,4])
+to.x   <- c(r[3,1], r[3,3], r[3,4])
 to.y   <- from.y <- c(2009, 2009, 2009,2009) 
 segments(x0 = from.x, y0 = from.y, x1 = to.x, y1 = to.y,lwd=2)
 par(new=TRUE)
-plot(r[4,],c(2012,2012,2012,2012), bg=rainbow(4), pch=21, cex=2, lwd=3, xlim=c(10,130), ylim=c(1999,2015), axes=FALSE, xlab="", ylab="") 
-from.x <- c(88.31, 50.66, 42.77)
-to.x   <- c(50.66, 42.77, 21.50)
+plot(r[4,],c(2012,2012,2012,2012), bg=rainbow(4), pch=21, cex=2, lwd=3, xlim=c(10,170), ylim=c(1999,2015), axes=FALSE, xlab="", ylab="") 
+from.x <- c(r[4,1], r[4,2], r[4,3],r[4,4])
+to.x   <- c(r[4,1], r[4,3], r[4,4])
 to.y   <- from.y <- c(2012, 2012, 2012,2012) 
 segments(x0 = from.x, y0 = from.y, x1 = to.x, y1 = to.y,lwd=2)
 legend("topright",c("Q1","Q2","Q3","Q4"),
@@ -1098,37 +1102,37 @@ legend("topright",c("Q1","Q2","Q3","Q4"),
 
 ## lines and dots graphics weighted
 quartz(width=10, height=6, pointsize=10)
-symbols(r[1,],c(2000,2000,2000,2000),circles=sqrt(qpg2000/pi),inches=1/4, bg=rainbow(4), pch=21, cex=2, lwd=3, lty=1,xlim=c(10,130), ylim=c(1999,2015), yaxt='n', xlab="Tasa promedio de incidencia de TB (por 100,000 hb)", ylab="Años")
+symbols(r[1,],c(2000,2000,2000,2000),circles=sqrt(qpg2000/pi),inches=1/4, bg=rainbow(4), pch=21, cex=2, lwd=3, lty=1,xlim=c(10,170), ylim=c(1999,2015), yaxt='n', xlab="Tasa promedio de incidencia de TB (por 100,000 hb)", ylab="Años")
 par(new=TRUE)
-plot(r[1,],c(2000,2000,2000,2000),bg="black", pch=21, cex=0.5, lwd=3, lty=1,xlim=c(10,130), ylim=c(1999,2015), yaxt='n', xlab="Tasa promedio de incidencia de TB (por 100,000 hb)", ylab="Años")
+plot(r[1,],c(2000,2000,2000,2000),bg="black", pch=21, cex=0.5, lwd=3, lty=1,xlim=c(10,170), ylim=c(1999,2015), yaxt='n', xlab="Tasa promedio de incidencia de TB (por 100,000 hb)", ylab="Años")
 ticks = c(2000, 2005, 2009, 2012)
 axis(side = 2, at = ticks)
-from.x <- c(114.17, 76.76, 58.53)
-to.x   <- c(76.76, 58.53-1, 31.36)
+from.x <- c(r[1,1], r[1,2], r[1,3],r[1,4])
+to.x   <- c(r[1,1], r[1,3], r[1,4])
 to.y   <- from.y <- c(2000, 2000, 2000,2000)
 segments(x0 = from.x, y0 = from.y, x1 = to.x, y1 = to.y,lwd=2)
 par(new=TRUE)
-symbols(r[2,],c(2005,2005,2005,2005),circles=sqrt(qpg2005/pi),inches=1/4, bg=rainbow(4), pch=21, cex=2, lwd=3, lty=1,xlim=c(10,130), ylim=c(1999,2015), yaxt='n', xlab="Tasa promedio de incidencia de TB (por 100,000 hb)", ylab="Años")
+symbols(r[2,],c(2005,2005,2005,2005),circles=sqrt(qpg2005/pi),inches=1/4, bg=rainbow(4), pch=21, cex=2, lwd=3, lty=1,xlim=c(10,170), ylim=c(1999,2015), yaxt='n', xlab="Tasa promedio de incidencia de TB (por 100,000 hb)", ylab="Años")
 par(new=TRUE)
-plot(r[2,],c(2005,2005,2005,2005), bg="black", pch=21, cex=0.5, lwd=3, xlim=c(10,130), ylim=c(1999,2015), axes=FALSE, xlab="", ylab="")
-from.x <- c(127.28, 51.52, 47.67, 26.30)
-to.x   <- c(51.52, 47.67, 26.30)
+plot(r[2,],c(2005,2005,2005,2005), bg="black", pch=21, cex=0.5, lwd=3, xlim=c(10,170), ylim=c(1999,2015), axes=FALSE, xlab="", ylab="")
+from.x <- c(r[2,1], r[2,2], r[2,3],r[2,4])
+to.x   <- c(r[2,1], r[2,3], r[2,4])
 to.y   <- from.y <- c(2005, 2005, 2005,2005) 
 segments(x0 = from.x, y0 = from.y, x1 = to.x, y1 = to.y,lwd=2)
 par(new=TRUE)
-symbols(r[3,],c(2009,2009,2009,2009),circles=sqrt(qpg2009/pi),inches=1/4, bg=rainbow(4), pch=21, cex=2, lwd=3, lty=1,xlim=c(10,130), ylim=c(1999,2015), yaxt='n', xlab="Tasa promedio de incidencia de TB (por 100,000 hb)", ylab="Años")
+symbols(r[3,],c(2009,2009,2009,2009),circles=sqrt(qpg2009/pi),inches=1/4, bg=rainbow(4), pch=21, cex=2, lwd=3, lty=1,xlim=c(10,170), ylim=c(1999,2015), yaxt='n', xlab="Tasa promedio de incidencia de TB (por 100,000 hb)", ylab="Años")
 par(new=TRUE)
-plot(r[3,],c(2009,2009,2009,2009), bg="black", pch=21, cex=0.5, lwd=3, xlim=c(10,130), ylim=c(1999,2015), axes=FALSE, xlab="", ylab="")
-from.x <- c(94.64, 57.40, 45.47)
-to.x   <- c(57.40, 45.47, 25.27)
+plot(r[3,],c(2009,2009,2009,2009), bg="black", pch=21, cex=0.5, lwd=3, xlim=c(10,170), ylim=c(1999,2015), axes=FALSE, xlab="", ylab="")
+from.x <- c(r[3,1], r[3,2], r[3,3],r[3,4])
+to.x   <- c(r[3,1], r[3,3], r[3,4])
 to.y   <- from.y <- c(2009, 2009, 2009,2009) 
 segments(x0 = from.x, y0 = from.y, x1 = to.x, y1 = to.y,lwd=2)
 par(new=TRUE)
-symbols(r[4,],c(2012,2012,2012,2012),circles=sqrt(qpg2012/pi),inches=1/4, bg=rainbow(4), pch=21, cex=2, lwd=3, lty=1,xlim=c(10,130), ylim=c(1999,2015), yaxt='n', xlab="Tasa promedio de incidencia de TB (por 100,000 hb)", ylab="Años")
+symbols(r[4,],c(2012,2012,2012,2012),circles=sqrt(qpg2012/pi),inches=1/4, bg=rainbow(4), pch=21, cex=2, lwd=3, lty=1,xlim=c(10,170), ylim=c(1999,2015), yaxt='n', xlab="Tasa promedio de incidencia de TB (por 100,000 hb)", ylab="Años")
 par(new=TRUE)
-plot(r[4,],c(2012,2012,2012,2012), bg="black", pch=21, cex=0.5, lwd=3, xlim=c(10,130), ylim=c(1999,2015), axes=FALSE, xlab="", ylab="") 
-from.x <- c(88.31, 50.66, 42.77)
-to.x   <- c(50.66, 42.77, 21.50)
+plot(r[4,],c(2012,2012,2012,2012), bg="black", pch=21, cex=0.5, lwd=3, xlim=c(10,170), ylim=c(1999,2015), axes=FALSE, xlab="", ylab="") 
+from.x <- c(r[4,1], r[4,2], r[4,3],r[4,4])
+to.x   <- c(r[4,1], r[4,3], r[4,4])
 to.y   <- from.y <- c(2012, 2012, 2012,2012) 
 segments(x0 = from.x, y0 = from.y, x1 = to.x, y1 = to.y,lwd=2)
 legend("topright",title="Population size",c("Q1","Q2","Q3","Q4"),
@@ -1136,11 +1140,8 @@ legend("topright",title="Population size",c("Q1","Q2","Q3","Q4"),
        bg=rainbow(4), pch=19,bty="n", cex=1.5,
        pt.cex=c(1,1.4,3,1.4)) 
 
-
-
 ##########################################################################
 ############################# Concentration curve  #######################
-
 
 CWpopf2012<-c(0,impwater2012sort$CWpop)
 CWhealthf2012<-c(0,impwater2012sort$CWhealth)
@@ -1150,7 +1151,6 @@ CWpopf2005<-c(0,impwater2005sort$CWpop)
 CWhealthf2005<-c(0,impwater2005sort$CWhealth)
 CWpopf2000<-c(0,impwater2000sort$CWpop)
 CWhealthf2000<-c(0,impwater2000sort$CWhealth)
-
 
 ccurve2012<-data.frame(y=CWhealthf2012, x=CWpopf2012)
 ccurve2009<-data.frame(y=CWhealthf2009, x=CWpopf2009)
@@ -1188,7 +1188,6 @@ delta_x_y
 # Social gradient
 health_concentration_index_impwater2012<-2*sum(delta_x_y)*0.01
 round(health_concentration_index_impwater2012,2)
-
 
 k<-ccurve.optx2009[1,1]
 f<-function(x,k) {
@@ -1244,7 +1243,7 @@ mylabel3e= bquote(2009==.(format(health_concentration_index_impwater2009,digits=
 mylabel4e= bquote(2012==.(format(health_concentration_index_impwater2012,digits=2))) 
 
 quartz(width=10, height=6, pointsize=10)
-plot(CWpopf2012,CWhealthf2012, col="red",pch=0, xlab="Gradiente de población entre países según índice de desarrollo humano (IDH)", ylab="Número de casos incidentes de TB (acumulado)")
+plot(CWpopf2012,CWhealthf2012, col="red",pch=0, xlab="Gradiente de población entre países según % de la población con acceso a mejores fuentes de agua", ylab="Número de casos incidentes de TB (acumulado)")
 points(CWpopf2009,CWhealthf2009, col="blue",pch=1)
 points(CWpopf2005,CWhealthf2005, col="green",pch=2)
 points(CWpopf2000,CWhealthf2000, col="purple",pch=3)
@@ -1293,6 +1292,541 @@ impwaterurban_lac_f<-subset(impwaterurban_world,country %in% c("Argentina", "Bol
 
 impwaterurban_lac_f <- impwaterurban_lac_f[order(impwaterurban_lac_f$country,impwaterurban_lac_f$year),] 
 
+#########################################################################
+################# Building the final dataset ############################  
+impwaterurban_lac_fff<-subset(impwaterurban_lac_f,year %in% c(2000,2005,2009,2012)) 
+
+#### completing missing values
+
+impwaterurban_lac_fff$impwaterurban[impwaterurban_lac_fff$country=="Venezuela" & impwaterurban_lac_fff$year==2009]<-94.3
+impwaterurban_lac_fff$impwaterurban[impwaterurban_lac_fff$country=="Venezuela" & impwater_lac_fff$year==2012]<-94.3
+
+
+tb_lac_ffff<-subset(tb_lac_ff,year %in% c(2000,2005,2009,2012))
+
+df3<-merge(tb_lac_ffff,impwaterurban_lac_fff,by=c("country","year"),all=TRUE)
+
+lengend = c("Argentina", "Bolivia", "Brazil","Chile","Colombia","Costa Rica","Cuba","Dominican Republic",
+            "Ecuador","El Salvador","Guatemala ","Guyana","Haiti","Honduras","Mexico","Nicaragua",
+            "Panama","Paraguay","Peru","Suriname","Trinidad and Tobago","Uruguay","Venezuela")
+
+
+impwaterurban<-df3[, c("country","year","population","impwaterurban","num_tb_cases","ir_tb")]
+
+
+
+
+############################################################################
+############################ regression weight analysis ####################
+
+impwaterurban2012<-as.data.frame(df3[df3$year=="2012",])
+
+impwaterurban2012sort<-impwaterurban2012[order(impwaterurban2012$impwaterurban),]
+totalp=sum(impwaterurban2012sort$population)
+totaltb=sum(impwaterurban2012sort$num_tb_cases)
+impwaterurban2012sort$Wpop<-impwaterurban2012sort$population/totalp
+impwaterurban2012sort$CWpop<-cumsum(impwaterurban2012sort$Wpop)
+impwaterurban2012sort$ridit<-c((0+impwaterurban2012sort$CWpop[1])/2,(impwaterurban2012sort$CWpop[1]+impwaterurban2012sort$CWpop[2])/2,
+                          (impwaterurban2012sort$CWpop[2]+impwaterurban2012sort$CWpop[3])/2,(impwaterurban2012sort$CWpop[3]+impwaterurban2012sort$CWpop[4])/2,
+                          (impwaterurban2012sort$CWpop[4]+impwaterurban2012sort$CWpop[5])/2,(impwaterurban2012sort$CWpop[5]+impwaterurban2012sort$CWpop[6])/2,
+                          (impwaterurban2012sort$CWpop[6]+impwaterurban2012sort$CWpop[7])/2,(impwaterurban2012sort$CWpop[7]+impwaterurban2012sort$CWpop[8])/2,
+                          (impwaterurban2012sort$CWpop[8]+impwaterurban2012sort$CWpop[9])/2,(impwaterurban2012sort$CWpop[9]+impwaterurban2012sort$CWpop[10])/2,
+                          (impwaterurban2012sort$CWpop[10]+impwaterurban2012sort$CWpop[11])/2,(impwaterurban2012sort$CWpop[11]+impwaterurban2012sort$CWpop[12])/2,
+                          (impwaterurban2012sort$CWpop[12]+impwaterurban2012sort$CWpop[13])/2,(impwaterurban2012sort$CWpop[13]+impwaterurban2012sort$CWpop[14])/2,
+                          (impwaterurban2012sort$CWpop[14]+impwaterurban2012sort$CWpop[15])/2,(impwaterurban2012sort$CWpop[15]+impwaterurban2012sort$CWpop[16])/2,
+                          (impwaterurban2012sort$CWpop[16]+impwaterurban2012sort$CWpop[17])/2,(impwaterurban2012sort$CWpop[17]+impwaterurban2012sort$CWpop[18])/2,
+                          (impwaterurban2012sort$CWpop[18]+impwaterurban2012sort$CWpop[19])/2,(impwaterurban2012sort$CWpop[19]+impwaterurban2012sort$CWpop[20])/2,
+                          (impwaterurban2012sort$CWpop[20]+impwaterurban2012sort$CWpop[21])/2,(impwaterurban2012sort$CWpop[21]+impwaterurban2012sort$CWpop[22])/2,
+                          (impwaterurban2012sort$CWpop[22]+impwaterurban2012sort$CWpop[23])/2)
+
+
+impwaterurban2012sort$Whealth<-impwaterurban2012sort$num_tb_cases/totaltb
+impwaterurban2012sort$CWhealth<-cumsum(impwaterurban2012sort$Whealth)
+impwaterurban2012sort$logridit<-log10(impwaterurban2012sort$ridit)
+impwaterurban2012sort$Wi<-sqrt(impwaterurban2012sort$population)
+impwaterurban2012sort$XiWi<-impwaterurban2012sort$Wi*impwaterurban2012sort$logridit
+impwaterurban2012sort$YiWi<-impwaterurban2012sort$Wi*impwaterurban2012sort$ir_tb
+fit2012<-lm(impwaterurban2012sort$YiWi~impwaterurban2012sort$Wi + impwaterurban2012sort$XiWi + 0)
+summary(fit2012)
+impwaterurban2012sort$predict2012<-coef(summary(fit2012))[1,1] + coef(summary(fit2012))[2,1]*impwaterurban2012sort$logridit
+
+
+
+impwaterurban2009<-as.data.frame(df3[df3$year=="2009",])
+impwaterurban2009sort<-impwaterurban2009[order(impwaterurban2009$impwaterurban),]
+totalp=sum(impwaterurban2009sort$population)
+totaltb=sum(impwaterurban2009sort$num_tb_cases)
+impwaterurban2009sort$Wpop<-impwaterurban2009sort$population/totalp
+impwaterurban2009sort$CWpop<-cumsum(impwaterurban2009sort$Wpop)
+impwaterurban2009sort$ridit<-c((0+impwaterurban2009sort$CWpop[1])/2,(impwaterurban2009sort$CWpop[1]+impwaterurban2009sort$CWpop[2])/2,
+                          (impwaterurban2009sort$CWpop[2]+impwaterurban2009sort$CWpop[3])/2,(impwaterurban2009sort$CWpop[3]+impwaterurban2009sort$CWpop[4])/2,
+                          (impwaterurban2009sort$CWpop[4]+impwaterurban2009sort$CWpop[5])/2,(impwaterurban2009sort$CWpop[5]+impwaterurban2009sort$CWpop[6])/2,
+                          (impwaterurban2009sort$CWpop[6]+impwaterurban2009sort$CWpop[7])/2,(impwaterurban2009sort$CWpop[7]+impwaterurban2009sort$CWpop[8])/2,
+                          (impwaterurban2009sort$CWpop[8]+impwaterurban2009sort$CWpop[9])/2,(impwaterurban2009sort$CWpop[9]+impwaterurban2009sort$CWpop[10])/2,
+                          (impwaterurban2009sort$CWpop[10]+impwaterurban2009sort$CWpop[11])/2,(impwaterurban2009sort$CWpop[11]+impwaterurban2009sort$CWpop[12])/2,
+                          (impwaterurban2009sort$CWpop[12]+impwaterurban2009sort$CWpop[13])/2,(impwaterurban2009sort$CWpop[13]+impwaterurban2009sort$CWpop[14])/2,
+                          (impwaterurban2009sort$CWpop[14]+impwaterurban2009sort$CWpop[15])/2,(impwaterurban2009sort$CWpop[15]+impwaterurban2009sort$CWpop[16])/2,
+                          (impwaterurban2009sort$CWpop[16]+impwaterurban2009sort$CWpop[17])/2,(impwaterurban2009sort$CWpop[17]+impwaterurban2009sort$CWpop[18])/2,
+                          (impwaterurban2009sort$CWpop[18]+impwaterurban2009sort$CWpop[19])/2,(impwaterurban2009sort$CWpop[19]+impwaterurban2009sort$CWpop[20])/2,
+                          (impwaterurban2009sort$CWpop[20]+impwaterurban2009sort$CWpop[21])/2,(impwaterurban2009sort$CWpop[21]+impwaterurban2009sort$CWpop[22])/2,
+                          (impwaterurban2009sort$CWpop[22]+impwaterurban2009sort$CWpop[23])/2)
+impwaterurban2009sort$Whealth<-impwaterurban2009sort$num_tb_cases/totaltb
+impwaterurban2009sort$CWhealth<-cumsum(impwaterurban2009sort$Whealth)
+impwaterurban2009sort$logridit<-log10(impwaterurban2009sort$ridit)
+impwaterurban2009sort$Wi<-sqrt(impwaterurban2009sort$population)
+impwaterurban2009sort$XiWi<-impwaterurban2009sort$Wi*impwaterurban2009sort$logridit
+impwaterurban2009sort$YiWi<-impwaterurban2009sort$Wi*impwaterurban2009sort$ir_tb
+fit2009<-lm(impwaterurban2009sort$YiWi~impwaterurban2009sort$Wi + impwaterurban2009sort$XiWi + 0)
+summary(fit2009)
+impwaterurban2009sort$predict2009<-coef(summary(fit2009))[1,1] + coef(summary(fit2009))[2,1]*impwaterurban2009sort$logridit
+
+impwaterurban2005<-as.data.frame(df3[df3$year=="2005",])
+impwaterurban2005sort<-impwaterurban2005[order(impwaterurban2005$impwaterurban),]
+totalp=sum(impwaterurban2005sort$population)
+totaltb=sum(impwaterurban2005sort$num_tb_cases)
+impwaterurban2005sort$Wpop<-impwaterurban2005sort$population/totalp
+impwaterurban2005sort$CWpop<-cumsum(impwaterurban2005sort$Wpop)
+impwaterurban2005sort$ridit<-c((0+impwaterurban2005sort$CWpop[1])/2,(impwaterurban2005sort$CWpop[1]+impwaterurban2005sort$CWpop[2])/2,
+                          (impwaterurban2005sort$CWpop[2]+impwaterurban2005sort$CWpop[3])/2,(impwaterurban2005sort$CWpop[3]+impwaterurban2005sort$CWpop[4])/2,
+                          (impwaterurban2005sort$CWpop[4]+impwaterurban2005sort$CWpop[5])/2,(impwaterurban2005sort$CWpop[5]+impwaterurban2005sort$CWpop[6])/2,
+                          (impwaterurban2005sort$CWpop[6]+impwaterurban2005sort$CWpop[7])/2,(impwaterurban2005sort$CWpop[7]+impwaterurban2005sort$CWpop[8])/2,
+                          (impwaterurban2005sort$CWpop[8]+impwaterurban2005sort$CWpop[9])/2,(impwaterurban2005sort$CWpop[9]+impwaterurban2005sort$CWpop[10])/2,
+                          (impwaterurban2005sort$CWpop[10]+impwaterurban2005sort$CWpop[11])/2,(impwaterurban2005sort$CWpop[11]+impwaterurban2005sort$CWpop[12])/2,
+                          (impwaterurban2005sort$CWpop[12]+impwaterurban2005sort$CWpop[13])/2,(impwaterurban2005sort$CWpop[13]+impwaterurban2005sort$CWpop[14])/2,
+                          (impwaterurban2005sort$CWpop[14]+impwaterurban2005sort$CWpop[15])/2,(impwaterurban2005sort$CWpop[15]+impwaterurban2005sort$CWpop[16])/2,
+                          (impwaterurban2005sort$CWpop[16]+impwaterurban2005sort$CWpop[17])/2,(impwaterurban2005sort$CWpop[17]+impwaterurban2005sort$CWpop[18])/2,
+                          (impwaterurban2005sort$CWpop[18]+impwaterurban2005sort$CWpop[19])/2,(impwaterurban2005sort$CWpop[19]+impwaterurban2005sort$CWpop[20])/2,
+                          (impwaterurban2005sort$CWpop[20]+impwaterurban2005sort$CWpop[21])/2,(impwaterurban2005sort$CWpop[21]+impwaterurban2005sort$CWpop[22])/2,
+                          (impwaterurban2005sort$CWpop[22]+impwaterurban2005sort$CWpop[23])/2)
+
+impwaterurban2005sort$Whealth<-impwaterurban2005sort$num_tb_cases/totaltb
+impwaterurban2005sort$CWhealth<-cumsum(impwaterurban2005sort$Whealth)
+impwaterurban2005sort$logridit<-log10(impwaterurban2005sort$ridit)
+impwaterurban2005sort$Wi<-sqrt(impwaterurban2005sort$population)
+impwaterurban2005sort$XiWi<-impwaterurban2005sort$Wi*impwaterurban2005sort$logridit
+impwaterurban2005sort$YiWi<-impwaterurban2005sort$Wi*impwaterurban2005sort$ir_tb
+fit2005<-lm(impwaterurban2005sort$YiWi~impwaterurban2005sort$Wi + impwaterurban2005sort$XiWi + 0)
+summary(fit2005)
+impwaterurban2005sort$predict2005<-coef(summary(fit2005))[1,1] + coef(summary(fit2005))[2,1]*impwaterurban2005sort$logridit
+
+
+impwaterurban2000<-as.data.frame(df3[df3$year=="2000",])
+impwaterurban2000sort<-impwaterurban2000[order(impwaterurban2000$impwaterurban),]
+totalp=sum(impwaterurban2000sort$population)
+totaltb=sum(impwaterurban2000sort$num_tb_cases)
+impwaterurban2000sort$Wpop<-impwaterurban2000sort$population/totalp
+impwaterurban2000sort$CWpop<-cumsum(impwaterurban2000sort$Wpop)
+impwaterurban2000sort$ridit<-c((0+impwaterurban2000sort$CWpop[1])/2,(impwaterurban2000sort$CWpop[1]+impwaterurban2000sort$CWpop[2])/2,
+                          (impwaterurban2000sort$CWpop[2]+impwaterurban2000sort$CWpop[3])/2,(impwaterurban2000sort$CWpop[3]+impwaterurban2000sort$CWpop[4])/2,
+                          (impwaterurban2000sort$CWpop[4]+impwaterurban2000sort$CWpop[5])/2,(impwaterurban2000sort$CWpop[5]+impwaterurban2000sort$CWpop[6])/2,
+                          (impwaterurban2000sort$CWpop[6]+impwaterurban2000sort$CWpop[7])/2,(impwaterurban2000sort$CWpop[7]+impwaterurban2000sort$CWpop[8])/2,
+                          (impwaterurban2000sort$CWpop[8]+impwaterurban2000sort$CWpop[9])/2,(impwaterurban2000sort$CWpop[9]+impwaterurban2000sort$CWpop[10])/2,
+                          (impwaterurban2000sort$CWpop[10]+impwaterurban2000sort$CWpop[11])/2,(impwaterurban2000sort$CWpop[11]+impwaterurban2000sort$CWpop[12])/2,
+                          (impwaterurban2000sort$CWpop[12]+impwaterurban2000sort$CWpop[13])/2,(impwaterurban2000sort$CWpop[13]+impwaterurban2000sort$CWpop[14])/2,
+                          (impwaterurban2000sort$CWpop[14]+impwaterurban2000sort$CWpop[15])/2,(impwaterurban2000sort$CWpop[15]+impwaterurban2000sort$CWpop[16])/2,
+                          (impwaterurban2000sort$CWpop[16]+impwaterurban2000sort$CWpop[17])/2,(impwaterurban2000sort$CWpop[17]+impwaterurban2000sort$CWpop[18])/2,
+                          (impwaterurban2000sort$CWpop[18]+impwaterurban2000sort$CWpop[19])/2,(impwaterurban2000sort$CWpop[19]+impwaterurban2000sort$CWpop[20])/2,
+                          (impwaterurban2000sort$CWpop[20]+impwaterurban2000sort$CWpop[21])/2,(impwaterurban2000sort$CWpop[21]+impwaterurban2000sort$CWpop[22])/2,
+                          (impwaterurban2000sort$CWpop[22]+impwaterurban2000sort$CWpop[23])/2)
+
+impwaterurban2000sort$Whealth<-impwaterurban2000sort$num_tb_cases/totaltb
+impwaterurban2000sort$CWhealth<-cumsum(impwaterurban2000sort$Whealth)
+impwaterurban2000sort$logridit<-log10(impwaterurban2000sort$ridit)
+impwaterurban2000sort$Wi<-sqrt(impwaterurban2000sort$population)
+impwaterurban2000sort$XiWi<-impwaterurban2000sort$Wi*impwaterurban2000sort$logridit
+impwaterurban2000sort$YiWi<-impwaterurban2000sort$Wi*impwaterurban2000sort$ir_tb
+fit2000<-lm(impwaterurban2000sort$YiWi~impwaterurban2000sort$Wi + impwaterurban2000sort$XiWi + 0)
+summary(fit2000)
+impwaterurban2000sort$predict2000<-coef(summary(fit2000))[1,1] + coef(summary(fit2000))[2,1]*impwaterurban2000sort$logridit
+
+
+# Social gradient
+slope_index_of_inequality_impwaterurban2000<-fit2000$coefficients[2]
+slope_index_of_inequality_impwaterurban2005<-fit2005$coefficients[2]
+slope_index_of_inequality_impwaterurban2009<-fit2009$coefficients[2]
+slope_index_of_inequality_impwaterurban2012<-fit2012$coefficients[2]
+round(slope_index_of_inequality_impwaterurban2000,2)
+round(slope_index_of_inequality_impwaterurban2005,2)
+round(slope_index_of_inequality_impwaterurban2009,2)
+round(slope_index_of_inequality_impwaterurban2012,2)
+
+mylabel1e= bquote(2000==.(format(slope_index_of_inequality_impwaterurban2000,digits=4))) 
+mylabel2e= bquote(2005==.(format(slope_index_of_inequality_impwaterurban2005,digits=4))) 
+mylabel3e= bquote(2009==.(format(slope_index_of_inequality_impwaterurban2009,digits=4))) 
+mylabel4e= bquote(2012==.(format(slope_index_of_inequality_impwaterurban2012,digits=4))) 
+
+
+quartz(width=10, height=6, pointsize=10)
+plot(impwaterurban2012sort$ridit,impwaterurban2012sort$ir_tb, col="red",pch=0,
+     ylab="Tasa de incidencia de tuberculosis (por 100,000 hab)", 
+     xlab="Gradiente de población entre países según % de la población con acceso a mejores fuentes de agua en áreas urbanas")
+points(impwaterurban2009sort$ridit,impwaterurban2009sort$ir_tb, col="blue",pch=1,
+       ylab="", 
+       xlab="")
+points(impwaterurban2005sort$ridit,impwaterurban2005sort$ir_tb, col="green",pch=2,
+       ylab="", 
+       xlab="")
+points(impwaterurban2000sort$ridit,impwaterurban2000sort$ir_tb, col="purple",pch=3,
+       ylab="", 
+       xlab="")
+lines(impwaterurban2012sort$ridit,impwaterurban2012sort$predict2012, col="red", lty=1,
+      ylab="", 
+      xlab="")
+lines(impwaterurban2009sort$ridit,impwaterurban2009sort$predict2009, col="blue", lty=2,
+      ylab="", 
+      xlab="")
+lines(impwaterurban2005sort$ridit,impwaterurban2005sort$predict2005, col="green", lty=3,
+      ylab="", 
+      xlab="")
+lines(impwaterurban2000sort$ridit,impwaterurban2000sort$predict2000, col="purple", lty=4,
+      ylab="", 
+      xlab="")
+legend(locator(1),c("2012","2009","2005","2000"),col=c("red","blue","green","purple"),lty=c(1,2,3,4),pch=c(0,1,2,3),cex = .8)
+text(0.8,170, "Índice de desigualdad de la pendiente (IDP)", col="red")
+text(0.8,160, labels=mylabel1e, col="red")
+text(0.8,150, labels=mylabel2e, col="red")
+text(0.8,140, labels=mylabel3e, col="red")
+text(0.8,130, labels=mylabel4e, col="red")
+
+
+
+
+######################################################################################
+######################  Quantiles of Improved water  ########################
+impwaterurban2012sort$qimpwaterurban<-cut(impwaterurban2012sort$impwaterurban,quantile(impwaterurban2012sort$impwaterurban),include.lowest = TRUE,labels=c("Q1","Q2","Q3","Q4"))
+impwaterurban2009sort$qimpwaterurban<-cut(impwaterurban2009sort$impwaterurban,quantile(impwaterurban2009sort$impwaterurban),include.lowest = TRUE,labels=c("Q1","Q2","Q3","Q4"))
+impwaterurban2005sort$qimpwaterurban<-cut(impwaterurban2005sort$impwaterurban,quantile(impwaterurban2005sort$impwaterurban),include.lowest = TRUE,labels=c("Q1","Q2","Q3","Q4"))
+impwaterurban2000sort$qimpwaterurban<-cut(impwaterurban2000sort$impwaterurban,quantile(impwaterurban2000sort$impwaterurban),include.lowest = TRUE,labels=c("Q1","Q2","Q3","Q4"))
+
+list(impwaterurban2012sort$country,impwaterurban2012sort$qimpwaterurban)
+list(impwaterurban2009sort$country,impwaterurban2009sort$qimpwaterurban)
+list(impwaterurban2005sort$country,impwaterurban2005sort$qimpwaterurban)
+list(impwaterurban2000sort$country,impwaterurban2000sort$qimpwaterurban)
+
+qpg2012<-sapply(split(impwaterurban2012sort$population,impwaterurban2012sort$qimpwaterurban),sum)
+qpg2009<-sapply(split(impwaterurban2009sort$population,impwaterurban2009sort$qimpwaterurban),sum)
+qpg2005<-sapply(split(impwaterurban2005sort$population,impwaterurban2005sort$qimpwaterurban),sum)
+qpg2000<-sapply(split(impwaterurban2000sort$population,impwaterurban2000sort$qimpwaterurban),sum)
+
+wpopg2012<-c(qpg2012[1]/sum(qpg2012),qpg2012[2]/sum(qpg2012),qpg2012[3]/sum(qpg2012),qpg2012[4]/sum(qpg2012))
+wpopg2009<-c(qpg2009[1]/sum(qpg2009),qpg2009[2]/sum(qpg2009),qpg2009[3]/sum(qpg2009),qpg2009[4]/sum(qpg2009))
+wpopg2005<-c(qpg2005[1]/sum(qpg2005),qpg2005[2]/sum(qpg2005),qpg2005[3]/sum(qpg2005),qpg2005[4]/sum(qpg2005))
+wpopg2000<-c(qpg2000[1]/sum(qpg2000),qpg2000[2]/sum(qpg2000),qpg2000[3]/sum(qpg2000),qpg2000[4]/sum(qpg2000))
+
+impwaterurban2012sort$wpop2012<-ifelse(impwaterurban2012sort$qimpwaterurban=="Q1", impwaterurban2012sort$population/qpg2012[1],0)
+impwaterurban2012sort$wpop2012<-ifelse(impwaterurban2012sort$qimpwaterurban=="Q2", impwaterurban2012sort$population/qpg2012[2],impwaterurban2012sort$wpop2012)
+impwaterurban2012sort$wpop2012<-ifelse(impwaterurban2012sort$qimpwaterurban=="Q3", impwaterurban2012sort$population/qpg2012[3],impwaterurban2012sort$wpop2012)
+impwaterurban2012sort$wpop2012<-ifelse(impwaterurban2012sort$qimpwaterurban=="Q4", impwaterurban2012sort$population/qpg2012[4],impwaterurban2012sort$wpop2012)
+
+impwaterurban2009sort$wpop2009<-ifelse(impwaterurban2009sort$qimpwaterurban=="Q1", impwaterurban2009sort$population/qpg2009[1],0)
+impwaterurban2009sort$wpop2009<-ifelse(impwaterurban2009sort$qimpwaterurban=="Q2", impwaterurban2009sort$population/qpg2009[2],impwaterurban2009sort$wpop2009)
+impwaterurban2009sort$wpop2009<-ifelse(impwaterurban2009sort$qimpwaterurban=="Q3", impwaterurban2009sort$population/qpg2009[3],impwaterurban2009sort$wpop2009)
+impwaterurban2009sort$wpop2009<-ifelse(impwaterurban2009sort$qimpwaterurban=="Q4", impwaterurban2009sort$population/qpg2009[4],impwaterurban2009sort$wpop2009)
+
+impwaterurban2005sort$wpop2005<-ifelse(impwaterurban2005sort$qimpwaterurban=="Q1", impwaterurban2005sort$population/qpg2005[1],0)
+impwaterurban2005sort$wpop2005<-ifelse(impwaterurban2005sort$qimpwaterurban=="Q2", impwaterurban2005sort$population/qpg2005[2],impwaterurban2005sort$wpop2005)
+impwaterurban2005sort$wpop2005<-ifelse(impwaterurban2005sort$qimpwaterurban=="Q3", impwaterurban2005sort$population/qpg2005[3],impwaterurban2005sort$wpop2005)
+impwaterurban2005sort$wpop2005<-ifelse(impwaterurban2005sort$qimpwaterurban=="Q4", impwaterurban2005sort$population/qpg2005[4],impwaterurban2005sort$wpop2005)
+
+impwaterurban2000sort$wpop2000<-ifelse(impwaterurban2000sort$qimpwaterurban=="Q1", impwaterurban2000sort$population/qpg2000[1],0)
+impwaterurban2000sort$wpop2000<-ifelse(impwaterurban2000sort$qimpwaterurban=="Q2", impwaterurban2000sort$population/qpg2000[2],impwaterurban2000sort$wpop2000)
+impwaterurban2000sort$wpop2000<-ifelse(impwaterurban2000sort$qimpwaterurban=="Q3", impwaterurban2000sort$population/qpg2000[3],impwaterurban2000sort$wpop2000)
+impwaterurban2000sort$wpop2000<-ifelse(impwaterurban2000sort$qimpwaterurban=="Q4", impwaterurban2000sort$population/qpg2000[4],impwaterurban2000sort$wpop2000)
+
+impwaterurban2012sort$wrate<-impwaterurban2012sort$wpop2012*impwaterurban2012sort$ir_tb
+impwaterurban2009sort$wrate<-impwaterurban2009sort$wpop2009*impwaterurban2009sort$ir_tb
+impwaterurban2005sort$wrate<-impwaterurban2005sort$wpop2005*impwaterurban2005sort$ir_tb
+impwaterurban2000sort$wrate<-impwaterurban2000sort$wpop2000*impwaterurban2000sort$ir_tb
+
+meang2012<-sapply(split(impwaterurban2012sort$wrate,impwaterurban2012sort$qimpwaterurban),sum)
+meang2012
+
+meang2009<-sapply(split(impwaterurban2009sort$wrate,impwaterurban2009sort$qimpwaterurban),sum)
+meang2009
+
+meang2005<-sapply(split(impwaterurban2005sort$wrate,impwaterurban2005sort$qimpwaterurban),sum)
+meang2005
+
+meang2000<-sapply(split(impwaterurban2000sort$wrate,impwaterurban2000sort$qimpwaterurban),sum)
+meang2000
+
+
+
+Q1<-c(meang2000[1],meang2005[1],meang2009[1],meang2012[1]) 
+Q1<-round(Q1,2)
+Q2<-c(meang2000[2],meang2005[2],meang2009[2],meang2012[2]) 
+Q2<-round(Q2,2)
+Q3<-c(meang2000[3],meang2005[3],meang2009[3],meang2012[3]) 
+Q3<-round(Q3,2)
+Q4<-c(meang2000[4],meang2005[4],meang2009[4],meang2012[4]) 
+Q4<-round(Q4,2)
+r<-cbind(Q1,Q2,Q3,Q4)
+#r<-t(r)
+rownames(r)<-c('2000','2005','2009','2012')
+colnames(r)<-c('Q1','Q2','Q3','Q4')
+r
+
+##Table 4A. Metrics of country-level inequalities in TB incidence according to social stratifiers and year assessed
+regional_mean_rate_impwaterurban2000<-sum(wpopg2000*meang2000)
+regional_mean_rate_impwaterurban2005<-sum(wpopg2005*meang2005)
+regional_mean_rate_impwaterurban2009<-sum(wpopg2009*meang2009)
+regional_mean_rate_impwaterurban2012<-sum(wpopg2012*meang2012)
+round(regional_mean_rate_impwaterurban2000,2)
+round(regional_mean_rate_impwaterurban2005,2)
+round(regional_mean_rate_impwaterurban2009,2)
+round(regional_mean_rate_impwaterurban2012,2)
+
+# Bottom-top quartile gap 
+absolute_Kuznets_index_impwaterurban2000<-meang2000[1]-meang2000[4]
+absolute_Kuznets_index_impwaterurban2005<-meang2005[1]-meang2005[4]
+absolute_Kuznets_index_impwaterurban2009<-meang2009[1]-meang2009[4]
+absolute_Kuznets_index_impwaterurban2012<-meang2012[1]-meang2012[4]
+round(absolute_Kuznets_index_impwaterurban2000,2)
+round(absolute_Kuznets_index_impwaterurban2005,2)
+round(absolute_Kuznets_index_impwaterurban2009,2)
+round(absolute_Kuznets_index_impwaterurban2012,2)
+
+relative_Kuznets_index_impwaterurban2000<-meang2000[1]/meang2000[4]
+relative_Kuznets_index_impwaterurban2005<-meang2005[1]/meang2005[4]
+relative_Kuznets_index_impwaterurban2009<-meang2009[1]/meang2009[4]
+relative_Kuznets_index_impwaterurban2012<-meang2012[1]/meang2012[4]
+round(relative_Kuznets_index_impwaterurban2000,2)
+round(relative_Kuznets_index_impwaterurban2005,2)
+round(relative_Kuznets_index_impwaterurban2009,2)
+round(relative_Kuznets_index_impwaterurban2012,2)
+
+mylabel1e= bquote(2000==.(format(absolute_Kuznets_index_impwaterurban2000,digits=4))) 
+mylabel2e= bquote(2005==.(format(absolute_Kuznets_index_impwaterurban2005,digits=6))) 
+mylabel3e= bquote(2009==.(format(absolute_Kuznets_index_impwaterurban2009,digits=4))) 
+mylabel4e= bquote(2012==.(format(absolute_Kuznets_index_impwaterurban2012,digits=4))) 
+mylabel5e= bquote(2000==.(format(relative_Kuznets_index_impwaterurban2000,digits=3))) 
+mylabel6e= bquote(2005==.(format(relative_Kuznets_index_impwaterurban2005,digits=3))) 
+mylabel7e= bquote(2009==.(format(relative_Kuznets_index_impwaterurban2009,digits=3))) 
+mylabel8e= bquote(2012==.(format(relative_Kuznets_index_impwaterurban2012,digits=3))) 
+
+
+quartz(width=10, height=6, pointsize=10)
+b<-barplot(t(r),col=c("deepskyblue4","dodgerblue3","dodgerblue","deepskyblue"),beside=T,ylim=c(0,220),
+           xlab="% de la población con acceso a mejores fuentes de agua en áreas urbanas", ylab="Tasa promedio de incidencia de TB (por 100,000 hb)")
+legend("topright",c("Q1","Q2","Q3","Q4"),
+       col= c("deepskyblue4","dodgerblue3","dodgerblue","deepskyblue"),pch=15,bty="n") 
+text(x=c(1.5,2.5,3.5,4.5,6.5,7.5,8.5,9.5,11.5,12.5,13.5,14.5,16.5,17.5,18.5,19.5),
+     y=c(t(r[1,1]),t(r[1,2]),t(r[1,3]),t(r[1,4]),t(r[2,1]),t(r[2,2]),t(r[2,3]),t(r[2,4]),t(r[3,1]),t(r[3,2]),t(r[3,3]),t(r[3,4]),t(r[4,1]),t(r[4,2]),t(r[4,3]),t(r[4,4])),
+     labels=c(t(r[1,1]),t(r[1,2]),t(r[1,3]),t(r[1,4]),t(r[2,1]),t(r[2,2]),t(r[2,3]),t(r[2,4]),t(r[3,1]),t(r[3,2]),t(r[3,3]),t(r[3,4]),t(r[4,1]),t(r[4,2]),t(r[4,3]),t(r[4,4])),cex=1.25,pos=3)
+text(10,200, "Índice de Kuznets absoluto", col="red")
+text(10,190, labels=mylabel1e, col="red")
+text(10,180, labels=mylabel2e, col="red")
+text(10,170, labels=mylabel3e, col="red")
+text(10,160, labels=mylabel4e, col="red")
+text(10,150, "Índice de Kuznets relativo", col="red")
+text(10,140, labels=mylabel5e, col="red")
+text(10,130, labels=mylabel6e, col="red")
+text(10,120, labels=mylabel7e, col="red")
+text(10,110, labels=mylabel8e, col="red")
+
+
+
+
+## lines and dots graphics
+quartz(width=10, height=6, pointsize=10)
+plot(r[1,],c(2000,2000,2000,2000),bg=rainbow(4), pch=21, cex=2, lwd=3, lty=1,xlim=c(10,150), ylim=c(1999,2015), yaxt='n', xlab="Tasa promedio de incidencia de TB (por 100,000 hb)", ylab="Años")
+ticks = c(2000, 2005, 2009, 2012)
+axis(side = 2, at = ticks)
+from.x <- c(r[1,1], r[1,2], r[1,3],r[1,4])
+to.x   <- c(r[1,1], r[1,3], r[1,4])
+to.y   <- from.y <- c(2000, 2000, 2000,2000)
+segments(x0 = from.x, y0 = from.y, x1 = to.x, y1 = to.y,lwd=2)
+par(new=TRUE)
+plot(r[2,],c(2005,2005,2005,2005), bg=rainbow(4), pch=21, cex=2, lwd=3, xlim=c(10,150), ylim=c(1999,2015), axes=FALSE, xlab="", ylab="")
+from.x <- c(r[2,1], r[2,2], r[2,3],r[2,4])
+to.x   <- c(r[2,1], r[2,3], r[2,4])
+to.y   <- from.y <- c(2005, 2005, 2005,2005) 
+segments(x0 = from.x, y0 = from.y, x1 = to.x, y1 = to.y,lwd=2)
+par(new=TRUE)
+plot(r[3,],c(2009,2009,2009,2009), bg=rainbow(4), pch=21, cex=2, lwd=3, xlim=c(10,150), ylim=c(1999,2015), axes=FALSE, xlab="", ylab="")
+from.x <- c(r[3,1], r[3,2], r[3,3],r[3,4])
+to.x   <- c(r[3,1], r[3,3], r[3,4])
+to.y   <- from.y <- c(2009, 2009, 2009,2009) 
+segments(x0 = from.x, y0 = from.y, x1 = to.x, y1 = to.y,lwd=2)
+par(new=TRUE)
+plot(r[4,],c(2012,2012,2012,2012), bg=rainbow(4), pch=21, cex=2, lwd=3, xlim=c(10,150), ylim=c(1999,2015), axes=FALSE, xlab="", ylab="") 
+from.x <- c(r[4,1], r[4,2], r[4,3],r[4,4])
+to.x   <- c(r[4,1], r[4,3], r[4,4])
+to.y   <- from.y <- c(2012, 2012, 2012,2012) 
+segments(x0 = from.x, y0 = from.y, x1 = to.x, y1 = to.y,lwd=2)
+legend("topright",c("Q1","Q2","Q3","Q4"),
+       col= rainbow(4),
+       bg=rainbow(4), pch=19,bty="n", cex=1.5) 
+
+
+
+## lines and dots graphics weighted
+quartz(width=10, height=6, pointsize=10)
+symbols(r[1,],c(2000,2000,2000,2000),circles=sqrt(qpg2000/pi),inches=1/4, bg=rainbow(4), pch=21, cex=2, lwd=3, lty=1,xlim=c(10,150), ylim=c(1999,2015), yaxt='n', xlab="Tasa promedio de incidencia de TB (por 100,000 hb)", ylab="Años")
+par(new=TRUE)
+plot(r[1,],c(2000,2000,2000,2000),bg="black", pch=21, cex=0.5, lwd=3, lty=1,xlim=c(10,150), ylim=c(1999,2015), yaxt='n', xlab="Tasa promedio de incidencia de TB (por 100,000 hb)", ylab="Años")
+ticks = c(2000, 2005, 2009, 2012)
+axis(side = 2, at = ticks)
+from.x <- c(r[1,1], r[1,2], r[1,3],r[1,4])
+to.x   <- c(r[1,1], r[1,3], r[1,4])
+to.y   <- from.y <- c(2000, 2000, 2000,2000)
+segments(x0 = from.x, y0 = from.y, x1 = to.x, y1 = to.y,lwd=2)
+par(new=TRUE)
+symbols(r[2,],c(2005,2005,2005,2005),circles=sqrt(qpg2005/pi),inches=1/4, bg=rainbow(4), pch=21, cex=2, lwd=3, lty=1,xlim=c(10,150), ylim=c(1999,2015), yaxt='n', xlab="Tasa promedio de incidencia de TB (por 100,000 hb)", ylab="Años")
+par(new=TRUE)
+plot(r[2,],c(2005,2005,2005,2005), bg="black", pch=21, cex=0.5, lwd=3, xlim=c(10,150), ylim=c(1999,2015), axes=FALSE, xlab="", ylab="")
+from.x <- c(r[2,1], r[2,2], r[2,3],r[2,4])
+to.x   <- c(r[2,1], r[2,3], r[2,4])
+to.y   <- from.y <- c(2005, 2005, 2005,2005) 
+segments(x0 = from.x, y0 = from.y, x1 = to.x, y1 = to.y,lwd=2)
+par(new=TRUE)
+symbols(r[3,],c(2009,2009,2009,2009),circles=sqrt(qpg2009/pi),inches=1/4, bg=rainbow(4), pch=21, cex=2, lwd=3, lty=1,xlim=c(10,150), ylim=c(1999,2015), yaxt='n', xlab="Tasa promedio de incidencia de TB (por 100,000 hb)", ylab="Años")
+par(new=TRUE)
+plot(r[3,],c(2009,2009,2009,2009), bg="black", pch=21, cex=0.5, lwd=3, xlim=c(10,150), ylim=c(1999,2015), axes=FALSE, xlab="", ylab="")
+from.x <- c(r[3,1], r[3,2], r[3,3],r[3,4])
+to.x   <- c(r[3,1], r[3,3], r[3,4])
+to.y   <- from.y <- c(2009, 2009, 2009,2009) 
+segments(x0 = from.x, y0 = from.y, x1 = to.x, y1 = to.y,lwd=2)
+par(new=TRUE)
+symbols(r[4,],c(2012,2012,2012,2012),circles=sqrt(qpg2012/pi),inches=1/4, bg=rainbow(4), pch=21, cex=2, lwd=3, lty=1,xlim=c(10,150), ylim=c(1999,2015), yaxt='n', xlab="Tasa promedio de incidencia de TB (por 100,000 hb)", ylab="Años")
+par(new=TRUE)
+plot(r[4,],c(2012,2012,2012,2012), bg="black", pch=21, cex=0.5, lwd=3, xlim=c(10,150), ylim=c(1999,2015), axes=FALSE, xlab="", ylab="") 
+from.x <- c(r[4,1], r[4,2], r[4,3],r[4,4])
+to.x   <- c(r[4,1], r[4,3], r[4,4])
+to.y   <- from.y <- c(2012, 2012, 2012,2012) 
+segments(x0 = from.x, y0 = from.y, x1 = to.x, y1 = to.y,lwd=2)
+legend("topright",title="Population size",c("Q1","Q2","Q3","Q4"),
+       col= rainbow(4),
+       bg=rainbow(4), pch=19,bty="n", cex=1.5,
+       pt.cex=c(1,1.4,3,1.4)) 
+
+
+
+##########################################################################
+############################# Concentration curve  #######################
+
+
+CWpopf2012<-c(0,impwaterurban2012sort$CWpop)
+CWhealthf2012<-c(0,impwaterurban2012sort$CWhealth)
+CWpopf2009<-c(0,impwaterurban2009sort$CWpop)
+CWhealthf2009<-c(0,impwaterurban2009sort$CWhealth)
+CWpopf2005<-c(0,impwaterurban2005sort$CWpop)
+CWhealthf2005<-c(0,impwaterurban2005sort$CWhealth)
+CWpopf2000<-c(0,impwaterurban2000sort$CWpop)
+CWhealthf2000<-c(0,impwaterurban2000sort$CWhealth)
+
+
+ccurve2012<-data.frame(y=CWhealthf2012, x=CWpopf2012)
+ccurve2009<-data.frame(y=CWhealthf2009, x=CWpopf2009)
+ccurve2005<-data.frame(y=CWhealthf2005, x=CWpopf2005)
+ccurve2000<-data.frame(y=CWhealthf2000, x=CWpopf2000)
+
+ccurve_f <- function(k,mydata){
+  sum((mydata$y-(exp(mydata$x/(k-mydata$x))-1)/(exp(1/(k-1))-1)))^2
+}
+
+ccurve.optx2012 <- optimx(par=-1.5, fn=ccurve_f, mydata=ccurve2012, control=list(all.methods=TRUE, save.failures=TRUE, maxit=2500))
+print(ccurve.optx2012)
+
+ccurve.optx2009 <- optimx(par=-1.5, fn=ccurve_f, mydata=ccurve2009, control=list(all.methods=TRUE, save.failures=TRUE, maxit=2500))
+print(ccurve.optx2009)
+
+ccurve.optx2005 <- optimx(par=-1.5, fn=ccurve_f, mydata=ccurve2005, control=list(all.methods=TRUE, save.failures=TRUE, maxit=2500))
+print(ccurve.optx2005)
+
+ccurve.optx2000 <- optimx(par=-1.5, fn=ccurve_f, mydata=ccurve2000, control=list(all.methods=TRUE, save.failures=TRUE, maxit=2500))
+print(ccurve.optx2000)
+
+x<-seq(0,1,0.01)
+
+k<-ccurve.optx2012[1,1]
+f<-function(x,k) {
+  (exp(x/(k-x))-1)/(exp(1/(k-1))-1)
+}
+
+lf02012<-f(x,k)
+delta_x_y<-x-lf02012
+delta_x_y
+
+##Table 4A. Metrics of country-level inequalities in TB incidence according to social stratifiers and year assessed
+# Social gradient
+health_concentration_index_impwaterurban2012<-2*sum(delta_x_y)*0.01
+round(health_concentration_index_impwaterurban2012,2)
+
+
+k<-ccurve.optx2009[1,1]
+f<-function(x,k) {
+  (exp(x/(k-x))-1)/(exp(1/(k-1))-1)
+}
+
+lf02009<-f(x,k)
+
+delta_x_y<-x-lf02009
+delta_x_y
+
+##Table 4A. Metrics of country-level inequalities in TB incidence according to social stratifiers and year assessed
+# Social gradient
+health_concentration_index_impwaterurban2009<-2*sum(delta_x_y)*0.01
+round(health_concentration_index_impwaterurban2009,2)
+
+
+k<-ccurve.optx2005[1,1]
+f<-function(x,k) {
+  (exp(x/(k-x))-1)/(exp(1/(k-1))-1)
+}
+
+lf02005<-f(x,k)
+
+delta_x_y<-x-lf02005
+delta_x_y
+
+##Table 4A. Metrics of country-level inequalities in TB incidence according to social stratifiers and year assessed
+# Social gradient
+health_concentration_index_impwaterurban2005<-2*sum(delta_x_y)*0.01
+round(health_concentration_index_impwaterurban2005,2)
+
+
+k<-ccurve.optx2000[1,1]
+f<-function(x,k) {
+  (exp(x/(k-x))-1)/(exp(1/(k-1))-1)
+}
+
+lf02000<-f(x,k)
+
+delta_x_y<-x-lf02000
+delta_x_y
+
+##Table 4A. Metrics of country-level inequalities in TB incidence according to social stratifiers and year assessed
+# Social gradient
+health_concentration_index_impwaterurban2000<-2*sum(delta_x_y)*0.01
+round(health_concentration_index_impwaterurban2000,2)
+
+
+mylabel1e= bquote(2000==.(format(health_concentration_index_impwaterurban2000,digits=2))) 
+mylabel2e= bquote(2005==.(format(health_concentration_index_impwaterurban2005,digits=2))) 
+mylabel3e= bquote(2009==.(format(health_concentration_index_impwaterurban2009,digits=2))) 
+mylabel4e= bquote(2012==.(format(health_concentration_index_impwaterurban2012,digits=2))) 
+
+quartz(width=10, height=6, pointsize=10)
+plot(CWpopf2012,CWhealthf2012, col="red",pch=0, xlab="Gradiente de población entre países según % de la población con acceso a mejores fuentes de agua en áreas urbanas", ylab="Número de casos incidentes de TB (acumulado)")
+points(CWpopf2009,CWhealthf2009, col="blue",pch=1)
+points(CWpopf2005,CWhealthf2005, col="green",pch=2)
+points(CWpopf2000,CWhealthf2000, col="purple",pch=3)
+lines(x,lf02012,col="red", lty=1)
+lines(x,lf02009,col="blue", lty=2)
+lines(x,lf02005,col="green", lty=3)
+lines(x,lf02000,col="purple", lty=4)
+lines(x,x)
+legend(locator(1),c("2012","2009","2005","2000"),col=c("red","blue","green","purple"),pch=c(0,1,2,3), lty=c(1,2,3,4),cex = .8)
+text(0.8,0.25, "Índices de concentración de salud (IC)", col="red")
+text(0.8,0.22, labels=mylabel1e, col="red")
+text(0.8,0.18, labels=mylabel2e, col="red")
+text(0.8,0.15, labels=mylabel3e, col="red")
+text(0.8,0.12, labels=mylabel4e, col="red")
+
+
+
+
 
 ################################################################################################
 ################################## Improved sanitation
@@ -1318,6 +1852,20 @@ impsanifac_lac_f<-subset(impsanifac_world,country %in% c("Argentina", "Bolivia",
                                                                "Uruguay","Venezuela"))
 
 impsanifac_lac_f <- impsanifac_lac_f[order(impsanifac_lac_f$country,impsanifac_lac_f$year),] 
+
+#########################################################################
+################# Building the final dataset ############################  
+impsanifac_lac_fff<-subset(impsanifac_lac_f,year %in% c(2000,2005,2009,2012)) 
+tb_lac_ffff<-subset(tb_lac_ff,year %in% c(2000,2005,2009,2012))
+
+df<-merge(tb_lac_ffff,impsanifac_lac_fff,by=c("country","year"),all=TRUE)
+
+lengend = c("Argentina", "Bolivia", "Brazil","Chile","Colombia","Costa Rica","Cuba","Dominican Republic",
+            "Ecuador","El Salvador","Guatemala ","Guyana","Haiti","Honduras","Mexico","Nicaragua",
+            "Panama","Paraguay","Peru","Suriname","Trinidad and Tobago","Uruguay","Venezuela")
+
+
+impsanifac<-df[, c("country","year","population","impsanifac","num_tb_cases","ir_tb")]
 
 
 #########################################################################
@@ -1466,8 +2014,8 @@ mylabel4c= bquote(2013==.(format(slope_index_of_inequality_impsanifac2012,digits
 
 quartz(width=10, height=6, pointsize=10)
 plot(impsanifac2012sort$ridit,impsanifac2012sort$ir_tb, col="red", pch=0,
-     ylab="Tuberculosis incidence rates per 100,000 population", 
-     xlab="Country-level population gradient defined by access to improved sanitation facilities")
+     ylab="Tasa de incidencia de tuberculosis (por 100,000 hab)", 
+     xlab="Gradiente de población entre países según % de la población con acceso a mejores instalaciones sanitarias")
 points(impsanifac2009sort$ridit,impsanifac2009sort$ir_tb, col="blue",pch=1,
        ylab="", 
        xlab="")
@@ -1496,6 +2044,336 @@ text(0.8,150, labels=mylabel2c, col="red")
 text(0.8,140, labels=mylabel3c, col="red")
 text(0.8,130, labels=mylabel4c, col="red")
 
+######################################################################################
+######################  Quantiles of Improved water  ########################
+impsanifac2012sort$qimpsanifac<-cut(impsanifac2012sort$impsanifac,quantile(impsanifac2012sort$impsanifac),include.lowest = TRUE,labels=c("Q1","Q2","Q3","Q4"))
+impsanifac2009sort$qimpsanifac<-cut(impsanifac2009sort$impsanifac,quantile(impsanifac2009sort$impsanifac),include.lowest = TRUE,labels=c("Q1","Q2","Q3","Q4"))
+impsanifac2005sort$qimpsanifac<-cut(impsanifac2005sort$impsanifac,quantile(impsanifac2005sort$impsanifac),include.lowest = TRUE,labels=c("Q1","Q2","Q3","Q4"))
+impsanifac2000sort$qimpsanifac<-cut(impsanifac2000sort$impsanifac,quantile(impsanifac2000sort$impsanifac),include.lowest = TRUE,labels=c("Q1","Q2","Q3","Q4"))
+
+list(impsanifac2012sort$country,impsanifac2012sort$qimpsanifac)
+list(impsanifac2009sort$country,impsanifac2009sort$qimpsanifac)
+list(impsanifac2005sort$country,impsanifac2005sort$qimpsanifac)
+list(impsanifac2000sort$country,impsanifac2000sort$qimpsanifac)
+
+qpg2012<-sapply(split(impsanifac2012sort$population,impsanifac2012sort$qimpsanifac),sum)
+qpg2009<-sapply(split(impsanifac2009sort$population,impsanifac2009sort$qimpsanifac),sum)
+qpg2005<-sapply(split(impsanifac2005sort$population,impsanifac2005sort$qimpsanifac),sum)
+qpg2000<-sapply(split(impsanifac2000sort$population,impsanifac2000sort$qimpsanifac),sum)
+
+wpopg2012<-c(qpg2012[1]/sum(qpg2012),qpg2012[2]/sum(qpg2012),qpg2012[3]/sum(qpg2012),qpg2012[4]/sum(qpg2012))
+wpopg2009<-c(qpg2009[1]/sum(qpg2009),qpg2009[2]/sum(qpg2009),qpg2009[3]/sum(qpg2009),qpg2009[4]/sum(qpg2009))
+wpopg2005<-c(qpg2005[1]/sum(qpg2005),qpg2005[2]/sum(qpg2005),qpg2005[3]/sum(qpg2005),qpg2005[4]/sum(qpg2005))
+wpopg2000<-c(qpg2000[1]/sum(qpg2000),qpg2000[2]/sum(qpg2000),qpg2000[3]/sum(qpg2000),qpg2000[4]/sum(qpg2000))
+
+impsanifac2012sort$wpop2012<-ifelse(impsanifac2012sort$qimpsanifac=="Q1", impsanifac2012sort$population/qpg2012[1],0)
+impsanifac2012sort$wpop2012<-ifelse(impsanifac2012sort$qimpsanifac=="Q2", impsanifac2012sort$population/qpg2012[2],impsanifac2012sort$wpop2012)
+impsanifac2012sort$wpop2012<-ifelse(impsanifac2012sort$qimpsanifac=="Q3", impsanifac2012sort$population/qpg2012[3],impsanifac2012sort$wpop2012)
+impsanifac2012sort$wpop2012<-ifelse(impsanifac2012sort$qimpsanifac=="Q4", impsanifac2012sort$population/qpg2012[4],impsanifac2012sort$wpop2012)
+
+impsanifac2009sort$wpop2009<-ifelse(impsanifac2009sort$qimpsanifac=="Q1", impsanifac2009sort$population/qpg2009[1],0)
+impsanifac2009sort$wpop2009<-ifelse(impsanifac2009sort$qimpsanifac=="Q2", impsanifac2009sort$population/qpg2009[2],impsanifac2009sort$wpop2009)
+impsanifac2009sort$wpop2009<-ifelse(impsanifac2009sort$qimpsanifac=="Q3", impsanifac2009sort$population/qpg2009[3],impsanifac2009sort$wpop2009)
+impsanifac2009sort$wpop2009<-ifelse(impsanifac2009sort$qimpsanifac=="Q4", impsanifac2009sort$population/qpg2009[4],impsanifac2009sort$wpop2009)
+
+impsanifac2005sort$wpop2005<-ifelse(impsanifac2005sort$qimpsanifac=="Q1", impsanifac2005sort$population/qpg2005[1],0)
+impsanifac2005sort$wpop2005<-ifelse(impsanifac2005sort$qimpsanifac=="Q2", impsanifac2005sort$population/qpg2005[2],impsanifac2005sort$wpop2005)
+impsanifac2005sort$wpop2005<-ifelse(impsanifac2005sort$qimpsanifac=="Q3", impsanifac2005sort$population/qpg2005[3],impsanifac2005sort$wpop2005)
+impsanifac2005sort$wpop2005<-ifelse(impsanifac2005sort$qimpsanifac=="Q4", impsanifac2005sort$population/qpg2005[4],impsanifac2005sort$wpop2005)
+
+impsanifac2000sort$wpop2000<-ifelse(impsanifac2000sort$qimpsanifac=="Q1", impsanifac2000sort$population/qpg2000[1],0)
+impsanifac2000sort$wpop2000<-ifelse(impsanifac2000sort$qimpsanifac=="Q2", impsanifac2000sort$population/qpg2000[2],impsanifac2000sort$wpop2000)
+impsanifac2000sort$wpop2000<-ifelse(impsanifac2000sort$qimpsanifac=="Q3", impsanifac2000sort$population/qpg2000[3],impsanifac2000sort$wpop2000)
+impsanifac2000sort$wpop2000<-ifelse(impsanifac2000sort$qimpsanifac=="Q4", impsanifac2000sort$population/qpg2000[4],impsanifac2000sort$wpop2000)
+
+impsanifac2012sort$wrate<-impsanifac2012sort$wpop2012*impsanifac2012sort$ir_tb
+impsanifac2009sort$wrate<-impsanifac2009sort$wpop2009*impsanifac2009sort$ir_tb
+impsanifac2005sort$wrate<-impsanifac2005sort$wpop2005*impsanifac2005sort$ir_tb
+impsanifac2000sort$wrate<-impsanifac2000sort$wpop2000*impsanifac2000sort$ir_tb
+
+meang2012<-sapply(split(impsanifac2012sort$wrate,impsanifac2012sort$qimpsanifac),sum)
+meang2012
+
+meang2009<-sapply(split(impsanifac2009sort$wrate,impsanifac2009sort$qimpsanifac),sum)
+meang2009
+
+meang2005<-sapply(split(impsanifac2005sort$wrate,impsanifac2005sort$qimpsanifac),sum)
+meang2005
+
+meang2000<-sapply(split(impsanifac2000sort$wrate,impsanifac2000sort$qimpsanifac),sum)
+meang2000
+
+
+
+Q1<-c(meang2000[1],meang2005[1],meang2009[1],meang2012[1]) 
+Q1<-round(Q1,2)
+Q2<-c(meang2000[2],meang2005[2],meang2009[2],meang2012[2]) 
+Q2<-round(Q2,2)
+Q3<-c(meang2000[3],meang2005[3],meang2009[3],meang2012[3]) 
+Q3<-round(Q3,2)
+Q4<-c(meang2000[4],meang2005[4],meang2009[4],meang2012[4]) 
+Q4<-round(Q4,2)
+r<-cbind(Q1,Q2,Q3,Q4)
+#r<-t(r)
+rownames(r)<-c('2000','2005','2009','2012')
+colnames(r)<-c('Q1','Q2','Q3','Q4')
+r
+
+##Table 4A. Metrics of country-level inequalities in TB incidence according to social stratifiers and year assessed
+regional_mean_rate_impsanifac2000<-sum(wpopg2000*meang2000)
+regional_mean_rate_impsanifac2005<-sum(wpopg2005*meang2005)
+regional_mean_rate_impsanifac2009<-sum(wpopg2009*meang2009)
+regional_mean_rate_impsanifac2012<-sum(wpopg2012*meang2012)
+round(regional_mean_rate_impsanifac2000,2)
+round(regional_mean_rate_impsanifac2005,2)
+round(regional_mean_rate_impsanifac2009,2)
+round(regional_mean_rate_impsanifac2012,2)
+
+# Bottom-top quartile gap 
+absolute_Kuznets_index_impsanifac2000<-meang2000[1]-meang2000[4]
+absolute_Kuznets_index_impsanifac2005<-meang2005[1]-meang2005[4]
+absolute_Kuznets_index_impsanifac2009<-meang2009[1]-meang2009[4]
+absolute_Kuznets_index_impsanifac2012<-meang2012[1]-meang2012[4]
+round(absolute_Kuznets_index_impsanifac2000,2)
+round(absolute_Kuznets_index_impsanifac2005,2)
+round(absolute_Kuznets_index_impsanifac2009,2)
+round(absolute_Kuznets_index_impsanifac2012,2)
+
+relative_Kuznets_index_impsanifac2000<-meang2000[1]/meang2000[4]
+relative_Kuznets_index_impsanifac2005<-meang2005[1]/meang2005[4]
+relative_Kuznets_index_impsanifac2009<-meang2009[1]/meang2009[4]
+relative_Kuznets_index_impsanifac2012<-meang2012[1]/meang2012[4]
+round(relative_Kuznets_index_impsanifac2000,2)
+round(relative_Kuznets_index_impsanifac2005,2)
+round(relative_Kuznets_index_impsanifac2009,2)
+round(relative_Kuznets_index_impsanifac2012,2)
+
+mylabel1e= bquote(2000==.(format(absolute_Kuznets_index_impsanifac2000,digits=4))) 
+mylabel2e= bquote(2005==.(format(absolute_Kuznets_index_impsanifac2005,digits=6))) 
+mylabel3e= bquote(2009==.(format(absolute_Kuznets_index_impsanifac2009,digits=4))) 
+mylabel4e= bquote(2012==.(format(absolute_Kuznets_index_impsanifac2012,digits=4))) 
+mylabel5e= bquote(2000==.(format(relative_Kuznets_index_impsanifac2000,digits=3))) 
+mylabel6e= bquote(2005==.(format(relative_Kuznets_index_impsanifac2005,digits=3))) 
+mylabel7e= bquote(2009==.(format(relative_Kuznets_index_impsanifac2009,digits=3))) 
+mylabel8e= bquote(2012==.(format(relative_Kuznets_index_impsanifac2012,digits=3))) 
+
+
+quartz(width=10, height=6, pointsize=10)
+b<-barplot(t(r),col=c("deepskyblue4","dodgerblue3","dodgerblue","deepskyblue"),beside=T,ylim=c(0,220),
+           xlab="% de la población con acceso a mejores instalaciones sanitarias", ylab="Tasa promedio de incidencia de TB (por 100,000 hb)")
+legend("topright",c("Q1","Q2","Q3","Q4"),
+       col= c("deepskyblue4","dodgerblue3","dodgerblue","deepskyblue"),pch=15,bty="n") 
+text(x=c(1.5,2.5,3.5,4.5,6.5,7.5,8.5,9.5,11.5,12.5,13.5,14.5,16.5,17.5,18.5,19.5),
+     y=c(t(r[1,1]),t(r[1,2]),t(r[1,3]),t(r[1,4]),t(r[2,1]),t(r[2,2]),t(r[2,3]),t(r[2,4]),t(r[3,1]),t(r[3,2]),t(r[3,3]),t(r[3,4]),t(r[4,1]),t(r[4,2]),t(r[4,3]),t(r[4,4])),
+     labels=c(t(r[1,1]),t(r[1,2]),t(r[1,3]),t(r[1,4]),t(r[2,1]),t(r[2,2]),t(r[2,3]),t(r[2,4]),t(r[3,1]),t(r[3,2]),t(r[3,3]),t(r[3,4]),t(r[4,1]),t(r[4,2]),t(r[4,3]),t(r[4,4])),cex=1.25,pos=3)
+text(10,200, "Índice de Kuznets absoluto", col="red")
+text(10,190, labels=mylabel1e, col="red")
+text(10,180, labels=mylabel2e, col="red")
+text(10,170, labels=mylabel3e, col="red")
+text(10,160, labels=mylabel4e, col="red")
+text(10,150, "Índice de Kuznets relativo", col="red")
+text(10,140, labels=mylabel5e, col="red")
+text(10,130, labels=mylabel6e, col="red")
+text(10,120, labels=mylabel7e, col="red")
+text(10,110, labels=mylabel8e, col="red")
+
+
+## lines and dots graphics
+quartz(width=10, height=6, pointsize=10)
+plot(r[1,],c(2000,2000,2000,2000),bg=rainbow(4), pch=21, cex=2, lwd=3, lty=1,xlim=c(10,150), ylim=c(1999,2015), yaxt='n', xlab="Tasa promedio de incidencia de TB (por 100,000 hb)", ylab="Años")
+ticks = c(2000, 2005, 2009, 2012)
+axis(side = 2, at = ticks)
+from.x <- c(r[1,1], r[1,2], r[1,3],r[1,4])
+to.x   <- c(r[1,1], r[1,3], r[1,4])
+to.y   <- from.y <- c(2000, 2000, 2000,2000)
+segments(x0 = from.x, y0 = from.y, x1 = to.x, y1 = to.y,lwd=2)
+par(new=TRUE)
+plot(r[2,],c(2005,2005,2005,2005), bg=rainbow(4), pch=21, cex=2, lwd=3, xlim=c(10,150), ylim=c(1999,2015), axes=FALSE, xlab="", ylab="")
+from.x <- c(r[2,1], r[2,2], r[2,3],r[2,4])
+to.x   <- c(r[2,1], r[2,3], r[2,4])
+to.y   <- from.y <- c(2005, 2005, 2005,2005) 
+segments(x0 = from.x, y0 = from.y, x1 = to.x, y1 = to.y,lwd=2)
+par(new=TRUE)
+plot(r[3,],c(2009,2009,2009,2009), bg=rainbow(4), pch=21, cex=2, lwd=3, xlim=c(10,150), ylim=c(1999,2015), axes=FALSE, xlab="", ylab="")
+from.x <- c(r[3,1], r[3,2], r[3,3],r[3,4])
+to.x   <- c(r[3,1], r[3,3], r[3,4])
+to.y   <- from.y <- c(2009, 2009, 2009,2009) 
+segments(x0 = from.x, y0 = from.y, x1 = to.x, y1 = to.y,lwd=2)
+par(new=TRUE)
+plot(r[4,],c(2012,2012,2012,2012), bg=rainbow(4), pch=21, cex=2, lwd=3, xlim=c(10,150), ylim=c(1999,2015), axes=FALSE, xlab="", ylab="") 
+from.x <- c(r[4,1], r[4,2], r[4,3],r[4,4])
+to.x   <- c(r[4,1], r[4,3], r[4,4])
+to.y   <- from.y <- c(2012, 2012, 2012,2012) 
+segments(x0 = from.x, y0 = from.y, x1 = to.x, y1 = to.y,lwd=2)
+legend("topright",c("Q1","Q2","Q3","Q4"),
+       col= rainbow(4),
+       bg=rainbow(4), pch=19,bty="n", cex=1.5) 
+
+
+
+## lines and dots graphics weighted
+quartz(width=10, height=6, pointsize=10)
+symbols(r[1,],c(2000,2000,2000,2000),circles=sqrt(qpg2000/pi),inches=1/4, bg=rainbow(4), pch=21, cex=2, lwd=3, lty=1,xlim=c(10,150), ylim=c(1999,2015), yaxt='n', xlab="Tasa promedio de incidencia de TB (por 100,000 hb)", ylab="Años")
+par(new=TRUE)
+plot(r[1,],c(2000,2000,2000,2000),bg="black", pch=21, cex=0.5, lwd=3, lty=1,xlim=c(10,150), ylim=c(1999,2015), yaxt='n', xlab="Tasa promedio de incidencia de TB (por 100,000 hb)", ylab="Años")
+ticks = c(2000, 2005, 2009, 2012)
+axis(side = 2, at = ticks)
+from.x <- c(r[1,1], r[1,2], r[1,3],r[1,4])
+to.x   <- c(r[1,1], r[1,3], r[1,4])
+to.y   <- from.y <- c(2000, 2000, 2000,2000)
+segments(x0 = from.x, y0 = from.y, x1 = to.x, y1 = to.y,lwd=2)
+par(new=TRUE)
+symbols(r[2,],c(2005,2005,2005,2005),circles=sqrt(qpg2005/pi),inches=1/4, bg=rainbow(4), pch=21, cex=2, lwd=3, lty=1,xlim=c(10,150), ylim=c(1999,2015), yaxt='n', xlab="Tasa promedio de incidencia de TB (por 100,000 hb)", ylab="Años")
+par(new=TRUE)
+plot(r[2,],c(2005,2005,2005,2005), bg="black", pch=21, cex=0.5, lwd=3, xlim=c(10,150), ylim=c(1999,2015), axes=FALSE, xlab="", ylab="")
+from.x <- c(r[2,1], r[2,2], r[2,3],r[2,4])
+to.x   <- c(r[2,1], r[2,3], r[2,4])
+to.y   <- from.y <- c(2005, 2005, 2005,2005) 
+segments(x0 = from.x, y0 = from.y, x1 = to.x, y1 = to.y,lwd=2)
+par(new=TRUE)
+symbols(r[3,],c(2009,2009,2009,2009),circles=sqrt(qpg2009/pi),inches=1/4, bg=rainbow(4), pch=21, cex=2, lwd=3, lty=1,xlim=c(10,150), ylim=c(1999,2015), yaxt='n', xlab="Tasa promedio de incidencia de TB (por 100,000 hb)", ylab="Años")
+par(new=TRUE)
+plot(r[3,],c(2009,2009,2009,2009), bg="black", pch=21, cex=0.5, lwd=3, xlim=c(10,150), ylim=c(1999,2015), axes=FALSE, xlab="", ylab="")
+from.x <- c(r[3,1], r[3,2], r[3,3],r[3,4])
+to.x   <- c(r[3,1], r[3,3], r[3,4])
+to.y   <- from.y <- c(2009, 2009, 2009,2009) 
+segments(x0 = from.x, y0 = from.y, x1 = to.x, y1 = to.y,lwd=2)
+par(new=TRUE)
+symbols(r[4,],c(2012,2012,2012,2012),circles=sqrt(qpg2012/pi),inches=1/4, bg=rainbow(4), pch=21, cex=2, lwd=3, lty=1,xlim=c(10,150), ylim=c(1999,2015), yaxt='n', xlab="Tasa promedio de incidencia de TB (por 100,000 hb)", ylab="Años")
+par(new=TRUE)
+plot(r[4,],c(2012,2012,2012,2012), bg="black", pch=21, cex=0.5, lwd=3, xlim=c(10,150), ylim=c(1999,2015), axes=FALSE, xlab="", ylab="") 
+from.x <- c(r[4,1], r[4,2], r[4,3],r[4,4])
+to.x   <- c(r[4,1], r[4,3], r[4,4])
+to.y   <- from.y <- c(2012, 2012, 2012,2012) 
+segments(x0 = from.x, y0 = from.y, x1 = to.x, y1 = to.y,lwd=2)
+legend("topright",title="Population size",c("Q1","Q2","Q3","Q4"),
+       col= rainbow(4),
+       bg=rainbow(4), pch=19,bty="n", cex=1.5,
+       pt.cex=c(1,1.4,3,1.4)) 
+
+
+
+##########################################################################
+############################# Concentration curve  #######################
+
+
+CWpopf2012<-c(0,impsanifac2012sort$CWpop)
+CWhealthf2012<-c(0,impsanifac2012sort$CWhealth)
+CWpopf2009<-c(0,impsanifac2009sort$CWpop)
+CWhealthf2009<-c(0,impsanifac2009sort$CWhealth)
+CWpopf2005<-c(0,impsanifac2005sort$CWpop)
+CWhealthf2005<-c(0,impsanifac2005sort$CWhealth)
+CWpopf2000<-c(0,impsanifac2000sort$CWpop)
+CWhealthf2000<-c(0,impsanifac2000sort$CWhealth)
+
+
+ccurve2012<-data.frame(y=CWhealthf2012, x=CWpopf2012)
+ccurve2009<-data.frame(y=CWhealthf2009, x=CWpopf2009)
+ccurve2005<-data.frame(y=CWhealthf2005, x=CWpopf2005)
+ccurve2000<-data.frame(y=CWhealthf2000, x=CWpopf2000)
+
+ccurve_f <- function(k,mydata){
+  sum((mydata$y-(exp(mydata$x/(k-mydata$x))-1)/(exp(1/(k-1))-1)))^2
+}
+
+ccurve.optx2012 <- optimx(par=-1.5, fn=ccurve_f, mydata=ccurve2012, control=list(all.methods=TRUE, save.failures=TRUE, maxit=2500))
+print(ccurve.optx2012)
+
+ccurve.optx2009 <- optimx(par=-1.5, fn=ccurve_f, mydata=ccurve2009, control=list(all.methods=TRUE, save.failures=TRUE, maxit=2500))
+print(ccurve.optx2009)
+
+ccurve.optx2005 <- optimx(par=-1.5, fn=ccurve_f, mydata=ccurve2005, control=list(all.methods=TRUE, save.failures=TRUE, maxit=2500))
+print(ccurve.optx2005)
+
+ccurve.optx2000 <- optimx(par=-1.5, fn=ccurve_f, mydata=ccurve2000, control=list(all.methods=TRUE, save.failures=TRUE, maxit=2500))
+print(ccurve.optx2000)
+
+x<-seq(0,1,0.01)
+
+k<-ccurve.optx2012[1,1]
+f<-function(x,k) {
+  (exp(x/(k-x))-1)/(exp(1/(k-1))-1)
+}
+
+lf02012<-f(x,k)
+delta_x_y<-x-lf02012
+delta_x_y
+
+##Table 4A. Metrics of country-level inequalities in TB incidence according to social stratifiers and year assessed
+# Social gradient
+health_concentration_index_impsanifac2012<-2*sum(delta_x_y)*0.01
+round(health_concentration_index_impsanifac2012,2)
+
+
+k<-ccurve.optx2009[1,1]
+f<-function(x,k) {
+  (exp(x/(k-x))-1)/(exp(1/(k-1))-1)
+}
+
+lf02009<-f(x,k)
+
+delta_x_y<-x-lf02009
+delta_x_y
+
+##Table 4A. Metrics of country-level inequalities in TB incidence according to social stratifiers and year assessed
+# Social gradient
+health_concentration_index_impsanifac2009<-2*sum(delta_x_y)*0.01
+round(health_concentration_index_impsanifac2009,2)
+
+
+k<-ccurve.optx2005[1,1]
+f<-function(x,k) {
+  (exp(x/(k-x))-1)/(exp(1/(k-1))-1)
+}
+
+lf02005<-f(x,k)
+
+delta_x_y<-x-lf02005
+delta_x_y
+
+##Table 4A. Metrics of country-level inequalities in TB incidence according to social stratifiers and year assessed
+# Social gradient
+health_concentration_index_impsanifac2005<-2*sum(delta_x_y)*0.01
+round(health_concentration_index_impsanifac2005,2)
+
+
+k<-ccurve.optx2000[1,1]
+f<-function(x,k) {
+  (exp(x/(k-x))-1)/(exp(1/(k-1))-1)
+}
+
+lf02000<-f(x,k)
+
+delta_x_y<-x-lf02000
+delta_x_y
+
+##Table 4A. Metrics of country-level inequalities in TB incidence according to social stratifiers and year assessed
+# Social gradient
+health_concentration_index_impsanifac2000<-2*sum(delta_x_y)*0.01
+round(health_concentration_index_impsanifac2000,2)
+
+
+mylabel1e= bquote(2000==.(format(health_concentration_index_impsanifac2000,digits=2))) 
+mylabel2e= bquote(2005==.(format(health_concentration_index_impsanifac2005,digits=2))) 
+mylabel3e= bquote(2009==.(format(health_concentration_index_impsanifac2009,digits=2))) 
+mylabel4e= bquote(2012==.(format(health_concentration_index_impwaterurban2012,digits=2))) 
+
+quartz(width=10, height=6, pointsize=10)
+plot(CWpopf2012,CWhealthf2012, col="red",pch=0, xlab="Gradiente de población entre países según % de la población con acceso a mejores instalaciones sanitarias", ylab="Número de casos incidentes de TB (acumulado)")
+points(CWpopf2009,CWhealthf2009, col="blue",pch=1)
+points(CWpopf2005,CWhealthf2005, col="green",pch=2)
+points(CWpopf2000,CWhealthf2000, col="purple",pch=3)
+lines(x,lf02012,col="red", lty=1)
+lines(x,lf02009,col="blue", lty=2)
+lines(x,lf02005,col="green", lty=3)
+lines(x,lf02000,col="purple", lty=4)
+lines(x,x)
+legend(locator(1),c("2012","2009","2005","2000"),col=c("red","blue","green","purple"),pch=c(0,1,2,3), lty=c(1,2,3,4),cex = .8)
+text(0.8,0.25, "Índices de concentración de salud (IC)", col="red")
+text(0.8,0.22, labels=mylabel1e, col="red")
+text(0.8,0.18, labels=mylabel2e, col="red")
+text(0.8,0.15, labels=mylabel3e, col="red")
+text(0.8,0.12, labels=mylabel4e, col="red")
 
 
 
@@ -1673,8 +2551,8 @@ mylabel4d= bquote(2013==.(format(slope_index_of_inequality_impsanifacurban2012,d
 
 quartz(width=10, height=6, pointsize=10)
 plot(impsanifacurban2012sort$ridit,impsanifacurban2012sort$ir_tb, col="red", pch=0,
-     ylab="Tuberculosis incidence rates per 100,000 population", 
-     xlab="Country-level population gradient defined by access to improved sanitation facilities")
+     ylab="Tasa promedio de incidencia de TB (por 100,000 hb)", 
+     xlab="Gradiente de población entre países según % de la población con acceso a mejores instalaciones sanitarias en áreas urbanas")
 points(impsanifacurban2009sort$ridit,impsanifacurban2009sort$ir_tb, col="blue",pch=1,
        ylab="", 
        xlab="")
@@ -1704,4 +2582,334 @@ text(0.8,140, labels=mylabel3d, col="red")
 text(0.8,130, labels=mylabel4d, col="red")
 
 
+######################################################################################
+######################  Quantiles of Improved water  ########################
+impsanifacurban2012sort$qimpsanifacurban<-cut(impsanifacurban2012sort$impsanifacurban,quantile(impsanifacurban2012sort$impsanifacurban),include.lowest = TRUE,labels=c("Q1","Q2","Q3","Q4"))
+impsanifacurban2009sort$qimpsanifacurban<-cut(impsanifacurban2009sort$impsanifacurban,quantile(impsanifacurban2009sort$impsanifacurban),include.lowest = TRUE,labels=c("Q1","Q2","Q3","Q4"))
+impsanifacurban2005sort$qimpsanifacurban<-cut(impsanifacurban2005sort$impsanifacurban,quantile(impsanifacurban2005sort$impsanifacurban),include.lowest = TRUE,labels=c("Q1","Q2","Q3","Q4"))
+impsanifacurban2000sort$qimpsanifacurban<-cut(impsanifacurban2000sort$impsanifacurban,quantile(impsanifacurban2000sort$impsanifacurban),include.lowest = TRUE,labels=c("Q1","Q2","Q3","Q4"))
+
+list(impsanifacurban2012sort$country,impsanifacurban2012sort$qimpsanifacurban)
+list(impsanifacurban2009sort$country,impsanifacurban2009sort$qimpsanifacurban)
+list(impsanifacurban2005sort$country,impsanifacurban2005sort$qimpsanifacurban)
+list(impsanifacurban2000sort$country,impsanifacurban2000sort$qimpsanifacurban)
+
+qpg2012<-sapply(split(impsanifacurban2012sort$population,impsanifacurban2012sort$qimpsanifacurban),sum)
+qpg2009<-sapply(split(impsanifacurban2009sort$population,impsanifacurban2009sort$qimpsanifacurban),sum)
+qpg2005<-sapply(split(impsanifacurban2005sort$population,impsanifacurban2005sort$qimpsanifacurban),sum)
+qpg2000<-sapply(split(impsanifacurban2000sort$population,impsanifacurban2000sort$qimpsanifacurban),sum)
+
+wpopg2012<-c(qpg2012[1]/sum(qpg2012),qpg2012[2]/sum(qpg2012),qpg2012[3]/sum(qpg2012),qpg2012[4]/sum(qpg2012))
+wpopg2009<-c(qpg2009[1]/sum(qpg2009),qpg2009[2]/sum(qpg2009),qpg2009[3]/sum(qpg2009),qpg2009[4]/sum(qpg2009))
+wpopg2005<-c(qpg2005[1]/sum(qpg2005),qpg2005[2]/sum(qpg2005),qpg2005[3]/sum(qpg2005),qpg2005[4]/sum(qpg2005))
+wpopg2000<-c(qpg2000[1]/sum(qpg2000),qpg2000[2]/sum(qpg2000),qpg2000[3]/sum(qpg2000),qpg2000[4]/sum(qpg2000))
+
+impsanifacurban2012sort$wpop2012<-ifelse(impsanifacurban2012sort$qimpsanifacurban=="Q1", impsanifacurban2012sort$population/qpg2012[1],0)
+impsanifacurban2012sort$wpop2012<-ifelse(impsanifacurban2012sort$qimpsanifacurban=="Q2", impsanifacurban2012sort$population/qpg2012[2],impsanifacurban2012sort$wpop2012)
+impsanifacurban2012sort$wpop2012<-ifelse(impsanifacurban2012sort$qimpsanifacurban=="Q3", impsanifacurban2012sort$population/qpg2012[3],impsanifacurban2012sort$wpop2012)
+impsanifacurban2012sort$wpop2012<-ifelse(impsanifacurban2012sort$qimpsanifacurban=="Q4", impsanifacurban2012sort$population/qpg2012[4],impsanifacurban2012sort$wpop2012)
+
+impsanifacurban2009sort$wpop2009<-ifelse(impsanifacurban2009sort$qimpsanifacurban=="Q1", impsanifacurban2009sort$population/qpg2009[1],0)
+impsanifacurban2009sort$wpop2009<-ifelse(impsanifacurban2009sort$qimpsanifacurban=="Q2", impsanifacurban2009sort$population/qpg2009[2],impsanifacurban2009sort$wpop2009)
+impsanifacurban2009sort$wpop2009<-ifelse(impsanifacurban2009sort$qimpsanifacurban=="Q3", impsanifacurban2009sort$population/qpg2009[3],impsanifacurban2009sort$wpop2009)
+impsanifacurban2009sort$wpop2009<-ifelse(impsanifacurban2009sort$qimpsanifacurban=="Q4", impsanifacurban2009sort$population/qpg2009[4],impsanifacurban2009sort$wpop2009)
+
+impsanifacurban2005sort$wpop2005<-ifelse(impsanifacurban2005sort$qimpsanifacurban=="Q1", impsanifacurban2005sort$population/qpg2005[1],0)
+impsanifacurban2005sort$wpop2005<-ifelse(impsanifacurban2005sort$qimpsanifacurban=="Q2", impsanifacurban2005sort$population/qpg2005[2],impsanifacurban2005sort$wpop2005)
+impsanifacurban2005sort$wpop2005<-ifelse(impsanifacurban2005sort$qimpsanifacurban=="Q3", impsanifacurban2005sort$population/qpg2005[3],impsanifacurban2005sort$wpop2005)
+impsanifacurban2005sort$wpop2005<-ifelse(impsanifacurban2005sort$qimpsanifacurban=="Q4", impsanifacurban2005sort$population/qpg2005[4],impsanifacurban2005sort$wpop2005)
+
+impsanifacurban2000sort$wpop2000<-ifelse(impsanifacurban2000sort$qimpsanifacurban=="Q1", impsanifacurban2000sort$population/qpg2000[1],0)
+impsanifacurban2000sort$wpop2000<-ifelse(impsanifacurban2000sort$qimpsanifacurban=="Q2", impsanifacurban2000sort$population/qpg2000[2],impsanifacurban2000sort$wpop2000)
+impsanifacurban2000sort$wpop2000<-ifelse(impsanifacurban2000sort$qimpsanifacurban=="Q3", impsanifacurban2000sort$population/qpg2000[3],impsanifacurban2000sort$wpop2000)
+impsanifacurban2000sort$wpop2000<-ifelse(impsanifacurban2000sort$qimpsanifacurban=="Q4", impsanifacurban2000sort$population/qpg2000[4],impsanifacurban2000sort$wpop2000)
+
+impsanifacurban2012sort$wrate<-impsanifacurban2012sort$wpop2012*impsanifacurban2012sort$ir_tb
+impsanifacurban2009sort$wrate<-impsanifacurban2009sort$wpop2009*impsanifacurban2009sort$ir_tb
+impsanifacurban2005sort$wrate<-impsanifacurban2005sort$wpop2005*impsanifacurban2005sort$ir_tb
+impsanifacurban2000sort$wrate<-impsanifacurban2000sort$wpop2000*impsanifacurban2000sort$ir_tb
+
+meang2012<-sapply(split(impsanifacurban2012sort$wrate,impsanifacurban2012sort$qimpsanifacurban),sum)
+meang2012
+
+meang2009<-sapply(split(impsanifacurban2009sort$wrate,impsanifacurban2009sort$qimpsanifacurban),sum)
+meang2009
+
+meang2005<-sapply(split(impsanifacurban2005sort$wrate,impsanifacurban2005sort$qimpsanifacurban),sum)
+meang2005
+
+meang2000<-sapply(split(impsanifacurban2000sort$wrate,impsanifacurban2000sort$qimpsanifacurban),sum)
+meang2000
+
+
+
+Q1<-c(meang2000[1],meang2005[1],meang2009[1],meang2012[1]) 
+Q1<-round(Q1,2)
+Q2<-c(meang2000[2],meang2005[2],meang2009[2],meang2012[2]) 
+Q2<-round(Q2,2)
+Q3<-c(meang2000[3],meang2005[3],meang2009[3],meang2012[3]) 
+Q3<-round(Q3,2)
+Q4<-c(meang2000[4],meang2005[4],meang2009[4],meang2012[4]) 
+Q4<-round(Q4,2)
+r<-cbind(Q1,Q2,Q3,Q4)
+#r<-t(r)
+rownames(r)<-c('2000','2005','2009','2012')
+colnames(r)<-c('Q1','Q2','Q3','Q4')
+r
+
+##Table 4A. Metrics of country-level inequalities in TB incidence according to social stratifiers and year assessed
+regional_mean_rate_impsanifacurban2000<-sum(wpopg2000*meang2000)
+regional_mean_rate_impsanifacurban2005<-sum(wpopg2005*meang2005)
+regional_mean_rate_impsanifacurban2009<-sum(wpopg2009*meang2009)
+regional_mean_rate_impsanifacurban2012<-sum(wpopg2012*meang2012)
+round(regional_mean_rate_impsanifacurban2000,2)
+round(regional_mean_rate_impsanifacurban2005,2)
+round(regional_mean_rate_impsanifacurban2009,2)
+round(regional_mean_rate_impsanifacurban2012,2)
+
+# Bottom-top quartile gap 
+absolute_Kuznets_index_impsanifacurban2000<-meang2000[1]-meang2000[4]
+absolute_Kuznets_index_impsanifacurban2005<-meang2005[1]-meang2005[4]
+absolute_Kuznets_index_impsanifacurban2009<-meang2009[1]-meang2009[4]
+absolute_Kuznets_index_impsanifacurban2012<-meang2012[1]-meang2012[4]
+round(absolute_Kuznets_index_impsanifacurban2000,2)
+round(absolute_Kuznets_index_impsanifacurban2005,2)
+round(absolute_Kuznets_index_impsanifacurban2009,2)
+round(absolute_Kuznets_index_impsanifacurban2012,2)
+
+relative_Kuznets_index_impsanifacurban2000<-meang2000[1]/meang2000[4]
+relative_Kuznets_index_impsanifacurban2005<-meang2005[1]/meang2005[4]
+relative_Kuznets_index_impsanifacurban2009<-meang2009[1]/meang2009[4]
+relative_Kuznets_index_impsanifacurban2012<-meang2012[1]/meang2012[4]
+round(relative_Kuznets_index_impsanifacurban2000,2)
+round(relative_Kuznets_index_impsanifacurban2005,2)
+round(relative_Kuznets_index_impsanifacurban2009,2)
+round(relative_Kuznets_index_impsanifacurban2012,2)
+
+mylabel1e= bquote(2000==.(format(absolute_Kuznets_index_impsanifacurban2000,digits=4))) 
+mylabel2e= bquote(2005==.(format(absolute_Kuznets_index_impsanifacurban2005,digits=6))) 
+mylabel3e= bquote(2009==.(format(absolute_Kuznets_index_impsanifacurban2009,digits=4))) 
+mylabel4e= bquote(2012==.(format(absolute_Kuznets_index_impsanifacurban2012,digits=4))) 
+mylabel5e= bquote(2000==.(format(relative_Kuznets_index_impsanifacurban2000,digits=3))) 
+mylabel6e= bquote(2005==.(format(relative_Kuznets_index_impsanifacurban2005,digits=3))) 
+mylabel7e= bquote(2009==.(format(relative_Kuznets_index_impsanifacurban2009,digits=3))) 
+mylabel8e= bquote(2012==.(format(relative_Kuznets_index_impsanifacurban2012,digits=3))) 
+
+
+quartz(width=10, height=6, pointsize=10)
+b<-barplot(t(r),col=c("deepskyblue4","dodgerblue3","dodgerblue","deepskyblue"),beside=T,ylim=c(0,220),
+           xlab="% de la población con acceso a mejores instalaciones sanitarias en áreas urbanas", ylab="Tasa promedio de incidencia de TB (por 100,000 hb)")
+legend("topright",c("Q1","Q2","Q3","Q4"),
+       col= c("deepskyblue4","dodgerblue3","dodgerblue","deepskyblue"),pch=15,bty="n") 
+text(x=c(1.5,2.5,3.5,4.5,6.5,7.5,8.5,9.5,11.5,12.5,13.5,14.5,16.5,17.5,18.5,19.5),
+     y=c(t(r[1,1]),t(r[1,2]),t(r[1,3]),t(r[1,4]),t(r[2,1]),t(r[2,2]),t(r[2,3]),t(r[2,4]),t(r[3,1]),t(r[3,2]),t(r[3,3]),t(r[3,4]),t(r[4,1]),t(r[4,2]),t(r[4,3]),t(r[4,4])),
+     labels=c(t(r[1,1]),t(r[1,2]),t(r[1,3]),t(r[1,4]),t(r[2,1]),t(r[2,2]),t(r[2,3]),t(r[2,4]),t(r[3,1]),t(r[3,2]),t(r[3,3]),t(r[3,4]),t(r[4,1]),t(r[4,2]),t(r[4,3]),t(r[4,4])),cex=1.25,pos=3)
+text(10,200, "Índice de Kuznets absoluto", col="red")
+text(10,190, labels=mylabel1e, col="red")
+text(10,180, labels=mylabel2e, col="red")
+text(10,170, labels=mylabel3e, col="red")
+text(10,160, labels=mylabel4e, col="red")
+text(10,150, "Índice de Kuznets relativo", col="red")
+text(10,140, labels=mylabel5e, col="red")
+text(10,130, labels=mylabel6e, col="red")
+text(10,120, labels=mylabel7e, col="red")
+text(10,110, labels=mylabel8e, col="red")
+
+
+## lines and dots graphics
+quartz(width=10, height=6, pointsize=10)
+plot(r[1,],c(2000,2000,2000,2000),bg=rainbow(4), pch=21, cex=2, lwd=3, lty=1,xlim=c(10,170), ylim=c(1999,2015), yaxt='n', xlab="Tasa promedio de incidencia de TB (por 100,000 hb)", ylab="Años")
+ticks = c(2000, 2005, 2009, 2012)
+axis(side = 2, at = ticks)
+from.x <- c(r[1,1], r[1,2], r[1,3],r[1,4])
+to.x   <- c(r[1,1], r[1,3], r[1,4])
+to.y   <- from.y <- c(2000, 2000, 2000,2000)
+segments(x0 = from.x, y0 = from.y, x1 = to.x, y1 = to.y,lwd=2)
+par(new=TRUE)
+plot(r[2,],c(2005,2005,2005,2005), bg=rainbow(4), pch=21, cex=2, lwd=3, xlim=c(10,170), ylim=c(1999,2015), axes=FALSE, xlab="", ylab="")
+from.x <- c(r[2,1], r[2,2], r[2,3],r[2,4])
+to.x   <- c(r[2,1], r[2,3], r[2,4])
+to.y   <- from.y <- c(2005, 2005, 2005,2005) 
+segments(x0 = from.x, y0 = from.y, x1 = to.x, y1 = to.y,lwd=2)
+par(new=TRUE)
+plot(r[3,],c(2009,2009,2009,2009), bg=rainbow(4), pch=21, cex=2, lwd=3, xlim=c(10,170), ylim=c(1999,2015), axes=FALSE, xlab="", ylab="")
+from.x <- c(r[3,1], r[3,2], r[3,3],r[3,4])
+to.x   <- c(r[3,1], r[3,3], r[3,4])
+to.y   <- from.y <- c(2009, 2009, 2009,2009) 
+segments(x0 = from.x, y0 = from.y, x1 = to.x, y1 = to.y,lwd=2)
+par(new=TRUE)
+plot(r[4,],c(2012,2012,2012,2012), bg=rainbow(4), pch=21, cex=2, lwd=3, xlim=c(10,170), ylim=c(1999,2015), axes=FALSE, xlab="", ylab="") 
+from.x <- c(r[4,1], r[4,2], r[4,3],r[4,4])
+to.x   <- c(r[4,1], r[4,3], r[4,4])
+to.y   <- from.y <- c(2012, 2012, 2012,2012) 
+segments(x0 = from.x, y0 = from.y, x1 = to.x, y1 = to.y,lwd=2)
+legend("topright",c("Q1","Q2","Q3","Q4"),
+       col= rainbow(4),
+       bg=rainbow(4), pch=19,bty="n", cex=1.5) 
+
+
+
+## lines and dots graphics weighted
+quartz(width=10, height=6, pointsize=10)
+symbols(r[1,],c(2000,2000,2000,2000),circles=sqrt(qpg2000/pi),inches=1/4, bg=rainbow(4), pch=21, cex=2, lwd=3, lty=1,xlim=c(10,170), ylim=c(1999,2015), yaxt='n', xlab="Tasa promedio de incidencia de TB (por 100,000 hb)", ylab="Años")
+par(new=TRUE)
+plot(r[1,],c(2000,2000,2000,2000),bg="black", pch=21, cex=0.5, lwd=3, lty=1,xlim=c(10,170), ylim=c(1999,2015), yaxt='n', xlab="Tasa promedio de incidencia de TB (por 100,000 hb)", ylab="Años")
+ticks = c(2000, 2005, 2009, 2012)
+axis(side = 2, at = ticks)
+from.x <- c(r[1,1], r[1,2], r[1,3],r[1,4])
+to.x   <- c(r[1,1], r[1,3], r[1,4])
+to.y   <- from.y <- c(2000, 2000, 2000,2000)
+segments(x0 = from.x, y0 = from.y, x1 = to.x, y1 = to.y,lwd=2)
+par(new=TRUE)
+symbols(r[2,],c(2005,2005,2005,2005),circles=sqrt(qpg2005/pi),inches=1/4, bg=rainbow(4), pch=21, cex=2, lwd=3, lty=1,xlim=c(10,170), ylim=c(1999,2015), yaxt='n', xlab="Tasa promedio de incidencia de TB (por 100,000 hb)", ylab="Años")
+par(new=TRUE)
+plot(r[2,],c(2005,2005,2005,2005), bg="black", pch=21, cex=0.5, lwd=3, xlim=c(10,170), ylim=c(1999,2015), axes=FALSE, xlab="", ylab="")
+from.x <- c(r[2,1], r[2,2], r[2,3],r[2,4])
+to.x   <- c(r[2,1], r[2,3], r[2,4])
+to.y   <- from.y <- c(2005, 2005, 2005,2005) 
+segments(x0 = from.x, y0 = from.y, x1 = to.x, y1 = to.y,lwd=2)
+par(new=TRUE)
+symbols(r[3,],c(2009,2009,2009,2009),circles=sqrt(qpg2009/pi),inches=1/4, bg=rainbow(4), pch=21, cex=2, lwd=3, lty=1,xlim=c(10,170), ylim=c(1999,2015), yaxt='n', xlab="Tasa promedio de incidencia de TB (por 100,000 hb)", ylab="Años")
+par(new=TRUE)
+plot(r[3,],c(2009,2009,2009,2009), bg="black", pch=21, cex=0.5, lwd=3, xlim=c(10,170), ylim=c(1999,2015), axes=FALSE, xlab="", ylab="")
+from.x <- c(r[3,1], r[3,2], r[3,3],r[3,4])
+to.x   <- c(r[3,1], r[3,3], r[3,4])
+to.y   <- from.y <- c(2009, 2009, 2009,2009) 
+segments(x0 = from.x, y0 = from.y, x1 = to.x, y1 = to.y,lwd=2)
+par(new=TRUE)
+symbols(r[4,],c(2012,2012,2012,2012),circles=sqrt(qpg2012/pi),inches=1/4, bg=rainbow(4), pch=21, cex=2, lwd=3, lty=1,xlim=c(10,170), ylim=c(1999,2015), yaxt='n', xlab="Tasa promedio de incidencia de TB (por 100,000 hb)", ylab="Años")
+par(new=TRUE)
+plot(r[4,],c(2012,2012,2012,2012), bg="black", pch=21, cex=0.5, lwd=3, xlim=c(10,170), ylim=c(1999,2015), axes=FALSE, xlab="", ylab="") 
+from.x <- c(r[4,1], r[4,2], r[4,3],r[4,4])
+to.x   <- c(r[4,1], r[4,3], r[4,4])
+to.y   <- from.y <- c(2012, 2012, 2012,2012) 
+segments(x0 = from.x, y0 = from.y, x1 = to.x, y1 = to.y,lwd=2)
+legend("topright",title="Population size",c("Q1","Q2","Q3","Q4"),
+       col= rainbow(4),
+       bg=rainbow(4), pch=19,bty="n", cex=1.5,
+       pt.cex=c(1,1.4,3,1.4)) 
+
+
+
+##########################################################################
+############################# Concentration curve  #######################
+
+
+CWpopf2012<-c(0,impsanifacurban2012sort$CWpop)
+CWhealthf2012<-c(0,impsanifacurban2012sort$CWhealth)
+CWpopf2009<-c(0,impsanifacurban2009sort$CWpop)
+CWhealthf2009<-c(0,impsanifacurban2009sort$CWhealth)
+CWpopf2005<-c(0,impsanifacurban2005sort$CWpop)
+CWhealthf2005<-c(0,impsanifacurban2005sort$CWhealth)
+CWpopf2000<-c(0,impsanifacurban2000sort$CWpop)
+CWhealthf2000<-c(0,impsanifacurban2000sort$CWhealth)
+
+
+ccurve2012<-data.frame(y=CWhealthf2012, x=CWpopf2012)
+ccurve2009<-data.frame(y=CWhealthf2009, x=CWpopf2009)
+ccurve2005<-data.frame(y=CWhealthf2005, x=CWpopf2005)
+ccurve2000<-data.frame(y=CWhealthf2000, x=CWpopf2000)
+
+ccurve_f <- function(k,mydata){
+  sum((mydata$y-(exp(mydata$x/(k-mydata$x))-1)/(exp(1/(k-1))-1)))^2
+}
+
+ccurve.optx2012 <- optimx(par=-1.5, fn=ccurve_f, mydata=ccurve2012, control=list(all.methods=TRUE, save.failures=TRUE, maxit=2500))
+print(ccurve.optx2012)
+
+ccurve.optx2009 <- optimx(par=-1.5, fn=ccurve_f, mydata=ccurve2009, control=list(all.methods=TRUE, save.failures=TRUE, maxit=2500))
+print(ccurve.optx2009)
+
+ccurve.optx2005 <- optimx(par=-1.5, fn=ccurve_f, mydata=ccurve2005, control=list(all.methods=TRUE, save.failures=TRUE, maxit=2500))
+print(ccurve.optx2005)
+
+ccurve.optx2000 <- optimx(par=-1.5, fn=ccurve_f, mydata=ccurve2000, control=list(all.methods=TRUE, save.failures=TRUE, maxit=2500))
+print(ccurve.optx2000)
+
+x<-seq(0,1,0.01)
+
+k<-ccurve.optx2012[1,1]
+f<-function(x,k) {
+  (exp(x/(k-x))-1)/(exp(1/(k-1))-1)
+}
+
+lf02012<-f(x,k)
+delta_x_y<-x-lf02012
+delta_x_y
+
+##Table 4A. Metrics of country-level inequalities in TB incidence according to social stratifiers and year assessed
+# Social gradient
+health_concentration_index_impsanifacurban2012<-2*sum(delta_x_y)*0.01
+round(health_concentration_index_impsanifacurban2012,2)
+
+
+k<-ccurve.optx2009[1,1]
+f<-function(x,k) {
+  (exp(x/(k-x))-1)/(exp(1/(k-1))-1)
+}
+
+lf02009<-f(x,k)
+
+delta_x_y<-x-lf02009
+delta_x_y
+
+##Table 4A. Metrics of country-level inequalities in TB incidence according to social stratifiers and year assessed
+# Social gradient
+health_concentration_index_impsanifacurban2009<-2*sum(delta_x_y)*0.01
+round(health_concentration_index_impsanifacurban2009,2)
+
+
+k<-ccurve.optx2005[1,1]
+f<-function(x,k) {
+  (exp(x/(k-x))-1)/(exp(1/(k-1))-1)
+}
+
+lf02005<-f(x,k)
+
+delta_x_y<-x-lf02005
+delta_x_y
+
+##Table 4A. Metrics of country-level inequalities in TB incidence according to social stratifiers and year assessed
+# Social gradient
+health_concentration_index_impsanifacurban2005<-2*sum(delta_x_y)*0.01
+round(health_concentration_index_impsanifacurban2005,2)
+
+
+k<-ccurve.optx2000[1,1]
+f<-function(x,k) {
+  (exp(x/(k-x))-1)/(exp(1/(k-1))-1)
+}
+
+lf02000<-f(x,k)
+
+delta_x_y<-x-lf02000
+delta_x_y
+
+##Table 4A. Metrics of country-level inequalities in TB incidence according to social stratifiers and year assessed
+# Social gradient
+health_concentration_index_impsanifacurban2000<-2*sum(delta_x_y)*0.01
+round(health_concentration_index_impsanifacurban2000,2)
+
+
+mylabel1e= bquote(2000==.(format(health_concentration_index_impsanifacurban2000,digits=2))) 
+mylabel2e= bquote(2005==.(format(health_concentration_index_impsanifacurban2005,digits=2))) 
+mylabel3e= bquote(2009==.(format(health_concentration_index_impsanifacurban2009,digits=2))) 
+mylabel4e= bquote(2012==.(format(health_concentration_index_impwaterurban2012,digits=2))) 
+
+quartz(width=10, height=6, pointsize=10)
+plot(CWpopf2012,CWhealthf2012, col="red",pch=0, xlab="Gradiente de población entre países según % de la población con acceso a mejores instalaciones sanitarias en áreas urbanas", ylab="Número de casos incidentes de TB (acumulado)")
+points(CWpopf2009,CWhealthf2009, col="blue",pch=1)
+points(CWpopf2005,CWhealthf2005, col="green",pch=2)
+points(CWpopf2000,CWhealthf2000, col="purple",pch=3)
+lines(x,lf02012,col="red", lty=1)
+lines(x,lf02009,col="blue", lty=2)
+lines(x,lf02005,col="green", lty=3)
+lines(x,lf02000,col="purple", lty=4)
+lines(x,x)
+legend(locator(1),c("2012","2009","2005","2000"),col=c("red","blue","green","purple"),pch=c(0,1,2,3), lty=c(1,2,3,4),cex = .8)
+text(0.8,0.25, "Índices de concentración de salud (IC)", col="red")
+text(0.8,0.22, labels=mylabel1e, col="red")
+text(0.8,0.18, labels=mylabel2e, col="red")
+text(0.8,0.15, labels=mylabel3e, col="red")
+text(0.8,0.12, labels=mylabel4e, col="red")
 
