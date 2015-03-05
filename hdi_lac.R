@@ -2913,3 +2913,20 @@ text(0.8,0.18, labels=mylabel2e, col="red")
 text(0.8,0.15, labels=mylabel3e, col="red")
 text(0.8,0.12, labels=mylabel4e, col="red")
 
+
+############## Data mining education data
+education<-read.csv("EDULIT_DS_Data.csv")
+
+education1<-subset(education,Indicator %in% c("Adult literacy rate, population 15+ years, both sexes (%)"))
+education_lac<-subset(education1,Country %in% c("Argentina", "Bolivia", "Brazil","Chile","Colombia","Costa Rica","Cuba",
+                                           "Dominican Republic","Ecuador","El Salvador","Guatemala","Guyana","Haiti","Honduras",
+                                           "Mexico","Nicaragua","Panama","Paraguay","Peru","Suriname","Trinidad and Tobago",
+                                           "Uruguay","Venezuela"))
+
+education_lac <- rename(education_lac, c(Country="country"))
+education_lac <- rename(education_lac, c(Value="literacy_rate"))
+education_lac <- rename(education_lac, c(Time="year"))
+
+################# Building the final dataset ############################  
+education_lac_fff<-subset(education_lac,year %in% c(2000,2005,2009,2012)) ## we used the same value of 2005 hdi for 2000 
+
