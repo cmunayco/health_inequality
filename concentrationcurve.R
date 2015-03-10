@@ -33,14 +33,14 @@ inequality1$country <- factor(inequality1$country,labels = c("Argentina", "Boliv
 
 df=data.frame(id=1:nrow(inequality1),year=inequality1$year,country=inequality1$country,country_code=inequality1$country_code,population=inequality1$poblacion_total,
               wb_income_group=inequality1$wb_income_group,wb_income_group_code=inequality1$wb_income_group_code,
-              gdp=inequality1$GDP_per_capita_PPP_constant_2005_international, gni=inequality1$GNI_percapita_PPP_constant_2005_international,p.hex.gdp=(inequality1$Health_expenditure_percapita_PPP_constant_2005_international/inequality1$GDP_per_capita_PPP_constant_2005_international),
+              gdp=inequality1$GDP_per_capita_PPP_constant_2005_international, gni=inequality1$GNI_percapita_PPP_constant_2005_international,lexp=inequality1$esperanza_vida_nacer_anos,
               hexp=inequality1$Health_expenditure_percapita_PPP_constant_2005_international,
               ir_tb=inequality1$tb_incidence,t_mort=inequality1$rate_deaths_hiv_neg_tb_cases,t_jail=inequality1$tasa_encarcelamiento_100k,
               urbgrow=inequality1$Urban_population_growth,phiv=inequality1$vih_prevalence,
               impsfac=inequality1$esperanza_vida_nacer_anos,impswt=inequality1$Proporcion_poblacion_usa_fuentes_mejoradas_agua_potable,
               impsfac=inequality1$proporcion_poblacion_utiliza_instalaciones_mejoradas_saneamiento,
               bcg=inequality1$p_poblacion_menores_1ano_inmunizada_tuberculosis,unemploy=inequality1$prop_desem_fuerza_trabajo,
-              AIDS=inequality1$tasa_incidencia_SIDA_por_100000_hab,p_hexp_gdp=inequality1$Health_expenditure_percapita_PPP_constant_2005_international/inequality1$GDP_per_capita_PPP_constant_2005_international,
+              AIDS=inequality1$tasa_incidencia_SIDA_por_100000_hab,
               pnotified=inequality1$captacion, num_tb_cases=inequality1$num_incid_tb_case)
 
 legend = c("Argentina", "Bolivia", "Brazil","Chile","Colombia","Costa Rica","Dominican Republic",
@@ -48,116 +48,116 @@ legend = c("Argentina", "Bolivia", "Brazil","Chile","Colombia","Costa Rica","Dom
            "Panama","Paraguay","Peru","Trinidad and Tobago","Uruguay","Venezuela")
 
 
-##### Health inequality for GDP #####
+##### Health inequality for lexp #####
 
-gdp<-df[, c("country","year","population","gdp","num_tb_cases","ir_tb")]
-gdp2010<-as.data.frame(gdp[gdp$year=="2010",])
-gdp2010sort<-gdp2010[order(gdp2010$gdp),]
-totalp=sum(gdp2010sort$population)
-totaltb=sum(gdp2010sort$num_tb_cases)
-gdp2010sort$Wpop<-gdp2010sort$population/totalp
-gdp2010sort$CWpop<-cumsum(gdp2010sort$Wpop)
-gdp2010sort$ridit<-c((0+gdp2010sort$CWpop[1])/2,(gdp2010sort$CWpop[1]+gdp2010sort$CWpop[2])/2,
-                      (gdp2010sort$CWpop[2]+gdp2010sort$CWpop[3])/2,(gdp2010sort$CWpop[3]+gdp2010sort$CWpop[4])/2,
-                      (gdp2010sort$CWpop[4]+gdp2010sort$CWpop[5])/2,(gdp2010sort$CWpop[5]+gdp2010sort$CWpop[6])/2,
-                      (gdp2010sort$CWpop[6]+gdp2010sort$CWpop[7])/2,(gdp2010sort$CWpop[7]+gdp2010sort$CWpop[8])/2,
-                      (gdp2010sort$CWpop[8]+gdp2010sort$CWpop[9])/2,(gdp2010sort$CWpop[9]+gdp2010sort$CWpop[10])/2,
-                      (gdp2010sort$CWpop[10]+gdp2010sort$CWpop[11])/2,(gdp2010sort$CWpop[11]+gdp2010sort$CWpop[12])/2,
-                      (gdp2010sort$CWpop[12]+gdp2010sort$CWpop[13])/2,(gdp2010sort$CWpop[13]+gdp2010sort$CWpop[14])/2,
-                      (gdp2010sort$CWpop[14]+gdp2010sort$CWpop[15])/2,(gdp2010sort$CWpop[15]+gdp2010sort$CWpop[16])/2,
-                      (gdp2010sort$CWpop[16]+gdp2010sort$CWpop[17])/2,(gdp2010sort$CWpop[17]+gdp2010sort$CWpop[18])/2,
-                      (gdp2010sort$CWpop[18]+gdp2010sort$CWpop[19])/2,(gdp2010sort$CWpop[19]+gdp2010sort$CWpop[20])/2)
-gdp2010sort$Whealth<-gdp2010sort$num_tb_cases/totaltb
-gdp2010sort$CWhealth<-cumsum(gdp2010sort$Whealth)
-gdp2010sort$logridit<-log10(gdp2010sort$ridit)
-gdp2010sort$Wi<-sqrt(gdp2010sort$population)
-gdp2010sort$XiWi<-gdp2010sort$Wi*gdp2010sort$logridit
-gdp2010sort$YiWi<-gdp2010sort$Wi*gdp2010sort$ir_tb
-fit2010<-lm(gdp2010sort$YiWi~gdp2010sort$Wi + gdp2010sort$XiWi + 0)
+lexp<-df[, c("country","year","population","lexp","num_tb_cases","ir_tb")]
+lexp2010<-as.data.frame(lexp[lexp$year=="2010",])
+lexp2010sort<-lexp2010[order(lexp2010$lexp),]
+totalp=sum(lexp2010sort$population)
+totaltb=sum(lexp2010sort$num_tb_cases)
+lexp2010sort$Wpop<-lexp2010sort$population/totalp
+lexp2010sort$CWpop<-cumsum(lexp2010sort$Wpop)
+lexp2010sort$ridit<-c((0+lexp2010sort$CWpop[1])/2,(lexp2010sort$CWpop[1]+lexp2010sort$CWpop[2])/2,
+                      (lexp2010sort$CWpop[2]+lexp2010sort$CWpop[3])/2,(lexp2010sort$CWpop[3]+lexp2010sort$CWpop[4])/2,
+                      (lexp2010sort$CWpop[4]+lexp2010sort$CWpop[5])/2,(lexp2010sort$CWpop[5]+lexp2010sort$CWpop[6])/2,
+                      (lexp2010sort$CWpop[6]+lexp2010sort$CWpop[7])/2,(lexp2010sort$CWpop[7]+lexp2010sort$CWpop[8])/2,
+                      (lexp2010sort$CWpop[8]+lexp2010sort$CWpop[9])/2,(lexp2010sort$CWpop[9]+lexp2010sort$CWpop[10])/2,
+                      (lexp2010sort$CWpop[10]+lexp2010sort$CWpop[11])/2,(lexp2010sort$CWpop[11]+lexp2010sort$CWpop[12])/2,
+                      (lexp2010sort$CWpop[12]+lexp2010sort$CWpop[13])/2,(lexp2010sort$CWpop[13]+lexp2010sort$CWpop[14])/2,
+                      (lexp2010sort$CWpop[14]+lexp2010sort$CWpop[15])/2,(lexp2010sort$CWpop[15]+lexp2010sort$CWpop[16])/2,
+                      (lexp2010sort$CWpop[16]+lexp2010sort$CWpop[17])/2,(lexp2010sort$CWpop[17]+lexp2010sort$CWpop[18])/2,
+                      (lexp2010sort$CWpop[18]+lexp2010sort$CWpop[19])/2,(lexp2010sort$CWpop[19]+lexp2010sort$CWpop[20])/2)
+lexp2010sort$Whealth<-lexp2010sort$num_tb_cases/totaltb
+lexp2010sort$CWhealth<-cumsum(lexp2010sort$Whealth)
+lexp2010sort$logridit<-log10(lexp2010sort$ridit)
+lexp2010sort$Wi<-sqrt(lexp2010sort$population)
+lexp2010sort$XiWi<-lexp2010sort$Wi*lexp2010sort$logridit
+lexp2010sort$YiWi<-lexp2010sort$Wi*lexp2010sort$ir_tb
+fit2010<-lm(lexp2010sort$YiWi~lexp2010sort$Wi + lexp2010sort$XiWi + 0)
 summary(fit2010)
-gdp2010sort$predict2010<-coef(summary(fit2010))[1,1] + coef(summary(fit2010))[2,1]*gdp2010sort$logridit
+lexp2010sort$predict2010<-coef(summary(fit2010))[1,1] + coef(summary(fit2010))[2,1]*lexp2010sort$logridit
 
-gdp2005<-as.data.frame(gdp[gdp$year=="2005",])
-gdp2005sort<-gdp2005[order(gdp2005$gdp),]
-totalp=sum(gdp2005sort$population)
-totaltb=sum(gdp2005sort$num_tb_cases)
-gdp2005sort$Wpop<-gdp2005sort$population/totalp
-gdp2005sort$CWpop<-cumsum(gdp2005sort$Wpop)
-gdp2005sort$ridit<-c((0+gdp2005sort$CWpop[1])/2,(gdp2005sort$CWpop[1]+gdp2005sort$CWpop[2])/2,
-                      (gdp2005sort$CWpop[2]+gdp2005sort$CWpop[3])/2,(gdp2005sort$CWpop[3]+gdp2005sort$CWpop[4])/2,
-                      (gdp2005sort$CWpop[4]+gdp2005sort$CWpop[5])/2,(gdp2005sort$CWpop[5]+gdp2005sort$CWpop[6])/2,
-                      (gdp2005sort$CWpop[6]+gdp2005sort$CWpop[7])/2,(gdp2005sort$CWpop[7]+gdp2005sort$CWpop[8])/2,
-                      (gdp2005sort$CWpop[8]+gdp2005sort$CWpop[9])/2,(gdp2005sort$CWpop[9]+gdp2005sort$CWpop[10])/2,
-                      (gdp2005sort$CWpop[10]+gdp2005sort$CWpop[11])/2,(gdp2005sort$CWpop[11]+gdp2005sort$CWpop[12])/2,
-                      (gdp2005sort$CWpop[12]+gdp2005sort$CWpop[13])/2,(gdp2005sort$CWpop[13]+gdp2005sort$CWpop[14])/2,
-                      (gdp2005sort$CWpop[14]+gdp2005sort$CWpop[15])/2,(gdp2005sort$CWpop[15]+gdp2005sort$CWpop[16])/2,
-                      (gdp2005sort$CWpop[16]+gdp2005sort$CWpop[17])/2,(gdp2005sort$CWpop[17]+gdp2005sort$CWpop[18])/2,
-                      (gdp2005sort$CWpop[18]+gdp2005sort$CWpop[19])/2,(gdp2005sort$CWpop[19]+gdp2005sort$CWpop[20])/2)
-gdp2005sort$Whealth<-gdp2005sort$num_tb_cases/totaltb
-gdp2005sort$CWhealth<-cumsum(gdp2005sort$Whealth)
-gdp2005sort$logridit<-log10(gdp2005sort$ridit)
-gdp2005sort$Wi<-sqrt(gdp2005sort$population)
-gdp2005sort$XiWi<-gdp2005sort$Wi*gdp2005sort$logridit
-gdp2005sort$YiWi<-gdp2005sort$Wi*gdp2005sort$ir_tb
-fit2005<-lm(gdp2005sort$YiWi~gdp2005sort$Wi + gdp2005sort$XiWi + 0)
+lexp2005<-as.data.frame(lexp[lexp$year=="2005",])
+lexp2005sort<-lexp2005[order(lexp2005$lexp),]
+totalp=sum(lexp2005sort$population)
+totaltb=sum(lexp2005sort$num_tb_cases)
+lexp2005sort$Wpop<-lexp2005sort$population/totalp
+lexp2005sort$CWpop<-cumsum(lexp2005sort$Wpop)
+lexp2005sort$ridit<-c((0+lexp2005sort$CWpop[1])/2,(lexp2005sort$CWpop[1]+lexp2005sort$CWpop[2])/2,
+                      (lexp2005sort$CWpop[2]+lexp2005sort$CWpop[3])/2,(lexp2005sort$CWpop[3]+lexp2005sort$CWpop[4])/2,
+                      (lexp2005sort$CWpop[4]+lexp2005sort$CWpop[5])/2,(lexp2005sort$CWpop[5]+lexp2005sort$CWpop[6])/2,
+                      (lexp2005sort$CWpop[6]+lexp2005sort$CWpop[7])/2,(lexp2005sort$CWpop[7]+lexp2005sort$CWpop[8])/2,
+                      (lexp2005sort$CWpop[8]+lexp2005sort$CWpop[9])/2,(lexp2005sort$CWpop[9]+lexp2005sort$CWpop[10])/2,
+                      (lexp2005sort$CWpop[10]+lexp2005sort$CWpop[11])/2,(lexp2005sort$CWpop[11]+lexp2005sort$CWpop[12])/2,
+                      (lexp2005sort$CWpop[12]+lexp2005sort$CWpop[13])/2,(lexp2005sort$CWpop[13]+lexp2005sort$CWpop[14])/2,
+                      (lexp2005sort$CWpop[14]+lexp2005sort$CWpop[15])/2,(lexp2005sort$CWpop[15]+lexp2005sort$CWpop[16])/2,
+                      (lexp2005sort$CWpop[16]+lexp2005sort$CWpop[17])/2,(lexp2005sort$CWpop[17]+lexp2005sort$CWpop[18])/2,
+                      (lexp2005sort$CWpop[18]+lexp2005sort$CWpop[19])/2,(lexp2005sort$CWpop[19]+lexp2005sort$CWpop[20])/2)
+lexp2005sort$Whealth<-lexp2005sort$num_tb_cases/totaltb
+lexp2005sort$CWhealth<-cumsum(lexp2005sort$Whealth)
+lexp2005sort$logridit<-log10(lexp2005sort$ridit)
+lexp2005sort$Wi<-sqrt(lexp2005sort$population)
+lexp2005sort$XiWi<-lexp2005sort$Wi*lexp2005sort$logridit
+lexp2005sort$YiWi<-lexp2005sort$Wi*lexp2005sort$ir_tb
+fit2005<-lm(lexp2005sort$YiWi~lexp2005sort$Wi + lexp2005sort$XiWi + 0)
 summary(fit2005)
-gdp2005sort$predict2005<-coef(summary(fit2005))[1,1] + coef(summary(fit2005))[2,1]*gdp2005sort$logridit
+lexp2005sort$predict2005<-coef(summary(fit2005))[1,1] + coef(summary(fit2005))[2,1]*lexp2005sort$logridit
 
-gdp2000<-as.data.frame(gdp[gdp$year=="2000",])
-gdp2000sort<-gdp2000[order(gdp2000$gdp),]
-totalp=sum(gdp2000sort$population)
-totaltb=sum(gdp2000sort$num_tb_cases)
-gdp2000sort$Wpop<-gdp2000sort$population/totalp
-gdp2000sort$CWpop<-cumsum(gdp2000sort$Wpop)
-gdp2000sort$ridit<-c((0+gdp2000sort$CWpop[1])/2,(gdp2000sort$CWpop[1]+gdp2000sort$CWpop[2])/2,
-                      (gdp2000sort$CWpop[2]+gdp2000sort$CWpop[3])/2,(gdp2000sort$CWpop[3]+gdp2000sort$CWpop[4])/2,
-                      (gdp2000sort$CWpop[4]+gdp2000sort$CWpop[5])/2,(gdp2000sort$CWpop[5]+gdp2000sort$CWpop[6])/2,
-                      (gdp2000sort$CWpop[6]+gdp2000sort$CWpop[7])/2,(gdp2000sort$CWpop[7]+gdp2000sort$CWpop[8])/2,
-                      (gdp2000sort$CWpop[8]+gdp2000sort$CWpop[9])/2,(gdp2000sort$CWpop[9]+gdp2000sort$CWpop[10])/2,
-                      (gdp2000sort$CWpop[10]+gdp2000sort$CWpop[11])/2,(gdp2000sort$CWpop[11]+gdp2000sort$CWpop[12])/2,
-                      (gdp2000sort$CWpop[12]+gdp2000sort$CWpop[13])/2,(gdp2000sort$CWpop[13]+gdp2000sort$CWpop[14])/2,
-                      (gdp2000sort$CWpop[14]+gdp2000sort$CWpop[15])/2,(gdp2000sort$CWpop[15]+gdp2000sort$CWpop[16])/2,
-                      (gdp2000sort$CWpop[16]+gdp2000sort$CWpop[17])/2,(gdp2000sort$CWpop[17]+gdp2000sort$CWpop[18])/2,
-                      (gdp2000sort$CWpop[18]+gdp2000sort$CWpop[19])/2,(gdp2000sort$CWpop[19]+gdp2000sort$CWpop[20])/2)
+lexp2000<-as.data.frame(lexp[lexp$year=="2000",])
+lexp2000sort<-lexp2000[order(lexp2000$lexp),]
+totalp=sum(lexp2000sort$population)
+totaltb=sum(lexp2000sort$num_tb_cases)
+lexp2000sort$Wpop<-lexp2000sort$population/totalp
+lexp2000sort$CWpop<-cumsum(lexp2000sort$Wpop)
+lexp2000sort$ridit<-c((0+lexp2000sort$CWpop[1])/2,(lexp2000sort$CWpop[1]+lexp2000sort$CWpop[2])/2,
+                      (lexp2000sort$CWpop[2]+lexp2000sort$CWpop[3])/2,(lexp2000sort$CWpop[3]+lexp2000sort$CWpop[4])/2,
+                      (lexp2000sort$CWpop[4]+lexp2000sort$CWpop[5])/2,(lexp2000sort$CWpop[5]+lexp2000sort$CWpop[6])/2,
+                      (lexp2000sort$CWpop[6]+lexp2000sort$CWpop[7])/2,(lexp2000sort$CWpop[7]+lexp2000sort$CWpop[8])/2,
+                      (lexp2000sort$CWpop[8]+lexp2000sort$CWpop[9])/2,(lexp2000sort$CWpop[9]+lexp2000sort$CWpop[10])/2,
+                      (lexp2000sort$CWpop[10]+lexp2000sort$CWpop[11])/2,(lexp2000sort$CWpop[11]+lexp2000sort$CWpop[12])/2,
+                      (lexp2000sort$CWpop[12]+lexp2000sort$CWpop[13])/2,(lexp2000sort$CWpop[13]+lexp2000sort$CWpop[14])/2,
+                      (lexp2000sort$CWpop[14]+lexp2000sort$CWpop[15])/2,(lexp2000sort$CWpop[15]+lexp2000sort$CWpop[16])/2,
+                      (lexp2000sort$CWpop[16]+lexp2000sort$CWpop[17])/2,(lexp2000sort$CWpop[17]+lexp2000sort$CWpop[18])/2,
+                      (lexp2000sort$CWpop[18]+lexp2000sort$CWpop[19])/2,(lexp2000sort$CWpop[19]+lexp2000sort$CWpop[20])/2)
 
-gdp2000sort$Whealth<-gdp2000sort$num_tb_cases/totaltb
-gdp2000sort$CWhealth<-cumsum(gdp2000sort$Whealth)
-gdp2000sort$logridit<-log10(gdp2000sort$ridit)
-gdp2000sort$Wi<-sqrt(gdp2000sort$population)
-gdp2000sort$XiWi<-gdp2000sort$Wi*gdp2000sort$logridit
-gdp2000sort$YiWi<-gdp2000sort$Wi*gdp2000sort$ir_tb
-fit2000<-lm(gdp2000sort$YiWi~gdp2000sort$Wi + gdp2000sort$XiWi + 0)
+lexp2000sort$Whealth<-lexp2000sort$num_tb_cases/totaltb
+lexp2000sort$CWhealth<-cumsum(lexp2000sort$Whealth)
+lexp2000sort$logridit<-log10(lexp2000sort$ridit)
+lexp2000sort$Wi<-sqrt(lexp2000sort$population)
+lexp2000sort$XiWi<-lexp2000sort$Wi*lexp2000sort$logridit
+lexp2000sort$YiWi<-lexp2000sort$Wi*lexp2000sort$ir_tb
+fit2000<-lm(lexp2000sort$YiWi~lexp2000sort$Wi + lexp2000sort$XiWi + 0)
 summary(fit2000)
-gdp2000sort$predict2000<-coef(summary(fit2000))[1,1] + coef(summary(fit2000))[2,1]*gdp2000sort$logridit
+lexp2000sort$predict2000<-coef(summary(fit2000))[1,1] + coef(summary(fit2000))[2,1]*lexp2000sort$logridit
 
 quartz(width=10, height=6, pointsize=10)
-plot(gdp2010sort$ridit,gdp2010sort$ir_tb, col="black",pch=0,
+plot(lexp2010sort$ridit,lexp2010sort$ir_tb, col="black",pch=0,
      ylab="Tuberculosis incidence rates per 100,000 population", 
-     xlab="Country-level population gradient defined by GDP")
-points(gdp2005sort$ridit,gdp2005sort$ir_tb, col="black",pch=1,
+     xlab="Country-level population gradient defined by Life expectancy at birth")
+points(lexp2005sort$ridit,lexp2005sort$ir_tb, col="black",pch=1,
        ylab="", 
        xlab="")
-points(gdp2000sort$ridit,gdp2000sort$ir_tb, col="black",pch=2,
+points(lexp2000sort$ridit,lexp2000sort$ir_tb, col="black",pch=2,
        ylab="", 
        xlab="")
-lines(gdp2010sort$ridit,gdp2010sort$predict2010, col="black", lty=1,
+lines(lexp2010sort$ridit,lexp2010sort$predict2010, col="black", lty=1,
       ylab="", 
       xlab="")
-lines(gdp2005sort$ridit,gdp2005sort$predict2005, col="black", lty=2,
+lines(lexp2005sort$ridit,lexp2005sort$predict2005, col="black", lty=2,
       ylab="", 
       xlab="")
-lines(gdp2000sort$ridit,gdp2000sort$predict2000, col="black", lty=3,
+lines(lexp2000sort$ridit,lexp2000sort$predict2000, col="black", lty=3,
       ylab="", 
       xlab="")
 legend(locator(1),c("2010","2005","2000"),col=c("black","black","black"),pch=c(0,1,2),lty=c(1,2,3),cex = .8)
 
 # Social gradient
-slope_index_of_inequality_gdp2000<-fit2000$coefficients[2]
-slope_index_of_inequality_gdp2005<-fit2005$coefficients[2]
-slope_index_of_inequality_gdp2010<-fit2010$coefficients[2]
-round(slope_index_of_inequality_gdp2000,2)
-round(slope_index_of_inequality_gdp2005,2)
-round(slope_index_of_inequality_gdp2010,2)
+slope_index_of_inequality_lexp2000<-fit2000$coefficients[2]
+slope_index_of_inequality_lexp2005<-fit2005$coefficients[2]
+slope_index_of_inequality_lexp2010<-fit2010$coefficients[2]
+round(slope_index_of_inequality_lexp2000,2)
+round(slope_index_of_inequality_lexp2005,2)
+round(slope_index_of_inequality_lexp2010,2)
 
 
 
@@ -504,50 +504,50 @@ round(slope_index_of_inequality_pnotified2010,2)
 
 
 #########################################################################
-###################    GDP ##############################################
+###################    lexp ##############################################
 #########################################################################
 
-gdp2010sort$qgdp<-cut(gdp2010sort$gdp,quantile(gdp2010sort$gdp),include.lowest = TRUE,labels=c("Q1","Q2","Q3","Q4"))
-gdp2005sort$qgdp<-cut(gdp2005sort$gdp,quantile(gdp2005sort$gdp),include.lowest = TRUE,labels=c("Q1","Q2","Q3","Q4"))
-gdp2000sort$qgdp<-cut(gdp2000sort$gdp,quantile(gdp2000sort$gdp),include.lowest = TRUE,labels=c("Q1","Q2","Q3","Q4"))
-list(gdp2010sort$country,gdp2010sort$qgdp)
-list(gdp2005sort$country,gdp2005sort$qgdp)
-list(gdp2000sort$country,gdp2000sort$qgdp)
+lexp2010sort$qlexp<-cut(lexp2010sort$lexp,quantile(lexp2010sort$lexp),include.lowest = TRUE,labels=c("Q1","Q2","Q3","Q4"))
+lexp2005sort$qlexp<-cut(lexp2005sort$lexp,quantile(lexp2005sort$lexp),include.lowest = TRUE,labels=c("Q1","Q2","Q3","Q4"))
+lexp2000sort$qlexp<-cut(lexp2000sort$lexp,quantile(lexp2000sort$lexp),include.lowest = TRUE,labels=c("Q1","Q2","Q3","Q4"))
+list(lexp2010sort$country,lexp2010sort$qlexp)
+list(lexp2005sort$country,lexp2005sort$qlexp)
+list(lexp2000sort$country,lexp2000sort$qlexp)
 
-qpg2010<-sapply(split(gdp2010sort$population,gdp2010sort$qgdp),sum)
-qpg2005<-sapply(split(gdp2005sort$population,gdp2005sort$qgdp),sum)
-qpg2000<-sapply(split(gdp2000sort$population,gdp2000sort$qgdp),sum)
+qpg2010<-sapply(split(lexp2010sort$population,lexp2010sort$qlexp),sum)
+qpg2005<-sapply(split(lexp2005sort$population,lexp2005sort$qlexp),sum)
+qpg2000<-sapply(split(lexp2000sort$population,lexp2000sort$qlexp),sum)
 
 wpopg2000<-c(qpg2000[1]/sum(qpg2000),qpg2000[2]/sum(qpg2000),qpg2000[3]/sum(qpg2000),qpg2000[4]/sum(qpg2000))
 wpopg2005<-c(qpg2005[1]/sum(qpg2005),qpg2005[2]/sum(qpg2005),qpg2005[3]/sum(qpg2005),qpg2005[4]/sum(qpg2005))
 wpopg2010<-c(qpg2010[1]/sum(qpg2010),qpg2010[2]/sum(qpg2010),qpg2010[3]/sum(qpg2010),qpg2010[4]/sum(qpg2010))
 
-gdp2010sort$wpop2010<-ifelse(gdp2010sort$qgdp=="Q1", gdp2010sort$population/qpg2010[1],0)
-gdp2010sort$wpop2010<-ifelse(gdp2010sort$qgdp=="Q2", gdp2010sort$population/qpg2010[2],gdp2010sort$wpop2010)
-gdp2010sort$wpop2010<-ifelse(gdp2010sort$qgdp=="Q3", gdp2010sort$population/qpg2010[3],gdp2010sort$wpop2010)
-gdp2010sort$wpop2010<-ifelse(gdp2010sort$qgdp=="Q4", gdp2010sort$population/qpg2010[4],gdp2010sort$wpop2010)
+lexp2010sort$wpop2010<-ifelse(lexp2010sort$qlexp=="Q1", lexp2010sort$population/qpg2010[1],0)
+lexp2010sort$wpop2010<-ifelse(lexp2010sort$qlexp=="Q2", lexp2010sort$population/qpg2010[2],lexp2010sort$wpop2010)
+lexp2010sort$wpop2010<-ifelse(lexp2010sort$qlexp=="Q3", lexp2010sort$population/qpg2010[3],lexp2010sort$wpop2010)
+lexp2010sort$wpop2010<-ifelse(lexp2010sort$qlexp=="Q4", lexp2010sort$population/qpg2010[4],lexp2010sort$wpop2010)
 
-gdp2005sort$wpop2005<-ifelse(gdp2005sort$qgdp=="Q1", gdp2005sort$population/qpg2005[1],0)
-gdp2005sort$wpop2005<-ifelse(gdp2005sort$qgdp=="Q2", gdp2005sort$population/qpg2005[2],gdp2005sort$wpop2005)
-gdp2005sort$wpop2005<-ifelse(gdp2005sort$qgdp=="Q3", gdp2005sort$population/qpg2005[3],gdp2005sort$wpop2005)
-gdp2005sort$wpop2005<-ifelse(gdp2005sort$qgdp=="Q4", gdp2005sort$population/qpg2005[4],gdp2005sort$wpop2005)
+lexp2005sort$wpop2005<-ifelse(lexp2005sort$qlexp=="Q1", lexp2005sort$population/qpg2005[1],0)
+lexp2005sort$wpop2005<-ifelse(lexp2005sort$qlexp=="Q2", lexp2005sort$population/qpg2005[2],lexp2005sort$wpop2005)
+lexp2005sort$wpop2005<-ifelse(lexp2005sort$qlexp=="Q3", lexp2005sort$population/qpg2005[3],lexp2005sort$wpop2005)
+lexp2005sort$wpop2005<-ifelse(lexp2005sort$qlexp=="Q4", lexp2005sort$population/qpg2005[4],lexp2005sort$wpop2005)
 
-gdp2000sort$wpop2000<-ifelse(gdp2000sort$qgdp=="Q1", gdp2000sort$population/qpg2000[1],0)
-gdp2000sort$wpop2000<-ifelse(gdp2000sort$qgdp=="Q2", gdp2000sort$population/qpg2000[2],gdp2000sort$wpop2000)
-gdp2000sort$wpop2000<-ifelse(gdp2000sort$qgdp=="Q3", gdp2000sort$population/qpg2000[3],gdp2000sort$wpop2000)
-gdp2000sort$wpop2000<-ifelse(gdp2000sort$qgdp=="Q4", gdp2000sort$population/qpg2000[4],gdp2000sort$wpop2000)
+lexp2000sort$wpop2000<-ifelse(lexp2000sort$qlexp=="Q1", lexp2000sort$population/qpg2000[1],0)
+lexp2000sort$wpop2000<-ifelse(lexp2000sort$qlexp=="Q2", lexp2000sort$population/qpg2000[2],lexp2000sort$wpop2000)
+lexp2000sort$wpop2000<-ifelse(lexp2000sort$qlexp=="Q3", lexp2000sort$population/qpg2000[3],lexp2000sort$wpop2000)
+lexp2000sort$wpop2000<-ifelse(lexp2000sort$qlexp=="Q4", lexp2000sort$population/qpg2000[4],lexp2000sort$wpop2000)
 
-gdp2010sort$wrate<-gdp2010sort$wpop2010*gdp2010sort$ir_tb
-gdp2005sort$wrate<-gdp2005sort$wpop2005*gdp2005sort$ir_tb
-gdp2000sort$wrate<-gdp2000sort$wpop2000*gdp2000sort$ir_tb
+lexp2010sort$wrate<-lexp2010sort$wpop2010*lexp2010sort$ir_tb
+lexp2005sort$wrate<-lexp2005sort$wpop2005*lexp2005sort$ir_tb
+lexp2000sort$wrate<-lexp2000sort$wpop2000*lexp2000sort$ir_tb
 
-meang2010<-sapply(split(gdp2010sort$wrate,gdp2010sort$qgdp),sum)
+meang2010<-sapply(split(lexp2010sort$wrate,lexp2010sort$qlexp),sum)
 meang2010
 
-meang2005<-sapply(split(gdp2005sort$wrate,gdp2005sort$qgdp),sum)
+meang2005<-sapply(split(lexp2005sort$wrate,lexp2005sort$qlexp),sum)
 meang2005
 
-meang2000<-sapply(split(gdp2000sort$wrate,gdp2000sort$qgdp),sum)
+meang2000<-sapply(split(lexp2000sort$wrate,lexp2000sort$qlexp),sum)
 meang2000
 
 
@@ -565,7 +565,7 @@ row.names(r)<-c('2000','2005','2010')
 
 quartz(width=10, height=6, pointsize=10)
 b<-barplot(r,col=c("darkgray","gray","lightgray"),beside=T,ylim=c(0,200),
-           xlab="Quantiles of GDP", ylab="Average estimated incidence rate of tuberculosis")
+           xlab="Quantiles of Life expectancy at birth", ylab="Average estimated incidence rate of tuberculosis")
 legend("topright",c("2000","2005","2010"),
        col= c("darkgray","gray","lightgray"),pch=15,bty="n") 
 text(x=b,y=c(r[1:12]),labels=c(r[1:12]),cex=1.25,pos=3)
@@ -573,27 +573,27 @@ text(2.5,3,"Most disadvantaged",cex=1.25,font=1)
 text(14.5,3,"Least disadvantaged",cex=1.25,font=1)
 
 ##Table 4A. Metrics of country-level inequalities in TB incidence according to social stratifiers and year assessed
-regional_mean_rate_gdp2000<-sum(wpopg2000*meang2000)
-regional_mean_rate_gdp2005<-sum(wpopg2005*meang2005)
-regional_mean_rate_gdp2010<-sum(wpopg2010*meang2010)
-round(regional_mean_rate_gdp2000,2)
-round(regional_mean_rate_gdp2005,2)
-round(regional_mean_rate_gdp2010,2)
+regional_mean_rate_lexp2000<-sum(wpopg2000*meang2000)
+regional_mean_rate_lexp2005<-sum(wpopg2005*meang2005)
+regional_mean_rate_lexp2010<-sum(wpopg2010*meang2010)
+round(regional_mean_rate_lexp2000,2)
+round(regional_mean_rate_lexp2005,2)
+round(regional_mean_rate_lexp2010,2)
 
 # Bottom-top quartile gap 
-absolute_Kuznets_index_gdp2000<-meang2000[1] - meang2000[4]
-absolute_Kuznets_index_gdp2005<-meang2005[1] - meang2005[4]
-absolute_Kuznets_index_gdp2010<-meang2010[1] - meang2010[4]
-round(absolute_Kuznets_index_gdp2000,2)
-round(absolute_Kuznets_index_gdp2005,2)
-round(absolute_Kuznets_index_gdp2010,2)
+absolute_Kuznets_index_lexp2000<-meang2000[1] - meang2000[4]
+absolute_Kuznets_index_lexp2005<-meang2005[1] - meang2005[4]
+absolute_Kuznets_index_lexp2010<-meang2010[1] - meang2010[4]
+round(absolute_Kuznets_index_lexp2000,2)
+round(absolute_Kuznets_index_lexp2005,2)
+round(absolute_Kuznets_index_lexp2010,2)
 
-relative_Kuznets_index_gdp2000<-meang2000[1]/meang2000[4]
-relative_Kuznets_index_gdp2005<-meang2005[1]/meang2005[4]
-relative_Kuznets_index_gdp2010<-meang2010[1]/meang2010[4]
-round(relative_Kuznets_index_gdp2000,2)
-round(relative_Kuznets_index_gdp2005,2)
-round(relative_Kuznets_index_gdp2010,2)
+relative_Kuznets_index_lexp2000<-meang2000[1]/meang2000[4]
+relative_Kuznets_index_lexp2005<-meang2005[1]/meang2005[4]
+relative_Kuznets_index_lexp2010<-meang2010[1]/meang2010[4]
+round(relative_Kuznets_index_lexp2000,2)
+round(relative_Kuznets_index_lexp2005,2)
+round(relative_Kuznets_index_lexp2010,2)
 
 
 #########################################################################
@@ -876,14 +876,14 @@ round(relative_Kuznets_index_pnotified2010,2)
 ###############################################################
 
 ###############################################################
-############################ GDP  ##############################
+############################ lexp  ##############################
 
-CWpopf2010<-c(0,gdp2010sort$CWpop)
-CWhealthf2010<-c(0,gdp2010sort$CWhealth)
-CWpopf2005<-c(0,gdp2005sort$CWpop)
-CWhealthf2005<-c(0,gdp2005sort$CWhealth)
-CWpopf2000<-c(0,gdp2000sort$CWpop)
-CWhealthf2000<-c(0,gdp2000sort$CWhealth)
+CWpopf2010<-c(0,lexp2010sort$CWpop)
+CWhealthf2010<-c(0,lexp2010sort$CWhealth)
+CWpopf2005<-c(0,lexp2005sort$CWpop)
+CWhealthf2005<-c(0,lexp2005sort$CWhealth)
+CWpopf2000<-c(0,lexp2000sort$CWpop)
+CWhealthf2000<-c(0,lexp2000sort$CWhealth)
 
 
 ccurve2010<-data.frame(y=CWhealthf2010, x=CWpopf2010)
@@ -916,8 +916,8 @@ delta_x_y
 
 ##Table 4A. Metrics of country-level inequalities in TB incidence according to social stratifiers and year assessed
 # Social gradient
-health_concentration_index_gdp2010<-2*sum(delta_x_y)*0.01
-round(health_concentration_index_gdp2010,2)
+health_concentration_index_lexp2010<-2*sum(delta_x_y)*0.01
+round(health_concentration_index_lexp2010,2)
 
 
 k<-ccurve.optx2005[1,1]
@@ -932,8 +932,8 @@ delta_x_y
 
 ##Table 4A. Metrics of country-level inequalities in TB incidence according to social stratifiers and year assessed
 # Social gradient
-health_concentration_index_gdp2005<-2*sum(delta_x_y)*0.01
-round(health_concentration_index_gdp2005,2)
+health_concentration_index_lexp2005<-2*sum(delta_x_y)*0.01
+round(health_concentration_index_lexp2005,2)
 
 
 k<-ccurve.optx2000[1,1]
@@ -948,11 +948,11 @@ delta_x_y
 
 ##Table 4A. Metrics of country-level inequalities in TB incidence according to social stratifiers and year assessed
 # Social gradient
-health_concentration_index_gdp2000<-2*sum(delta_x_y)*0.01
-round(health_concentration_index_gdp2000,2)
+health_concentration_index_lexp2000<-2*sum(delta_x_y)*0.01
+round(health_concentration_index_lexp2000,2)
 
 quartz(width=10, height=6, pointsize=10)
-plot(CWpopf2010,CWhealthf2010, col="black",pch=0, xlab="Country-level population gradient defined by GDP", ylab="Tuberculosis incidence rates per 100,000 population")
+plot(CWpopf2010,CWhealthf2010, col="black",pch=0, xlab="Country-level population gradient defined by Life expectancy at birth", ylab="Tuberculosis incidence rates per 100,000 population")
 points(CWpopf2005,CWhealthf2005, col="black",pch=1)
 points(CWpopf2000,CWhealthf2000, col="black",pch=2)
 lines(x,lf02010,col="black", lty=1)

@@ -71,6 +71,12 @@ legend = c("Argentina", "Bolivia", "Brazil","Chile","Colombia","Costa Rica","Dom
 					 "Panama","Paraguay","Peru","Trinidad and Tobago","Uruguay","Venezuela")
 
 
+##########################################################################
+################## Collinearity analysis #################################
+
+
+
+
 #################################################################
 #######################  Panel data analysis ##################
 
@@ -113,15 +119,26 @@ quartz(width=10, height=6, pointsize=10)
 scatterplot(yhat1_rd~log(df$gni)|df$country, boxplots=FALSE,legend.coords="topright",legend.title="Countries",xlab="log(GNI per capita, PPP (current international $))", ylab="log(Predicted Tuberculosis incidence rates per 100,000 population)",cex = 0.6, smooth=FALSE)
 
 
+### IR TB VS GNI
+
+## Fixed effects: n entity-specific intercepts (using plm)
+fixed2a <-plm(log(ir_tb) ~ log(gni), data=df, index=c("country", "year"), model="within")
+summary(fixed2a)
+print(fixed2a)
+
+##RANDOM-EFFECTS MODEL(Random Intercept, Partial Pooling Model)
+random2a <-plm(log(ir_tb) ~ log(gni), data=df, index=c("country", "year"), model="random")
+summary(random2)
+
 ### IR TB VS health expenditure
 
 ## Fixed effects: n entity-specific intercepts (using plm)
-fixed2 <-plm(log(ir_tb) ~ log(p.hex.gdp), data=df, index=c("country", "year"), model="within")
+fixed2 <-plm(log(ir_tb) ~ log(hexp), data=df, index=c("country", "year"), model="within")
 summary(fixed2)
 print(fixed2)
 
 ##RANDOM-EFFECTS MODEL(Random Intercept, Partial Pooling Model)
-random2 <-plm(log(ir_tb) ~ log(p.hex.gdp), data=df, index=c("country", "year"), model="random")
+random2 <-plm(log(ir_tb) ~ log(hexp), data=df, index=c("country", "year"), model="random")
 summary(random2)
 
 ##fixed or random effects
@@ -371,48 +388,50 @@ summary(randomf12)
 
 #### STEP 2
 
-randomf1 <-plm(log(ir_tb) ~ log(gdp) + log(gni), data=df, index=c("country", "year"), model="random")
+randomf1 <-plm(log(ir_tb) ~ log(hexp) + log(gni), data=df, index=c("country", "year"), model="random")
 summary(randomf1)
 
 
-randomf2 <-plm(log(ir_tb) ~ log(gdp) + log(hexp), data=df, index=c("country", "year"), model="random")
-summary(randomf2)
-
-randomf3 <-plm(log(ir_tb) ~ log(gdp) + log(impsfac), data=df, index=c("country", "year"), model="random")
+randomf3 <-plm(log(ir_tb) ~ log(hexp) + log(impsfac), data=df, index=c("country", "year"), model="random")
 summary(randomf3)
 
-randomf4 <-plm(log(ir_tb) ~ log(gdp) + log(impswt), data=df, index=c("country", "year"), model="random")
+randomf4 <-plm(log(ir_tb) ~ log(hexp) + log(impswt), data=df, index=c("country", "year"), model="random")
 summary(randomf4)
 
-randomf5 <-plm(log(ir_tb) ~ log(gdp) + log(pnotified), data=df, index=c("country", "year"), model="random")
+randomf5 <-plm(log(ir_tb) ~ log(hexp) + log(pnotified), data=df, index=c("country", "year"), model="random")
 summary(randomf5)
 
-randomf6 <-plm(log(ir_tb) ~ log(gdp) + log(t_jail), data=df, index=c("country", "year"), model="random")
+randomf6 <-plm(log(ir_tb) ~ log(hexp) + log(t_jail), data=df, index=c("country", "year"), model="random")
 summary(randomf6)
 
+randomf7 <-plm(log(ir_tb) ~ log(hexp) + log(gdp), data=df, index=c("country", "year"), model="random")
+summary(randomf7)
+
+randomf8 <-plm(log(ir_tb) ~ log(hexp) + log(lexp), data=df, index=c("country", "year"), model="random")
+summary(randomf8)
 
 #### STEP 3
-randomf1 <-plm(log(ir_tb) ~ log(gdp) + log(hexp) + log(impsfac), data=df, index=c("country", "year"), model="random")
+randomf1 <-plm(log(ir_tb) ~ log(hexp) + log(lexp) + log(impsfac), data=df, index=c("country", "year"), model="random")
 summary(randomf1)
 
-randomf2 <-plm(log(ir_tb) ~ log(gdp) + log(hexp) + log(impswt), data=df, index=c("country", "year"), model="random")
+randomf2 <-plm(log(ir_tb) ~ log(hexp) + log(lexp) + log(impswt), data=df, index=c("country", "year"), model="random")
 summary(randomf2)
 
-randomf3 <-plm(log(ir_tb) ~ log(gdp) + log(hexp) + log(t_jail), data=df, index=c("country", "year"), model="random")
+randomf3 <-plm(log(ir_tb) ~ log(hexp) + log(lexp) + log(t_jail), data=df, index=c("country", "year"), model="random")
 summary(randomf3)
 
-randomf3 <-plm(log(ir_tb) ~ log(gdp) + log(hexp) + log(pnotified), data=df, index=c("country", "year"), model="random")
+randomf3 <-plm(log(ir_tb) ~ log(hexp) + log(lexp) + log(pnotified), data=df, index=c("country", "year"), model="random")
 summary(randomf3)
 
 #### STEP 4
 
-randomf1 <-plm(log(ir_tb) ~ log(hexp) + log(gdp) + log(pnotified) + log(impsfac), data=df, index=c("country", "year"), model="random")
+randomf1 <-plm(log(ir_tb) ~ log(hexp) + log(lexp) + log(pnotified) + log(impsfac), data=df, index=c("country", "year"), model="random")
 summary(randomf1)
 
-randomf2 <-plm(log(ir_tb) ~ log(gdp) + log(hexp) + log(pnotified) + log(t_jail), data=df, index=c("country", "year"), model="random")
+randomf2 <-plm(log(ir_tb) ~ log(gdp) + log(lexp) + log(pnotified) + log(t_jail), data=df, index=c("country", "year"), model="random")
 summary(randomf2)
 
-randomf3 <-plm(log(ir_tb) ~ log(gdp) + log(hexp) + log(pnotified) + log(impswt), data=df, index=c("country", "year"), model="random")
+randomf3 <-plm(log(ir_tb) ~ log(gdp) + log(lexp) + log(pnotified) + log(impswt), data=df, index=c("country", "year"), model="random")
 summary(randomf3)
 
 #### STEP 5
@@ -423,6 +442,12 @@ summary(randomf1)
 randomf <-plm(log(ir_tb) ~ log(gdp) + log(hexp)  + log(pnotified) + log(impsfac), data=df, index=c("country", "year"), model="random")
 summary(randomf)
 yhat=randomf$model[[1]] - randomf$residuals
+
+randomf <-plm(log(ir_tb) ~ log(hexp)  + log(pnotified) + log(impsfac), data=df, index=c("country", "year"), model="random")
+summary(randomf)
+yhat=randomf$model[[1]] - randomf$residuals
+
+
 
 vif(randomf)
 quartz(width=10, height=6, pointsize=10)
