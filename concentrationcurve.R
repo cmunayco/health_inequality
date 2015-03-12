@@ -48,6 +48,7 @@ legend = c("Argentina", "Bolivia", "Brazil","Chile","Colombia","Costa Rica","Dom
            "Panama","Paraguay","Peru","Trinidad and Tobago","Uruguay","Venezuela")
 
 
+
 ##### Health inequality for lexp #####
 
 lexp<-df[, c("country","year","population","lexp","num_tb_cases","ir_tb")]
@@ -1230,4 +1231,21 @@ lines(x,x)
 legend(locator(1),c("2010","2005","2000"),col=c("black","black","black"),pch=c(0,1,2),lty=c(1,2,3),cex = .8)
 
 
+#### data output
+
+write.csv(hexp2000sort,"hexp2000sort.csv")
+write.csv(hexp2005sort,"hexp2005sort.csv")
+write.csv(hexp2010sort,"hexp2010sort.csv")
+
+write.csv(lexp2000sort,"lexp2000sort.csv")
+write.csv(lexp2005sort,"lexp2005sort.csv")
+write.csv(lexp2010sort,"lexp2010sort.csv")
+
+write.csv(impsfac2000sort,"impsfac2000sort.csv")
+write.csv(impsfac2005sort,"impsfac2005sort.csv")
+write.csv(impsfac2010sort,"impsfac2010sort.csv")
+
+write.csv(pnotified2000sort,"pnotified2000sort.csv")
+write.csv(pnotified2005sort,"pnotified2005sort.csv")
+write.csv(pnotified2010sort,"pnotified2010sort.csv")
 
