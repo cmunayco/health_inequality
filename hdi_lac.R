@@ -336,6 +336,38 @@ text(0.8,120, labels=mylabel3a, col="red")
 text(0.8,110, labels=mylabel4a, col="red")
 
 
+quartz(width=10, height=6, pointsize=10)
+plot(hdi2013sort$ridit,hdi2013sort$ir_tb, col="red",pch=0,
+     ylab="Tuberculosis incidence rates per 100,000 population", 
+     xlab="Country-level population gradient defined by Human Development Index (HDI)")
+points(hdi2009sort$ridit,hdi2009sort$ir_tb, col="blue",pch=1,
+       ylab="", 
+       xlab="")
+points(hdi2005sort$ridit,hdi2005sort$ir_tb, col="green",pch=2,
+       ylab="", 
+       xlab="")
+points(hdi2000sort$ridit,hdi2000sort$ir_tb, col="purple",pch=3,
+       ylab="", 
+       xlab="")
+lines(hdi2013sort$ridit,hdi2013sort$predict2013, col="red", lty=1,
+      ylab="", 
+      xlab="")
+lines(hdi2009sort$ridit,hdi2009sort$predict2009, col="blue", lty=2,
+      ylab="", 
+      xlab="")
+lines(hdi2005sort$ridit,hdi2005sort$predict2005, col="green", lty=3,
+      ylab="", 
+      xlab="")
+lines(hdi2000sort$ridit,hdi2000sort$predict2000, col="purple", lty=4,
+      ylab="", 
+      xlab="")
+legend(locator(1),c("2013","2009","2005","2000"),col=c("red","blue","green","purple"),lty=c(1,2,3,4),pch=c(0,1,2,3),cex = .8)
+text(0.8,150, "Índice de desigualdad de la pendiente (IDP)", col="red")
+text(0.8,140, labels=mylabel1a, col="red")
+text(0.8,130, labels=mylabel2a, col="red")
+text(0.8,120, labels=mylabel3a, col="red")
+text(0.8,110, labels=mylabel4a, col="red")
+
 
 
 ######################################################################################
@@ -475,8 +507,8 @@ text(10,110, labels=mylabel8a, col="red")
 
 
 ## lines and dots graphics
-quartz(width=10, height=6, pointsize=10)
-plot(r[1,],c(2000,2000,2000,2000),bg=rainbow(4), pch=21, cex=2, lwd=3, lty=1,xlim=c(10,130), ylim=c(1999,2015), yaxt='n', xlab="Tasa promedio de incidencia de TB (por 100,000 hb)", ylab="Años")
+quartz(width=10, height=6, pointsize=12)
+plot(r[1,],c(2000,2000,2000,2000),bg=rainbow(4), pch=21, cex=3, lwd=3, lty=1,xlim=c(10,130), ylim=c(1999,2015), yaxt='n', xlab="Tasa promedio de incidencia de TB (por 100,000 hb)", ylab="Años")
 ticks = c(2000, 2005, 2009, 2013)
 axis(side = 2, at = ticks)
 from.x <- c(r[1,1], r[1,2], r[1,3],r[1,4])
@@ -484,26 +516,26 @@ to.x   <- c(r[1,1], r[1,3], r[1,4])
 to.y   <- from.y <- c(2000, 2000, 2000,2000)
 segments(x0 = from.x, y0 = from.y, x1 = to.x, y1 = to.y,lwd=2)
 par(new=TRUE)
-plot(r[2,],c(2005,2005,2005,2005), bg=rainbow(4), pch=21, cex=2, lwd=3, xlim=c(10,130), ylim=c(1999,2015), axes=FALSE, xlab="", ylab="")
+plot(r[2,],c(2005,2005,2005,2005), bg=rainbow(4), pch=21, cex=3, lwd=3, xlim=c(10,130), ylim=c(1999,2015), axes=FALSE, xlab="", ylab="")
 from.x <- c(r[2,1], r[2,2], r[2,3],r[2,4])
 to.x   <- c(r[2,1], r[2,3], r[2,4])
 to.y   <- from.y <- c(2005, 2005, 2005,2005) 
 segments(x0 = from.x, y0 = from.y, x1 = to.x, y1 = to.y,lwd=2)
 par(new=TRUE)
-plot(r[3,],c(2009,2009,2009,2009), bg=rainbow(4), pch=21, cex=2, lwd=3, xlim=c(10,130), ylim=c(1999,2015), axes=FALSE, xlab="", ylab="")
+plot(r[3,],c(2009,2009,2009,2009), bg=rainbow(4), pch=21, cex=3, lwd=3, xlim=c(10,130), ylim=c(1999,2015), axes=FALSE, xlab="", ylab="")
 from.x <- c(r[3,1], r[3,2], r[3,3],r[3,4])
 to.x   <- c(r[3,1], r[3,3], r[3,4])
 to.y   <- from.y <- c(2009, 2009, 2009,2009) 
 segments(x0 = from.x, y0 = from.y, x1 = to.x, y1 = to.y,lwd=2)
 par(new=TRUE)
-plot(r[4,],c(2013,2013,2013,2013), bg=rainbow(4), pch=21, cex=2, lwd=3, xlim=c(10,130), ylim=c(1999,2015), axes=FALSE, xlab="", ylab="") 
+plot(r[4,],c(2013,2013,2013,2013), bg=rainbow(4), pch=21, cex=3, lwd=3, xlim=c(10,130), ylim=c(1999,2015), axes=FALSE, xlab="", ylab="") 
 from.x <- c(r[4,1], r[4,2], r[4,3],r[4,4])
 to.x   <- c(r[4,1], r[4,3], r[4,4])
 to.y   <- from.y <- c(2013, 2013, 2013,2013) 
 segments(x0 = from.x, y0 = from.y, x1 = to.x, y1 = to.y,lwd=2)
 legend("topright",c("Q1","Q2","Q3","Q4"),
        col= rainbow(4),
-       bg=rainbow(4), pch=19,bty="n", cex=1.5, title="Cuartíles del Indice de Desarrollo Humano (IDH)") 
+       bg=rainbow(4), pch=19,bty="n", cex=1.3, title="Cuartíles del Índice de Desarrollo Humano (IDH)") 
 
 
 
@@ -546,6 +578,69 @@ legend("topright",title="Population size",c("Q1","Q2","Q3","Q4"),
        col= rainbow(4),
        bg=rainbow(4), pch=19,bty="n", cex=1.5,
        pt.cex=c(1,1.4,3,1.4)) 
+
+
+
+
+quartz(width=10, height=6, pointsize=10)
+b<-barplot(t(r),col=c("deepskyblue4","dodgerblue3","dodgerblue","deepskyblue"),beside=T,ylim=c(0,220),
+           xlab="Quantiles of Human Development Index (HDI)", ylab="Average estimated incidence rate of tuberculosis per 100,000 population")
+legend("topright",c("Q1","Q2","Q3","Q4"),
+       col= c("deepskyblue4","dodgerblue3","dodgerblue","deepskyblue"),pch=15,bty="n") 
+text(x=c(1.5,2.5,3.5,4.5,6.5,7.5,8.5,9.5,11.5,12.5,13.5,14.5,16.5,17.5,18.5,19.5),
+     y=c(t(r[1,1]),t(r[1,2]),t(r[1,3]),t(r[1,4]),t(r[2,1]),t(r[2,2]),t(r[2,3]),t(r[2,4]),t(r[3,1]),t(r[3,2]),t(r[3,3]),t(r[3,4]),t(r[4,1]),t(r[4,2]),t(r[4,3]),t(r[4,4])),
+     labels=c(t(r[1,1]),t(r[1,2]),t(r[1,3]),t(r[1,4]),t(r[2,1]),t(r[2,2]),t(r[2,3]),t(r[2,4]),t(r[3,1]),t(r[3,2]),t(r[3,3]),t(r[3,4]),t(r[4,1]),t(r[4,2]),t(r[4,3]),t(r[4,4])),cex=1.25,pos=3)
+text(10,200, "Índice de Kuznets absoluto", col="red")
+text(10,190, labels=mylabel1a, col="red")
+text(10,180, labels=mylabel2a, col="red")
+text(10,170, labels=mylabel3a, col="red")
+text(10,160, labels=mylabel4a, col="red")
+text(10,150, "Índice de Kuznets relativo", col="red")
+text(10,140, labels=mylabel5a, col="red")
+text(10,130, labels=mylabel6a, col="red")
+text(10,120, labels=mylabel7a, col="red")
+text(10,110, labels=mylabel8a, col="red")
+
+
+
+
+## lines and dots graphics
+quartz(width=10, height=6, pointsize=12)
+plot(r[1,],c(2000,2000,2000,2000),bg=rainbow(4), pch=21, cex=3, lwd=3, lty=1,xlim=c(10,130), ylim=c(1999,2015), yaxt='n', xlab="Tuberculosis incidence rates per 100,000 population", ylab="Years")
+ticks = c(2000, 2005, 2009, 2013)
+axis(side = 2, at = ticks)
+from.x <- c(r[1,1], r[1,2], r[1,3],r[1,4])
+to.x   <- c(r[1,1], r[1,3], r[1,4])
+to.y   <- from.y <- c(2000, 2000, 2000,2000)
+segments(x0 = from.x, y0 = from.y, x1 = to.x, y1 = to.y,lwd=2)
+par(new=TRUE)
+plot(r[2,],c(2005,2005,2005,2005), bg=rainbow(4), pch=21, cex=3, lwd=3, xlim=c(10,130), ylim=c(1999,2015), axes=FALSE, xlab="", ylab="")
+from.x <- c(r[2,1], r[2,2], r[2,3],r[2,4])
+to.x   <- c(r[2,1], r[2,3], r[2,4])
+to.y   <- from.y <- c(2005, 2005, 2005,2005) 
+segments(x0 = from.x, y0 = from.y, x1 = to.x, y1 = to.y,lwd=2)
+par(new=TRUE)
+plot(r[3,],c(2009,2009,2009,2009), bg=rainbow(4), pch=21, cex=3, lwd=3, xlim=c(10,130), ylim=c(1999,2015), axes=FALSE, xlab="", ylab="")
+from.x <- c(r[3,1], r[3,2], r[3,3],r[3,4])
+to.x   <- c(r[3,1], r[3,3], r[3,4])
+to.y   <- from.y <- c(2009, 2009, 2009,2009) 
+segments(x0 = from.x, y0 = from.y, x1 = to.x, y1 = to.y,lwd=2)
+par(new=TRUE)
+plot(r[4,],c(2013,2013,2013,2013), bg=rainbow(4), pch=21, cex=3, lwd=3, xlim=c(10,130), ylim=c(1999,2015), axes=FALSE, xlab="", ylab="") 
+from.x <- c(r[4,1], r[4,2], r[4,3],r[4,4])
+to.x   <- c(r[4,1], r[4,3], r[4,4])
+to.y   <- from.y <- c(2013, 2013, 2013,2013) 
+segments(x0 = from.x, y0 = from.y, x1 = to.x, y1 = to.y,lwd=2)
+legend("topright",c("Q1","Q2","Q3","Q4"),
+       col= rainbow(4),
+       bg=rainbow(4), pch=19,bty="n", cex=1.3, title="Quantiles of Human Development Index (HDI)") 
+
+
+
+
+
+
+
 
 ##########################################################################
 ############################# Concentration curve  #######################
@@ -653,6 +748,26 @@ mylabel4b= bquote(2013==.(format(health_concentration_index_hdi2013,digits=2)))
 
 quartz(width=10, height=6, pointsize=10)
 plot(CWpopf2013,CWhealthf2013, col="red",pch=0, xlab="Gradiente de población entre países según índice de desarrollo humano (IDH)", ylab="Número de casos incidentes de TB (acumulado)")
+points(CWpopf2009,CWhealthf2009, col="blue",pch=1)
+points(CWpopf2005,CWhealthf2005, col="green",pch=2)
+points(CWpopf2000,CWhealthf2000, col="purple",pch=3)
+lines(x,lf02013,col="red", lty=1)
+lines(x,lf02009,col="blue", lty=2)
+lines(x,lf02005,col="green", lty=3)
+lines(x,lf02000,col="purple", lty=4)
+lines(x,x)
+legend(locator(1),c("2013","2009","2005","2000"),col=c("red","blue","green","purple"),pch=c(0,1,2,3), lty=c(1,2,3,4),cex = .8)
+text(0.8,0.25, "Índices de concentración de salud (IC)", col="red")
+text(0.8,0.22, labels=mylabel1b, col="red")
+text(0.8,0.18, labels=mylabel2b, col="red")
+text(0.8,0.15, labels=mylabel3b, col="red")
+text(0.8,0.12, labels=mylabel4b, col="red")
+
+
+
+
+quartz(width=10, height=6, pointsize=10)
+plot(CWpopf2013,CWhealthf2013, col="red",pch=0, xlab="Country-level population gradient defined by Human Development Index (HDI)", ylab="Cumulative number of tuberculosis cases")
 points(CWpopf2009,CWhealthf2009, col="blue",pch=1)
 points(CWpopf2005,CWhealthf2005, col="green",pch=2)
 points(CWpopf2000,CWhealthf2000, col="purple",pch=3)

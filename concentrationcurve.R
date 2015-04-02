@@ -37,8 +37,7 @@ df=data.frame(id=1:nrow(inequality1),year=inequality1$year,country=inequality1$c
               hexp=inequality1$Health_expenditure_percapita_PPP_constant_2005_international,
               ir_tb=inequality1$tb_incidence,t_mort=inequality1$rate_deaths_hiv_neg_tb_cases,t_jail=inequality1$tasa_encarcelamiento_100k,
               urbgrow=inequality1$Urban_population_growth,phiv=inequality1$vih_prevalence,
-              impsfac=inequality1$esperanza_vida_nacer_anos,impswt=inequality1$Proporcion_poblacion_usa_fuentes_mejoradas_agua_potable,
-              impsfac=inequality1$proporcion_poblacion_utiliza_instalaciones_mejoradas_saneamiento,
+              impsfac=inequality1$proporcion_poblacion_utiliza_instalaciones_mejoradas_saneamiento,impswt=inequality1$Proporcion_poblacion_usa_fuentes_mejoradas_agua_potable,
               bcg=inequality1$p_poblacion_menores_1ano_inmunizada_tuberculosis,unemploy=inequality1$prop_desem_fuerza_trabajo,
               AIDS=inequality1$tasa_incidencia_SIDA_por_100000_hab,
               pnotified=inequality1$captacion, num_tb_cases=inequality1$num_incid_tb_case)
@@ -563,15 +562,17 @@ Q4<-c(meang2000[4],meang2005[4],meang2010[4])
 Q4<-round(Q4,2)
 r<-cbind(Q1,Q2,Q3,Q4) 
 row.names(r)<-c('2000','2005','2010') 
+colnames(r)<-c('Q1','Q2','Q3','Q4')
 
 quartz(width=10, height=6, pointsize=10)
-b<-barplot(r,col=c("darkgray","gray","lightgray"),beside=T,ylim=c(0,200),
+b<-barplot(t(r),col=c("darkgray","gray","lightgray","gray90"),beside=T,ylim=c(0,200),
            xlab="Quantiles of Life expectancy at birth", ylab="Average estimated incidence rate of tuberculosis")
-legend("topright",c("2000","2005","2010"),
-       col= c("darkgray","gray","lightgray"),pch=15,bty="n") 
-text(x=b,y=c(r[1:12]),labels=c(r[1:12]),cex=1.25,pos=3)
+legend("topright",c("Q1","Q2","Q3","Q4"),
+       col= c("darkgray","gray","lightgray","gray90"),pch=15,bty="n") 
+text(x=b,y=c((r[1,1]),t(r[1,2]),t(r[1,3]),t(r[1,4]),t(r[2,1]),t(r[2,2]),t(r[2,3]),t(r[2,4]),t(r[3,1]),t(r[3,2]),t(r[3,3]),t(r[3,4])),
+     labels=c(t(r[1,1]),t(r[1,2]),t(r[1,3]),t(r[1,4]),t(r[2,1]),t(r[2,2]),t(r[2,3]),t(r[2,4]),t(r[3,1]),t(r[3,2]),t(r[3,3]),t(r[3,4])),cex=1.25,pos=3)
 text(2.5,3,"Most disadvantaged",cex=1.25,font=1)
-text(14.5,3,"Least disadvantaged",cex=1.25,font=1)
+text(13.1,3,"Least disadvantaged",cex=1.25,font=1)
 
 ##Table 4A. Metrics of country-level inequalities in TB incidence according to social stratifiers and year assessed
 regional_mean_rate_lexp2000<-sum(wpopg2000*meang2000)
@@ -656,15 +657,17 @@ Q4<-c(meanh2000[4],meanh2005[4],meanh2010[4])
 Q4<-round(Q4,2)
 r<-cbind(Q1,Q2,Q3,Q4) 
 row.names(r)<-c('2000','2005','2010') 
+colnames(r)<-c('Q1','Q2','Q3','Q4')
 
 quartz(width=10, height=6, pointsize=10)
-b<-barplot(r,col=c("darkgray","gray","lightgray"),beside=T,ylim=c(0,200),
+b<-barplot(t(r),col=c("darkgray","gray","lightgray","gray90"),beside=T,ylim=c(0,200),
 					 xlab="Quantiles of total health expenditure per capita", ylab="Average estimated incidence rate of tuberculosis")
-legend("topright",c("2000","2005","2010"),
-col= c("darkgray","gray","lightgray"),pch=15,bty="n") 
-text(x=b,y=c(r[1:12]),labels=c(r[1:12]),cex=1.25,pos=3)
+legend("topright",c("Q1","Q2","Q3","Q4"),
+col= c("darkgray","gray","lightgray","gray90"),pch=15,bty="n") 
+text(x=b,y=c((r[1,1]),t(r[1,2]),t(r[1,3]),t(r[1,4]),t(r[2,1]),t(r[2,2]),t(r[2,3]),t(r[2,4]),t(r[3,1]),t(r[3,2]),t(r[3,3]),t(r[3,4])),
+     labels=c((r[1,1]),t(r[1,2]),t(r[1,3]),t(r[1,4]),t(r[2,1]),t(r[2,2]),t(r[2,3]),t(r[2,4]),t(r[3,1]),t(r[3,2]),t(r[3,3]),t(r[3,4])),cex=1.25,pos=3)
 text(2.5,3,"Most disadvantaged",cex=1.25,font=1)
-text(14.5,3,"Least disadvantaged",cex=1.25,font=1)
+text(13.1,3,"Least disadvantaged",cex=1.25,font=1)
 
 ##Table 4A. Metrics of country-level inequalities in TB incidence according to social stratifiers and year assessed
 regional_mean_rate_hexp2000<-sum(wpoph2000*meanh2000)
@@ -747,15 +750,18 @@ Q4<-c(meanf2000[4],meanf2005[4],meanf2010[4])
 Q4<-round(Q4,2)
 r<-cbind(Q1,Q2,Q3,Q4) 
 row.names(r)<-c('2000','2005','2010') 
+colnames(r)<-c('Q1','Q2','Q3','Q4')
+
 
 quartz(width=10, height=6, pointsize=10)
-b<-barplot(r,col=c("darkgray","gray","lightgray"),beside=T,ylim=c(0,200),
+b<-barplot(t(r),col=c("darkgray","gray","lightgray","gray90"),beside=T,ylim=c(0,200),
 					 xlab="Quantiles of access to improved sanitation facilities", ylab="Average estimated incidence rate of tuberculosis")
-legend("topright",c("2000","2005","2010"),
-col= c("darkgray","gray","lightgray"),pch=15,bty="n") 
-text(x=b,y=c(r[1:12]),labels=c(r[1:12]),cex=1.25,pos=3)
+legend("topright",c("Q1","Q2","Q3","Q4"),
+       col= c("darkgray","gray","lightgray","gray90"),pch=15,bty="n") 
+text(x=b,y=c((r[1,1]),t(r[1,2]),t(r[1,3]),t(r[1,4]),t(r[2,1]),t(r[2,2]),t(r[2,3]),t(r[2,4]),t(r[3,1]),t(r[3,2]),t(r[3,3]),t(r[3,4])),
+     labels=c((r[1,1]),t(r[1,2]),t(r[1,3]),t(r[1,4]),t(r[2,1]),t(r[2,2]),t(r[2,3]),t(r[2,4]),t(r[3,1]),t(r[3,2]),t(r[3,3]),t(r[3,4])),cex=1.25,pos=3)
 text(2.5,3,"Most disadvantaged",cex=1.25,font=1)
-text(14.5,3,"Least disadvantaged",cex=1.25,font=1)
+text(13.1,3,"Least disadvantaged",cex=1.25,font=1)
 
 ##Table 4A. Metrics of country-level inequalities in TB incidence according to social stratifiers and year assessed
 regional_mean_rate_impsfac2000<-sum(wpopf2000*meanf2000)
@@ -839,15 +845,17 @@ Q4<-c(meant2000[4],meant2005[4],meant2010[4])
 Q4<-round(Q4,2)
 r<-cbind(Q1,Q2,Q3,Q4) 
 row.names(r)<-c('2000','2005','2010') 
+colnames(r)<-c('Q1','Q2','Q3','Q4')
 
 quartz(width=10, height=6, pointsize=10)
-b<-barplot(r,col=c("darkgray","gray","lightgray"),beside=T,ylim=c(0,200),
+b<-barplot(t(r),col=c("darkgray","gray","lightgray","gray90"),beside=T,ylim=c(0,200),
            xlab="Quantiles of TB detection rate ", ylab="Average estimated incidence rate of tuberculosis")
-legend("topright",c("2000","2005","2010"),
-       col= c("darkgray","gray","lightgray"),pch=15,bty="n") 
-text(x=b,y=c(r[1:12]),labels=c(r[1:12]),cex=1.25,pos=3)
+legend("topright",c("Q1","Q2","Q3","Q4"),
+       col= c("darkgray","gray","lightgray","gray90"),pch=15,bty="n") 
+text(x=b,y=c((r[1,1]),t(r[1,2]),t(r[1,3]),t(r[1,4]),t(r[2,1]),t(r[2,2]),t(r[2,3]),t(r[2,4]),t(r[3,1]),t(r[3,2]),t(r[3,3]),t(r[3,4])),
+     labels=c((r[1,1]),t(r[1,2]),t(r[1,3]),t(r[1,4]),t(r[2,1]),t(r[2,2]),t(r[2,3]),t(r[2,4]),t(r[3,1]),t(r[3,2]),t(r[3,3]),t(r[3,4])),cex=1.25,pos=3)
 text(2.5,3,"Most disadvantaged",cex=1.25,font=1)
-text(14.5,3,"Least disadvantaged",cex=1.25,font=1)
+text(13.1,3,"Least disadvantaged",cex=1.25,font=1)
 
 ##Table 4A. Metrics of country-level inequalities in TB incidence according to social stratifiers and year assessed
 regional_mean_rate_pnotified2000<-sum(wpopt2000*meant2000)
