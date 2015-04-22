@@ -3768,6 +3768,7 @@ legend("topright",c("Q1","Q2","Q3","Q4"),
 
 
 
+
 ## lines and dots graphics weighted
 quartz(width=10, height=6, pointsize=10)
 symbols(r[1,],c(2000,2000,2000,2000),circles=sqrt(qpg2000/pi),inches=1/4, bg=rainbow(4), pch=21, cex=2, lwd=3, lty=1,xlim=c(10,170), ylim=c(1999,2015), yaxt='n', xlab="Tasa promedio de incidencia de TB (por 100,000 hb)", ylab="Años")
